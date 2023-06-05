@@ -1,0 +1,195 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+  Betaling af ordre | TopTutors ★
+{% endblock %} 
+
+{% block styles %}
+
+<style>
+  .disabled-btn {
+    pointer-events: none;
+  }
+</style>
+{% endblock %} {% block scripts %}
+
+<script>
+  const checkbox = document.getElementById("terms");
+
+  checkbox.addEventListener("change", (event) => {
+    if (
+      document.querySelector("#order-btn").classList.contains("disabled-btn")
+    ) {
+      document.querySelector("#order-btn").classList.remove("disabled-btn");
+    } else {
+      document.querySelector("#order-btn").classList.add("disabled-btn");
+    }
+    if (document.querySelector("#terms-text").classList.contains("hide")) {
+      document.querySelector("#terms-text").classList.remove("hide");
+    } else {
+      document.querySelector("#terms-text").classList.add("hide");
+    }
+  });
+</script>
+
+{% endblock %}
+
+{% block body %}
+
+<section class="security-feature-section" style="margin-top: 82px">
+  <div class="row align-items-center">
+    <div class="container">
+      <div class="col-lg-12 section-heading style-four">
+        {% if order.active == True %}
+        <h2 class="section-title text-center" style="margin-bottom: 50px">
+          Godkendelse af ordre 🎓
+        </h2>
+        <p class="description">
+          Her er en oversigt over din ordre og eventuelle betalingsaftale, som
+          du godkender nederst på siden. Efter du har godkendt din ordre, kan du
+          begynde at afholde lektioner med din tutor.
+          <br />
+          <br />
+        </p>
+        {% else %}
+        <h2 class="section-title text-center" style="margin-bottom: 50px">
+          Din ordre er godkendt! 🎉
+        </h2>
+        <p class="description">
+          Velkommen til TopTutors. Du kan nu begynde at afholde lektioner med
+          din tutor. Hvis I ikke allerede har aftalt jeres første lektion, så
+          vil din tutor tage kontakt til dig for at aftale lektionen.
+          <br /><br />
+          Følg med i undervisningsforløbet ved at logge ind på din konto, hvor
+          du kan se din kalender for afholdte og kommende lektioner, se noter
+          fra din tutor efter hver lektion og optagelser af undervisningen.
+          <br />
+          <br />
+        </p>
+        <a
+          style="margin-bottom: 50px; margin-top: 10px"
+          href="/login"
+          class="nav-btn tt__btn"
+          >Log ind på din konto</a
+        >
+        <br />
+        <h5>Din bestilling:</h5>
+        {% endif %}
+
+        <table class="table table-bordered table-order">
+          <thead style="color: #fff; background-color: #2773f8">
+            <tr>
+              <th scope="col">Produkt</th>
+              <th scope="col">Timepris</th>
+              {% if order.discount %}
+              <th scope="col">Enhedsrabat</th>
+              {% endif %}
+              <th scope="col">Antal timer</th>
+              {% if order.installments > 1 %}
+              <th scope="col">Antal afdrag</th>
+              {% endif %}
+              <th scope="col">
+                {% if order.installments > 1 %} Afdrag per måned {% else %}
+                Totalpris{% endif %}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Undervisning</th>
+              <td>{{unit_price}} kr.</td>
+              {% if order.discount %}
+              <td>{{ unit_discount }} kr.</td>
+              {% endif %}
+              <td>{{order.total_hours}}</td>
+              {% if order.installments > 1 %}
+              <td>{{order.installments}}</td>
+              {% endif %}
+              <td>{{per_rate_price}} kr.</td>
+            </tr>
+
+            {% if order.extra_student %}
+            <tr>
+              <th scope="row">Ekstra elev gebyr</th>
+              <td>{{unit_fee_extra_student}} kr.</td>
+              {% if order.discount %}
+              <td>0 kr.</td>
+              {% endif %}
+              <td>{{order.total_hours}}</td>
+              {% if order.installments > 1 %}
+              <td>{{order.installments}}</td>
+              {% endif %}
+              <td>{{ monthly_fee_extra_student }} kr.</td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+        {% if order.extra_student %}
+        <h6>
+          {% if order.installments > 1 %} Pris per måned: {{ price_per_month }}
+          kr.{% else %} Totalpris: {{ price_per_month }} kr.{% endif %}
+        </h6>
+        {% endif %} {% if order.discount %}
+        <h6>Rabat: {{ discount_percentage }}%</h6>
+        {% endif %}
+        <br />
+
+        {% if order.active == True %}
+        <ul
+          class="banner__feature d-flex mx-auto justify-content-center banner-order"
+        >
+          <li class="icon-price" style="font-size: 18px">
+            <i class="ei ei-icon_check"></i>Ingen forpligtelse eller binding
+          </li>
+          <li class="icon-price" style="font-size: 18px">
+            <i class="ei ei-icon_check"></i>Få ubrugte timer refunderet
+          </li>
+          <li class="icon-price" style="font-size: 18px">
+            <i class="ei ei-icon_check"></i>100% tilfredshedsgaranti
+          </li>
+        </ul>
+        <div class="input-checkbox checkbox-order">
+          <input
+            type="checkbox"
+            id="terms"
+            name="terms"
+            onchange="document.getElementById('order-btn').disabled = this.checked;"
+            required
+            checked
+          />
+          <p>
+            Jeg accepterer
+            <a href="/betingelser" target="_blank">vilkår og betingelser</a>
+            {% if order.installments > 1 %} og at eventuelle afdrag bliver
+            trukket automatisk på det tilknyttede betalingskort. {% endif %}
+          </p>
+        </div>
+        <p class="hide" id="terms-text" style="color: #ff0267; font-size: 12px">
+          Du skal acceptere vilkår og betingelser for at godkende ordren.
+        </p>
+
+        <!-- <div class="input-checkbox">
+                        <input type="checkbox" id="marketing" name="marketing" checked>
+                        <p>Jeg vil gerne modtage nyheder fra TopTutors.</p>
+                    </div> -->
+        <a
+          href="/order/pay/{{order.hashed_id}}"
+          class="nav-btn tt__btn"
+          id="order-btn"
+          name="order-btn"
+          style="
+            margin-bottom: 50px;
+            margin-top: 10px;
+            font-weight: 700;
+            font-size: 22px;
+          "
+          >Godkend ordre</a
+        >
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,353 @@
+.cursoulImage {
+  display: grid;
+  justify-content: center;
+}
+
+.circle {
+  width: 350px;
+}
+.tutor-caro-img {
+  top: 35px;
+}
+.cursoulText {
+  display: contents;
+  text-align: center;
+}
+.cursoulParag {
+  text-align: left;
+}
+.circle {
+  border-radius: 50%;
+}
+.carousel .carousel-item {
+  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 400px;
+  -webkit-perspective: 500px;
+  perspective: 500px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 0% 50%;
+  transform-origin: 0% 50%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel {
+  height: 400px;
+  perspective: 1000px;
+  transform: translateY(-100px);
+}
+
+.carousel .carousel-item {
+  cursor: grab;
+  width: 200px;
+}
+/* .btn.prev {
+  position: fixed;
+  top: 189px;
+  left: 45px;
+}
+.btn.next {
+  position: fixed;
+  top: 189px;
+  right: 45px;
+} */
+#carousel-arrows .btn1.prev {
+  position: fixed;
+  top: 240px;
+  left: 13vw;
+  width: 40px;
+  height: 40px;
+  padding: 8px 0px 0px 0px;
+  text-align: center;
+  line-height: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #111;
+  cursor: pointer;
+  border: 0;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: opacity 0.2s ease-out;
+  font-size: 20px;
+}
+#carousel-arrows .btn1.prev i {
+  width: inherit;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 40px;
+  margin-top: -7px;
+  margin-left: -2px;
+}
+#carousel-arrows .btn1.next {
+  position: fixed;
+  top: 240px;
+  right: 13vw;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 8px 0px 0px 3px;
+  text-align: center;
+  line-height: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #111;
+  cursor: pointer;
+  border: 0;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: opacity 0.2s ease-out;
+  font-size: 20px;
+}
+#carousel-arrows .btn1.next i {
+  width: inherit;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 40px;
+  margin-top: -7px;
+  margin-left: -2px;
+}
+
+.carousel .carousel-item:active {
+  cursor: grabbing;
+}
+
+.carousel .carousel-item img {
+  width: 100%;
+}
+
+.carousel .carousel-item h3 {
+  color: #000000;
+  font-size: 2em;
+  font-weight: bold;
+  margin: -5px 0 0;
+  padding: 10px 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.readMoreTopTutors {
+  display: grid;
+  justify-content: center;
+  margin-top: -100px;
+}
+.glide__track.height-adjustment {
+  height: 630px;
+}
+.fix-height {
+  height: 800px;
+}
+.price-row {
+  position: inherit;
+}
+.section {
+  margin-top: -30px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.TopTutorMarginTop {
+  margin-top: -300px;
+}
+
+.container.priceSectionMarginTop.sticky {
+  margin-top: -550px;
+}
+.tutorsMargin {
+  margin-top: -150px;
+  margin-bottom: 100px;
+}
+.triangle1 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 100vw 400px 0;
+  /* border-color: transparent transparent var(--my-white) transparent; */
+  border-color: transparent #f3f8ff transparent transparent;
+  background-color: white;
+  margin-top: -151px;
+}
+.triangle2 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 100px 100vw;
+  border-color: transparent transparent var(--my-white) transparent;
+  background-color: var(--my-white);
+}
+.tri3 {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 400px 0 0 110vw;
+  border-color: transparent transparent transparent var(--my-white);
+}
+.tutors-text {
+  width: 65%;
+}
+
+#toptutorSigning {
+  font-weight: 600;
+  font-size: x-large;
+}
+
+@media (max-width: 1567px) {
+  #carousel-arrows .btn1.prev {
+    top: 255px;
+    left: 9vw;
+  }
+  #carousel-arrows .btn1.next {
+    top: 255px;
+    right: 9vw;
+  }
+  .tutors-text {
+    width: 60%;
+  }
+}
+@media (max-width: 1255px) {
+  #carousel-arrows .btn1.prev {
+    top: 255px;
+    left: 8vw;
+  }
+  #carousel-arrows .btn1.next {
+    top: 255px;
+    right: 8vw;
+  }
+}
+@media (max-width: 1177px) {
+  .widgets {
+    bottom: -145px;
+  }
+  .tutors-text {
+    width: 70%;
+  }
+}
+@media (max-width: 1032px) {
+  #carousel-arrows .btn1.prev {
+    top: 275px;
+    left: 45px;
+  }
+  #carousel-arrows .btn1.next {
+    top: 275px;
+    right: 45px;
+  }
+}
+
+@media (max-width: 993px) {
+  .tutorsMargin {
+    margin-top: 380px;
+  }
+  .triangle1 {
+    margin-top: -765px;
+  }
+  .tutors-text {
+    width: 70%;
+  }
+  /* #carousel-arrows .btn1.prev {
+    top: 21vh;
+    left: 45px;
+  }
+  #carousel-arrows .btn1.next {
+    top: 21vh;
+    right: 45px;
+  } */
+  #carousel-arrows .btn1.prev {
+    display: none;
+  }
+  #carousel-arrows .btn1.next {
+    display: none;
+  }
+  .glide__track.height-adjustment {
+    height: 725px;
+  }
+}
+
+/* @media (max-width: 935px) {
+  #carousel-arrows .btn1.prev {
+    top: 24vh
+  }
+  #carousel-arrows .btn1.next {
+    top: 24vh;
+  }
+} */
+
+@media (max-width: 600px) {
+  .mobile-spacing {
+    width: 100%;
+    height: 0px;
+  }
+  .tutorsMargin {
+    margin-top: 500px;
+  }
+  .triangle2 {
+    border-width: 0 0 500px 100vw;
+  }
+  .triangle1 {
+    margin-top: -865px;
+  }
+  .margin-top5vh {
+    margin-top: -10px;
+  }
+  .container.priceSectionMarginTop.sticky {
+    margin-top: -900px;
+  }
+
+  /* #carousel-arrows .btn1.prev {
+    left: 5%;
+  }
+  #carousel-arrows .btn1.next {
+    right: 5%;
+  } */
+}
+/* @media (max-width: 530px) {
+  #carousel-arrows .btn1.prev {
+    top: 28vh;
+    left: 2%;
+  }
+  #carousel-arrows .btn1.next {
+    top: 28vh;
+    right: 2%;
+  }
+} */
+/* @media (max-width: 405px) {
+  #carousel-arrows .btn1.prev {
+    top: 32vh;
+    left: 2%;
+  }
+  #carousel-arrows .btn1.next {
+    top: 32vh;
+    right: 2%;
+  }
+} */
+/* @media (max-width: 380px) {
+  #carousel-arrows .btn1.prev {
+    top: 37vh;
+    left: 2%;
+  }
+  #carousel-arrows .btn1.next {
+    top: 37vh;
+    right: 2%;
+  }
+} */
+
+@media (max-width: 330px) {
+  .tutorsMargin {
+    margin-top: 600px;
+  }
+  .triangle1 {
+    margin-top: -965px;
+  }
+}

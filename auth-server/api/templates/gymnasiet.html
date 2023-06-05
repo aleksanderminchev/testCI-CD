@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Få Lektiehjælp i Gymnasiet |  Prøv Nu - Helt Gratis | TopTutors ★{% endblock %}
+
+{% block desc %}
+Skræddersyet Lektiehjælp i Gymnasiet | Certificerede Tutors i Hele Danmark | Alle Gymnasiefag | Prøv Nu - Helt Gratis | ★ 5 Stjerner På Trustpilot ☝
+{% endblock %}
+
+
+{% block snippets %}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Lektiehjælp & Tutoring i Gymnasiet i {{ subject }}",
+      "description": "Få skræddersyet lektiehjælp af Danmarks topstuderende i alle fag i gymnasiet og folkeskolen i hele Danmark.",
+      "provider": {
+        "@type": "Organization",
+        "name": "TopTutors: Lektiehjælp & Tutors",
+        "sameAs": "https://toptutors.dk"
+      }
+    }
+</script>
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Lektiehjælp",
+        "item": "https://toptutors.dk/lektiehjælp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Gymnasiet",
+        "item": "https://toptutors.dk/lektiehjælp/gymnasiet"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ subject }}"
+        "item": "https://toptutors.dk/lektiehjælp/gymnasiet/{{ subject }}"
+      }]
+    }
+</script>
+{% endblock %}
+
+{% block body %}
+
+{% include "sections/hero_gymnasiet.html" %}
+
+{% include "sections/benefits2.html" %}
+
+{% include "sections/cta2.html" %}
+
+{% include "sections/subjects_gymnasiet.html" %}
+
+{% include "sections/testimonials.html" %}
+
+{% include "sections/tutor_section.html" %}
+
+{% endblock %}

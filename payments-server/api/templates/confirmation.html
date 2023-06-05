@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% block title %}Tak for at bruge TopTutors | TopTutors Lektiehjælp & Tutoring {% endblock %}
+
+{% block desc %}
+    En fagekspert vil give dig et opkald hurtigst muligt for at høre nærmere om dine undervisningsbehov.
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+    ap3c.cmd.push(function() {
+        ap3c.track({"v":0,"phone": "{{phone}}", "email": "{{email}}"});
+    });
+    // Google ads tracker
+    //gtag('event', 'conversion', {'send_to': 'AW-469915489/ABDCCJyoxOsBEOGuieAB'});
+
+    // FB pixel tracker
+    fbq('track', 'Lead');
+
+    // Zoho Pagesense tracker
+    window.pagesense = window.pagesense || [];
+    window.pagesense.push(['trackEvent', 'Lead conversion']);
+
+    // Affiliate tracker
+    atag('track', 'conversion');  
+</script>
+
+{% endblock %}
+
+{% block body %}
+
+<section class="page-header page-header-bg confirmation-page-header">
+  <div class="container">
+      <div class="page-header_wrapper">
+          <h1 style="font-weight: 700;" class="banner__title_long">Tak! Du bliver kontaktet inden for 24 timer 🎉</h1>
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <p class="description" style="margin-top: 20px;">
+                En fagekspert vil give dig et opkald hurtigst muligt for at høre nærmere om dine undervisningsbehov,
+                så vi kan matche dig med den helt rette tutor til dit gratis opstartsmøde.</p>
+            </div>
+          </div>
+      </div>
+      <!-- /.page-title-wrapper -->
+  </div>
+  <!-- /.container -->
+</section>
+
+
+
+<section class="contact-page" style="padding:0;">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-12 pr">
+              <div class="row align-items-center pr">
+                  <div class="col-md-12">
+                    <div class="service-three area">
+                      <div class="container">
+                          <!-- <div class="section-heading style-one text-center">
+                              <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">
+                                  Hvad sker der nu?<br>
+                                  Trending feature
+                              </h2>
+          
+                              <p class="description wow fadeInUp" data-wow-delay="0.5s">
+                                  So I said knees up cuppa such a fibber jeffrey a bit of how's your.
+                              </p>
+                          </div> -->
+          
+                          <div class="row">
+                              <div class="col-lg-4 col-md-12">
+                                  <div class="tt-icon-box style-three wow fadeInUp" data-wow-delay="0.7s">
+                                      <!-- /.icon-container -->
+          
+                                      <div class="box-content">
+                                          <h4 class="box-title">Hvad sker der nu?</h4>
+          
+                                          <p class="description" style="font-size: 18px;">
+                                              Der kan gå op til 24 timer, før vi kontakter dig igen,
+                                              men vi prøver at kontakte dig hurtigst muligt.
+                                              Efterfølgende matcher vi dig med den tutor, der passer bedst til dine ønsker.
+                                          </p>        
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- /.col-lg-4 col-md-12"-->
+          
+                              <div class="col-lg-4 col-md-12">
+                                  <div class="tt-icon-box style-three wow fadeInUp" data-wow-delay="0.9s">
+                                      <!-- /.icon-container -->
+          
+          
+                                      <div class="box-content">
+                                          <h4 class="box-title">Har du spørgsmål?</h4>
+          
+                                          <p class="description" style="font-size: 18px;">
+                                            Hvis der er noget, som du er i tvivl om, er du mere end velkommen til at kontakte os.
+                                            Du kan skrive en mail til os på hej@toptutors.dk
+                                            eller ringe til os på 93 83 97 57.
+                                          </p>
+                                     </div>
+                                  </div>
+                              </div>
+                              <!-- /.col-lg-4 col-md-12"-->
+          
+                              <div class="col-lg-4 col-md-12">
+                                  <div class="tt-icon-box style-three wow fadeInUp" data-wow-delay="1.1s">
+                                      <!-- /.icon-container -->
+          
+                                      <div class="box-content">
+                                          <h4 class="box-title">Følg os</h4>
+                                          <p class="description" style="font-size: 18px;">
+                                            Følg os på de sociale medier eller del os med dit netværk.
+                                          </p> <br>
+                                          <ul class="footer-social-link">
+                                            <li>
+                                                <a href="https://www.facebook.com/TopTutors.dk/" target="_blank">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.instagram.com/toptutors.dk/" target="_blank">
+                                                    <i class="fab fa-instagram"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.linkedin.com/company/toptutors-aps/" target="_blank">
+                                                    <i class="fab fa-linkedin"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.tiktok.com/@thetoptutors" target="_blank">
+                                                    <i class="fab fa-tiktok"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.youtube.com/channel/UCs5hY2Vu_YJ8Y0D-CbuYiIA" target="_blank">
+                                                    <i class="fab fa-youtube"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- /.col-lg-4 col-md-12"-->
+                          </div>
+                          <!-- /.row -->
+                      </div>
+                      <!-- /.container -->
+                  </div>
+                  <!-- /.service-three area -->
+                  </div>
+                  <!-- /.col-md-6 -->
+              </div>
+              <!-- /.row -->
+          </div>
+          <!-- /.col-md-10 -->
+      </div>
+      <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+<!-- /.contact-page -->
+
+
+
+{% include "sections/garantiSection.html" %}
+
+{% include "sections/testimonials.html" %}
+
+{% endblock %}

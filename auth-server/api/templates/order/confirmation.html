@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Betaling bekræftet | TopTutors Lektiehjælp & Privatunderundervisning
+{% endblock %}
+
+{% block desc %}
+    Tak! Din betaling er modtaget. Velkommen til TopTutors.
+{% endblock %}
+
+{% block body %}
+
+
+<section class="security-feature-section" style="margin-top:100px;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 col-md-12 offset-lg-2 section-heading style-four">
+                <h2 class="section-title">
+                    Din ordre er godkendt! 🎉
+                </h2>
+                <p class="description">
+                    Velkommen til TopTutors. Du kan nu begynde at afholde lektioner med din tutor. Hvis I ikke allerede har aftalt jeres første lektion, så vil din tutor tage kontakt til dig for at aftale lektionen. <br><br> 
+                    Følg med i undervisningsforløbet ved at logge ind på din konto, hvor du kan se din kalender for afholdte og kommende lektioner, se noter fra din tutor efter hver lektion og optagelser af undervisningen.
+                    <br>
+                    <br>
+                    Husk, alle kan lære alt med en inspirerende underviser! 🎓 
+                </p>
+                <a style="margin-top: 50px; margin-right: 10px;" href="/login" class="nav-btn tt__btn">Log ind på din konto</a>
+                <a style="margin-top: 50px" href="/order/{{order.hashed_id}}" class="nav-btn level tt__btn">Se din ordre</a><br><br>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
+{% block scripts %}
+  
+{% endblock %}

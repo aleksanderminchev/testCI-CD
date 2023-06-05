@@ -1,0 +1,760 @@
+<style>
+    .carousel * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .carousel {
+        --current-slide: 0;
+        /* we set position relative so absolute position works properly for the buttons */
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 3rem;
+        /*background: linear-gradient(180deg, var(--my-white) 30.73%, var(--my-blue));*/
+        background: linear-gradient(var(--my-blue06) 15%, var(--my-white) 85%);
+        padding-top: 5rem;
+    }
+
+    .carousel h2,
+    .carousel>p {
+        text-align: center;
+    }
+
+    .carousel>p {
+        padding-bottom: 3rem;
+        color: #1c1e21;
+    }
+
+    .carousel-button {
+        /* vertically centering the buttons */
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        z-index: 1;
+        /* basic styling */
+        padding: 0.5rem;
+        margin: 0.5rem;
+        border-radius: 100%;
+        background-color: var(--my-white);
+        border: 2px solid #4095e9;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        touch-action: manipulation;
+        transition: background-color 0.1s;
+        opacity: 0.8;
+    }
+
+    .carousel-button svg {
+        width: 2rem;
+        stroke: #649bfa;
+    }
+
+    .carousel-buttons .carousel-button:active {
+        background-color: var(--my-blue06);
+    }
+
+    .carousel-buttons .carousel-button:active>svg {
+        stroke: var(--my-white);
+    }
+
+    .carousel-button_previous {
+        left: -0.5rem;
+    }
+
+    .carousel-button_next {
+        right: -0.5rem;
+    }
+
+    .slides {
+        display: flex;
+        transition: transform 0.5s;
+        transform: translateX(calc(-100% * (var(--current-slide))));
+    }
+
+    .slide {
+        flex: 0 0 84%;
+        margin: 0 8%;
+        opacity: 0.3;
+        transition: opacity 1s;
+    }
+
+    .tutor_cards {
+        padding: 5rem 0 2rem;
+        /* gap: 10%; */
+    }
+
+    .tutor_card {
+        background: #e3efff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 43px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        /* max-width: 311px; */
+    }
+
+    .tutor_card img {
+        width: 170px;
+        position: absolute;
+        top: -4.4rem;
+        border: 6px solid #dcebfe;
+        border-radius: 100%;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+    }
+
+    .tutor_card .tutor_stars {
+        display: flex;
+        flex-direction: row;
+        padding-top: 5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .tutor_stars svg {
+        fill: var(--my-yellow);
+        ;
+        width: 20px;
+    }
+
+    .tutor_card h2 {
+        font-size: 25px;
+        color: #252525;
+        padding-top: 0.5rem;
+        font-weight: 600;
+    }
+
+    .certified_tutor {
+        color: var(--my-gray);
+        font-size: 16px;
+        font-weight: 500;
+        padding-bottom: 0.5rem;
+    }
+
+    .tutor_card p {
+        background: #f3f8ff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 0 0 43px 43px;
+        padding: 1.5rem 2rem;
+        line-height: 170%;
+        color: #525252;
+        height: 100%;
+        font-size: 14px;
+    }
+
+    .tutor_dots {
+        display: none;
+    }
+
+    .carousel_cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+    }
+
+    .carousel .tt__btn {
+        padding: 11px 25px;
+        text-align: center;
+    }
+
+    .more_tutors {
+        position: relative;
+        height: 500px;
+        text-align: center;
+    }
+
+    .more_tutors h3 {
+        padding-top: 3rem;
+    }
+
+    .bubble {
+        width: 50px;
+        aspect-ratio: 1/1;
+        position: absolute;
+        border-radius: 100%;
+        object-fit: cover;
+        z-index: 2;
+
+    }
+
+    /*~~~BUBBLES~~~*/
+
+    .bubble:nth-child(16) {
+        width: 47px;
+        left: 21%;
+        top: 328px;
+    }
+
+    .bubble:nth-child(2) {
+        width: 50px;
+        left: 51%;
+        top: 393px;
+    }
+
+    .bubble:nth-child(3) {
+        width: 75px;
+        left: 39%;
+        top: 309px;
+    }
+
+    .bubble:nth-child(4) {
+        width: 53px;
+        left: 63%;
+        top: 318px;
+    }
+
+    .bubble:nth-child(5) {
+        width: 46px;
+        left: 54%;
+        top: 260px;
+    }
+
+    .bubble:nth-child(6) {
+        width: 80px;
+        left: 76%;
+        top: 355px;
+    }
+
+    .bubble:nth-child(7) {
+        width: 50px;
+        left: 35%;
+        top: 247px;
+    }
+
+    .bubble:nth-child(8) {
+        width: 75px;
+        left: 20%;
+        top: 172px;
+    }
+
+    .bubble:nth-child(9) {
+        width: 75px;
+        left: 73%;
+        top: 236px;
+    }
+
+    .bubble:nth-child(10) {
+        width: 50px;
+        left: 61%;
+        top: 209px;
+    }
+
+    .bubble:nth-child(11) {
+        width: 50px;
+        left: 13%;
+        top: 259px;
+    }
+
+    .bubble:nth-child(12) {
+        width: 40px;
+        left: 55%;
+        top: 154px;
+    }
+
+    .bubble:nth-child(13) {
+        width: 42px;
+        left: 44%;
+        top: 197px;
+    }
+
+    .bubble:nth-child(14) {
+        width: 50px;
+        left: 29%;
+        top: 380px;
+    }
+
+    .bubble:nth-child(15) {
+        width: 75px;
+        left: 6%;
+        top: 380px;
+    }
+
+    /*~~~~~~~~~~~~~*/
+    .tutor_icons {
+        position: relative;
+        opacity: 0.5;
+    }
+
+    .tutor_icons img {
+        height: calc(100vw*0.04);
+        max-width: 77px;
+    }
+
+    .tutor_icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    img.tutor_icon:nth-child(1) {
+        top: 264px;
+        left: 8%;
+        rotate: -27deg;
+    }
+
+    img.tutor_icon:nth-child(2) {
+        top: 106px;
+        left: 84%;
+    }
+
+    img.tutor_icon:nth-child(3) {
+        top: 144px;
+        left: 11%;
+        rotate: 340deg;
+        width: 5%;
+    }
+
+    img.tutor_icon:nth-child(4) {
+        top: 22px;
+        left: 23%;
+        rotate: -18deg;
+    }
+
+    img.tutor_icon:nth-child(5) {
+        top: 37px;
+        left: 71%;
+        rotate: 20deg;
+    }
+
+    img.tutor_icon:nth-child(6) {
+        top: 211px;
+        left: 87%;
+        rotate: 43deg;
+    }
+
+    img.tutor_icon:nth-child(7) {
+        top: 58px;
+        left: 12%;
+        rotate: -57deg;
+    }
+
+
+
+    @media screen and (min-width: 810px) {
+
+
+        .carousel-button_previous {
+            left: 0rem;
+        }
+
+        .carousel-button_next {
+            right: 0rem;
+        }
+
+        .slides {
+            transform: translateX(calc(-50% * (var(--current-slide))));
+        }
+
+        .slide {
+            flex: 0 0 42%;
+            margin: 0 4%;
+        }
+
+        .tutor_dots {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tutor_dot {
+            height: 0.7rem;
+            aspect-ratio: 1/1;
+            background-color: #4095e9;
+            border-radius: 100%;
+            cursor: pointer;
+            border: 1px solid #4095e9;
+            opacity: 0.5;
+        }
+
+        .active_dot {
+            opacity: 1;
+        }
+
+        /*~~~BUBBLES~~~*/
+
+
+
+        .bubble:nth-child(16) {
+            width: 69px;
+            left: 31%;
+            top: 286px;
+        }
+
+        .bubble:nth-child(2) {
+            width: 73px;
+            left: 51%;
+            top: 393px;
+        }
+
+        .bubble:nth-child(3) {
+            width: 100px;
+            left: 39%;
+            top: 321px;
+        }
+
+        .bubble:nth-child(4) {
+            width: 90px;
+            left: 58%;
+            top: 318px;
+        }
+
+        .bubble:nth-child(5) {
+            width: 70px;
+            left: 48%;
+            top: 270px;
+        }
+
+        .bubble:nth-child(6) {
+            width: 114px;
+            left: 70%;
+            top: 355px;
+        }
+
+        .bubble:nth-child(7) {
+            width: 72px;
+            left: 57%;
+            top: 222px;
+        }
+
+        .bubble:nth-child(8) {
+            width: 100px;
+            left: 49%;
+            top: 150px;
+        }
+
+        .bubble:nth-child(9) {
+            width: 100px;
+            left: 65%;
+            top: 236px;
+        }
+
+        .bubble:nth-child(10) {
+            width: 71px;
+            left: 35%;
+            top: 151px;
+        }
+
+        .bubble:nth-child(11) {
+            width: 74px;
+            left: 22%;
+            top: 274px;
+        }
+
+        .bubble:nth-child(12) {
+            width: 57px;
+            left: 28%;
+            top: 204px;
+        }
+
+        .bubble:nth-child(13) {
+            width: 64px;
+            left: 41%;
+            top: 236px;
+        }
+
+        .bubble:nth-child(14) {
+            width: 76px;
+            left: 29%;
+            top: 380px;
+        }
+
+        .bubble:nth-child(15) {
+            width: 100px;
+            left: 17%;
+            top: 380px;
+        }
+
+        /*~~~~~~~~~~~~~*/
+
+        img.tutor_icon:nth-child(4) {
+            top: 22px;
+            left: 23%;
+        }
+
+        img.tutor_icon:nth-child(5) {
+            top: 37px;
+            left: 71%;
+        }
+    }
+
+    @media screen and (min-width: 1350px) {
+        .carousel {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        .slides {
+            transform: translateX(calc(-33.3333% * (var(--current-slide))));
+        }
+
+        .slide {
+            flex: 0 0 27.3333%;
+            margin: 0 3%;
+        }
+
+        .carousel-button_previous {
+            left: 7%;
+        }
+
+        .carousel-button_next {
+            right: 7%;
+        }
+
+        .carousel-button:hover {
+            border-color: #4095e9;
+            background-color: white;
+        }
+
+        .carousel-button:hover>svg {
+            stroke: #4095e9;
+        }
+
+    }
+
+    .white {
+        color: var(--my-white);
+    }
+</style>
+
+<section class="carousel" role="group" aria-roledescription="carousel" aria-label="Our top tutors" data-carousel>
+    {% if subject is defined %}
+        <h2>Mød vores top tutors i {{subject}}</h2>
+    {% else %}
+        <h2>Mød vores top tutors</h2>
+    {% endif %}
+    
+    <p>Pædagogiske og passionerede topstuderende klar til at hjælpe dig</p>
+    <div class="carousel-buttons">
+        <button class="carousel-button carousel-button_previous" aria-label="Previous slide"
+            data-carousel-button-previous>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path d="M15 19.9201L8.47997 13.4001C7.70997 12.6301 7.70997 11.3701 8.47997 10.6001L15 4.08008"
+                        stroke-width="2.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+                    </path>
+                </g>
+            </svg>
+        </button>
+        <button class="carousel-button carousel-button_next" aria-label="Next slide" data-carousel-button-next>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path d="M8.91003 19.9201L15.43 13.4001C16.2 12.6301 16.2 11.3701 15.43 10.6001L8.91003 4.08008"
+                        stroke-width="2.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+                    </path>
+
+                </g>
+            </svg>
+        </button>
+    </div>
+    <div class="slides tutor_cards" aria-live="polite" data-carousel-slides-container>
+        {% for tutor in tutor_list[:15] %}
+        <div class="slide tutor_card" data-tutor-number="{{loop.index}}" role="group" aria-roledescription="card"
+            aria-hidden="true" aria-labelledby="{{tutor.user.first_name}}">
+            <img src="{{tutor.photo}}" alt="image of {{tutor.user.first_name}}, {{subject}} tutor">
+            <div class="tutor_stars">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+            </div>
+            <h2>{{tutor.user.first_name.capitalize()}}</h2>
+            {% if subject is defined %}
+                <span class="certified_tutor">Certificeret top tutor i {{subject}}</span>
+            {% else %}
+                <span class="certified_tutor">Certificeret top tutor</span>
+            {% endif %}
+            <p>{{tutor.bio|safe}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="tutor_dots">
+        {% for tutor in tutor_list[:13] %}
+        <span class="tutor_dot" data-dot-number="{{loop.index}}"></span>
+        {% endfor %}
+    </div>
+    {% if tutor_list|length >= 30 %}
+    <div class="more_tutors">
+        <h3>Og mange flere...</h3>
+        {% for tutor in tutor_list[15:] %}
+        <img src="{{tutor.photo}}" class="bubble" alt="image of {{tutor.user.first_name}}, {{subject}} tutor" />
+        {% endfor %}
+        <div class="tutor_icons" aria-hidden="true">
+            <img src="../../static/svgs/icons/tutor_section/book.svg" class="tutor_icon" alt="book icon">
+            <img src="../../static/svgs/icons/tutor_section/eraser.svg" class="tutor_icon" alt="eraser icon">
+            <img src="../../static/svgs/icons/tutor_section/school.svg" class="tutor_icon" alt="high school icon">
+            <img src="../../static/svgs/icons/tutor_section/laptop.svg" class="tutor_icon" alt="laptop icon">
+            <!-- <img src="../../static/svgs/icons/tutor_section/icon_notebook.svg" class="tutor_icon" alt="notebook icon"> -->
+            <img src="../../static/svgs/icons/tutor_section/notebook.svg" class="tutor_icon" alt="notebook icon">
+            <img src="../../static/svgs/icons/tutor_section/pencil.svg" class="tutor_icon" alt="pencil icon">
+            <img src="../../static/svgs/icons/tutor_section/pencil.svg" class="tutor_icon" alt="pencil icon">
+        </div>
+    </div>
+    {% endif %}
+    <div class="carousel_cta">
+        <button class="tt__btn" href="#hero_contact" style="font-weight: 700; font-size: 22px;">Kom i gang</button>
+    </div>
+</section>
+
+<script>
+    function modulo(number, mod) {
+        let result = number % mod;
+        if (result < 0) {
+            result += mod;
+        }
+        return result;
+    }
+
+    function setUpCarousel(carousel) {
+
+        function handleNext() {
+
+            previousSlide = currentSlide;
+            currentSlide = modulo(currentSlide + 1, numSlides - 2);
+            changeSlide(currentSlide);
+            handleOpacity();
+            transitionSpeed()
+        }
+
+
+        function handlePrevious() {
+
+            previousSlide = currentSlide;
+            currentSlide = modulo(currentSlide - 1, numSlides - 2);
+            changeSlide(currentSlide);
+            handleOpacity();
+            transitionSpeed();
+        }
+
+
+        function changeSlide(slideNumber) {
+            carousel.style.setProperty("--current-slide", slideNumber);
+            document.querySelector(".tutor_dot.active_dot").classList.remove("active_dot")
+            document.querySelector(`[data-dot-number="${currentSlide + 1}"]`).classList.add("active_dot")
+
+            // screen reader accessibility
+            const previousSlideNumber = modulo(slideNumber - 1, numSlides);
+            const nextSlideNumber = modulo(slideNumber + 1, numSlides);
+            const previousSlide = slidesContainer.children[previousSlideNumber];
+            const currentSlideElement = slidesContainer.children[slideNumber];
+            const nextSlide = slidesContainer.children[nextSlideNumber];
+
+            // const overflowRight = slidesContainer.children[nextSlideNumber + 1];
+
+            // overflowRight.style.opacity = "0.5";
+
+            previousSlide.setAttribute("aria-hidden", true);
+            nextSlide.setAttribute("aria-hidden", true);
+            currentSlideElement.setAttribute("aria-hidden", false);
+            handleOpacity();
+        }
+
+
+        const buttonPrevious = carousel.querySelector(
+            "[data-carousel-button-previous]"
+        );
+        const buttonNext = carousel.querySelector("[data-carousel-button-next]");
+        const slidesContainer = carousel.querySelector(
+            "[data-carousel-slides-container]"
+        );
+
+        let previousSlide;
+        let currentSlide = 0;
+        const numSlides = slidesContainer.children.length;
+
+        buttonPrevious.addEventListener("click", handlePrevious);
+        buttonNext.addEventListener("click", handleNext);
+
+        handleOpacity();
+        function handleOpacity() {
+            document
+                .querySelectorAll(".slide")
+                .forEach((slide) => (slide.style.opacity = "0.3"));
+
+            const currentSlideElement = slidesContainer.children[currentSlide];
+            const currentSlideRight = slidesContainer.children[currentSlide + 1];
+            const currentSlideDoubleRight = slidesContainer.children[currentSlide + 2];
+
+            currentSlideElement.style.opacity = "1";
+            if (currentSlideRight) {
+                currentSlideRight.style.opacity = "1";
+            }
+            if (currentSlideDoubleRight) {
+                currentSlideDoubleRight.style.opacity = "1";
+            }
+
+        }
+
+        function difference(a, b) {
+            return Math.abs(a - b) * 0.15;
+        }
+
+        function transitionSpeed() {
+            // Change transition speed depending on the number of jumps
+            document.querySelector(".slides").style.transitionDuration = `${difference(previousSlide, currentSlide) + 0.5}s`;
+        }
+
+        function handleDotClick(e) {
+            //document.querySelector(`[data-dot-number="${currentSlide + 1}"]`).classList.remove("active_dot")
+            document.querySelector(".tutor_dot.active_dot").classList.remove("active_dot")
+            let tutorNumber = e.target.dataset.dotNumber;
+            previousSlide = currentSlide;
+            currentSlide = tutorNumber - 1;
+            document.querySelector(`[data-dot-number="${currentSlide + 1}"]`).classList.add("active_dot")
+            changeSlide(currentSlide);
+            transitionSpeed()
+        }
+
+
+        document.querySelectorAll(".tutor_dot").forEach((dot) => dot.addEventListener("click", handleDotClick))
+    }
+
+    const carousels = document.querySelectorAll("[data-carousel]");
+    carousels.forEach(setUpCarousel);
+
+    document.querySelector(".tutor_card").setAttribute("aria-hidden", false);
+    document.querySelector(".tutor_dot").classList.add("active_dot");
+
+
+    document.querySelectorAll(".tutor_card p").forEach((card) => {
+
+        if (card.textContent.length < 300) {
+            card.textContent = card.textContent.substring(0, card.textContent.lastIndexOf(".") + 1);
+
+        } else if (card.textContent.length > 300) {
+            card.textContent = card.textContent.substring(0, card.textContent.indexOf(".", 250) + 1);
+        }
+    })
+
+    document.querySelector(".carousel_cta button").addEventListener("click", () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+</script>

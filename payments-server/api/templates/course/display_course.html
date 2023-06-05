@@ -1,0 +1,276 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Undervisningsforløb hos TopTutors ★
+{% endblock %} 
+
+{% block body %}
+<section class="security-feature-section" style="margin-top: 82px">
+  <div class="row align-items-center">
+    <div class="container">
+      <div class="col-lg-12 section-heading style-four">
+        <a href="/course" class="back_arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+          </svg>Se alle forløb</a>
+        {% if course.status.value == "Pending" %}
+        <h2 class="section-title text-center" style="margin-bottom: 50px">
+          Oversigt over ledigt forløb 🎓
+        </h2>
+        <p class="description">
+          Hvis du godt vil have
+          forløbet, accepterer du nederst på siden. <br /><br />Efter du har
+          godkendt forløbet, modtager du en mail med alle oplysninger på
+          forløbet og kontaktoplysningerne på kontaktpersonen for at aftale
+          jeres opstartsmøde.
+          <br />
+          <br />
+        </p>
+        <!-- <h5 class="course-h5">Informationer om forløbet:</h5> -->
+
+        {% elif course.status.value == "Taken" and taken_by_tutor == True%}
+        <h2 class="section-title text-center" style="margin-bottom: 50px">
+          Dit nye forløb er godkendt! 🎉
+        </h2>
+        <p class="description">
+          Inden for 24 timer modtager du en mail med alle oplysninger på forløbet. I mailen er
+          kontaktoplysningerne på kontaktpersonen, som du skal kontakte for at
+          aftale jeres opstartsmøde. <br /><br />
+
+          Efter I har afholdt opstartsmødet tager vi kontakt til familien for at
+          sikre os, at du er den helt rette tutor for dem. Du vil få en endelig
+          godkendelse på forløbet et par dage efter opstartsmødet er afholdt.
+          <br />
+          <br />
+        </p>
+        <!-- <h5>Informationer om forløbet:</h5> -->
+
+        {% else %}
+        <h2 class="section-title text-center" style="margin-bottom: 50px">
+          Forløbet er desværre allerede taget eller aflyst
+        </h2>
+        <p class="description">
+          Vi beklager, men forløbet er desværre allerede taget af en anden tutor
+          eller blevet aflyst.
+          <br />
+          <br />
+          Du vil høre fra os inden længe for flere forløb!
+          <br />
+          <br />
+        </p>
+        <br>
+        {% endif %}
+        {% if course.status.value == "Taken" and taken_by_tutor == False %}
+
+        {% elif course.status.value == "Pending" or course.status.value == "Taken" and taken_by_tutor == True%}
+
+
+        <section class="course_information">
+          <h5>Informationer om forløbet:</h5>
+          <div class="course_info_fields">
+            <ul class="info_field">
+              <li>Fag<span>{{course.subjects}}</span></li>
+              {%if course.math_programs %}
+              <li>Matematik program
+                <span>{{course.math_programs}}</span>
+              </li>
+              {%endif%}
+              <li class="course_type">Forløbstype<span>{{course.course_type}}</span>
+              </li>
+              <li>Klasse<span>{{course.class_grade}}</span></li>
+              <li>Uddannnelse<span>{{course.education}}</span></li>
+              <li>Antal lektioner<span>{{course.weekly_frequency}} {% if course.weekly_frequency < 2 %} lektion {% else
+                    %} lektioner {% endif %} hver uge </span>
+              </li>
+              <li class="estimated_field">Estimeret længde på forløbet
+                <span>
+                  {{course.estimated_length}}
+                </span>
+              </li>
+              <li>Varighed per lektion<span>{{course.hours_per_session}} {% if course.hours_per_session < 2 %} time {%
+                    else %} timer {% endif %}ad gangen </span>
+              </li>
+              {%if course.unavailable_days %}
+              <li>Dage hvor eleven kan ikke få undervisning
+                <span>{{course.unavailable_days}}</span>
+              </li>
+              {%endif%}
+            </ul>
+
+          </div>
+          {%if course.comment %}
+          <p>Kommentar: <span>{{course.comment}}</span></p>
+          {%endif%}
+        </section>
+        {% endif %}
+
+        <br />
+        
+
+        {% if course.status.value == "Pending" %}
+        <p class="baemaerk">
+        Bemærk, at du altid kan stoppe forløbet med 4 ugers varsel.
+        </p>
+
+        <a href="/course/{{course.hashed_id}}/{{tutor.id}}/accept" class="nav-btn tt__btn accept_course"
+          id="payment-btn" name="payment-btn" style="
+            margin-bottom: 50px;
+            margin-top: 10px;
+            font-weight: 700;
+            font-size: 22px;
+          ">Accepter forløbet</a>
+        {% endif %}
+
+        {% if course.status.value == "Taken" %}
+        <a class="tt__btn" href="/course" style="font-weight: 700; margin-bottom: 30px; font-size: 18px;">Se flere ledige forløb her</a>
+        {% endif %}
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-heading {
+    margin-top: 1rem;
+  }
+
+  .back_arrow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #7e7e7e;
+    position: absolute;
+    left: -1.5rem;
+    top: -3.3rem;
+  }
+
+  .course_information {
+    background-color: #f0f5ff;
+    margin: 2rem 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    color: #1A1A1A;
+    text-align: left;
+  }
+
+  .course_information h5 {
+    color: #292929;
+    padding: 1.5rem 0 0.5rem 1rem;
+    text-align: left;
+    font-size: 30px;
+    font-weight: 500;
+  }
+
+  .course_info_fields {
+    background-color: var(--my-blue05);
+
+    padding: 3rem 1rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+  }
+
+
+
+  .info_field {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    row-gap: 2.5rem;
+    padding-left: 0;
+
+  }
+
+  .info_field li {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: 300;
+    color: #292929;
+    gap: 0.3rem;
+    justify-content: space-between;
+  }
+
+  .info_field li span {
+    background-color: #f0f5ff;
+    color: #1A1A1A;
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    font-weight: 400;
+
+  }
+
+  .available_days {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+  }
+
+  .available_days li {
+    background-color: #f0f5ff;
+    height: 40px;
+    width: 40px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .available_days li span {
+    background: none;
+    color: #1A1A1A;
+    margin-bottom: -4px;
+    font-size: 24px;
+    box-shadow: none;
+    font-weight: 600;
+
+  }
+
+  .course_information p:last-child {
+    padding: 1.5rem 1.5rem;
+    font-size: 16px;
+    font-weight: bold;
+
+  }
+
+  .course_information p:last-child span {
+    font-weight: 300;
+
+  }
+
+  @media screen and (max-width:991px) {
+    .info_field {
+      grid-template-columns: 1fr;
+      row-gap: 1.5rem;
+    }
+  }
+
+  .baemaerk {
+    text-align: center;
+  }
+
+  .accept_course {
+    display: flex;
+    width: 250px;
+    margin: 0 auto;
+  }
+</style>
+
+<script>
+  let estimatedField = document.querySelector(".estimated_field span");
+
+  if (estimatedField.textContent.includes("Resten") || estimatedField.textContent.split(" ")[1] > 3) {
+    estimatedField.textContent = "Flere måneder";
+  }
+
+</script>
+
+{% endblock %} {% block scripts %} {% endblock %}

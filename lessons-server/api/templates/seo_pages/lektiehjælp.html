@@ -1,0 +1,467 @@
+{% extends "base.html" %}
+
+{% block title %}Lektiehjælp & Privatundervisning | Gratis Prøvetime | TopTutors ★{% endblock %}
+
+{% block desc %}
+Skræddersyet Lektiehjælp | 400+ Tutors | Certificerede Tutors i Hele Danmark | Alle Skolefag | Prøv Nu - Helt Gratis | ★ 5 Stjerner På Trustpilot ☝
+{% endblock %}
+
+{% block body %}
+
+{% block scripts %}
+
+<script>
+    function lektieFormSubmit(token) {
+        document.getElementById("banner-phone-form").submit();
+    }
+</script>
+{% endblock %}
+
+<section class="banner banner--one banner_bg d-flex align-items-center homework-hero">
+  <div class="container">
+      <div class="row align-items-center">
+          <div class="col-lg-6">
+              <div class="banner__content">
+                  <h1 class="banner__title_long">
+                    Skræddersyet <span style="color: var(--my-blue01);">Lektiehjælp</span> tilpasset dine behov
+                  </h1>
+                  <h2 class="banner__title2" style="color:#1c1e21; font-size: 1rem; font-weight: 500;">
+                    Få personlig lektiehjælp, der øger din faglighed og selvtillid i skolen.
+                  </h2>
+
+                  <ul class="banner__feature  d-none d-lg-block">
+                      <li><i class="ei ei-icon_check"></i>Certificerede og passionerede lektiehjælpere</li><br>
+                      <li><i class="ei ei-icon_check"></i>Alle fag i folkeskolen og gymnasiet</li><br>
+                      <li><i class="ei ei-icon_check"></i>I hele Danmark 🇩🇰</li>
+                  </ul>
+                  
+                  <form action="/" method="post" class="banner__newsletter-form  needs-validation seo-pages-form" data-wow-delay="0.7s" id="banner-phone-form">
+                    <input type='hidden' id="zc_gad" name="zc_gad" value=""/>
+                    
+                      <p class="" style="margin-bottom: 0; font-size: 16px; color: #1c1e21; text-align: left;">Få gratis vejledning i dag:</p>
+                      <div class="newsletter-inner">
+                        <input id="tlf" type="tel" name="tlf" placeholder="32 12 34 56" />
+                        <input type="hidden" type="tel" id="fulltlf" name="fulltlf">                          <button type="submit" id="newsletter-submit" class="tt__btn newsletter-submit g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="lektieFormSubmit" data-action='submit'>
+                              <span>Ring mig op</span>
+                              <i class="fas fa-spinner fa-spin"></i>
+                          </button>
+                      </div>
+                      <span class="validation_message hidden">Angiv venligst et gyldigt telefonnummer</span>
+
+                      <p class="" data-wow-delay="0.3s" style="margin-bottom: 0; text-align: left; font-size: 14px; color: #1c1e21;"><a href="tel:+4593839757" style="font-weight: 500; color: #1c1e21;">Eller ring <i class="feather-phone"></i> 93 83 97 57</a></p>
+
+                      <div class="form-result alert">
+                          <div class="content"></div>
+                      </div>
+                  </form>
+
+                <div class="col-lg-12 banner-trustpilot trust-index">
+                    <a href="https://dk.trustpilot.com/review/toptutors.dk" target="_blank" rel="noopener">
+                        <img class="" src="../../static/svgs/Trustpilot_ratings_5star-RGB.svg" alt="">
+                    </a>
+                    <a href="https://dk.trustpilot.com/review/toptutors.dk" target="_blank" rel="noopener">
+                        <img class="" src="../../static/svgs/Trustpilot_brandmark_gr-blk-RGB.svg" alt="">
+                    </a>
+                </div>
+
+
+              </div>
+          </div>
+          <div class="col-lg-6 d-none d-lg-block">
+
+            <div class="banner__feature-image">
+
+                <div class="banner__feature-multiimage">
+                    <ul class="banner__image-lists">
+                        <li class="image_item">
+                          <img loading="lazy" 
+                          class="wow fadeInDown" 
+                          data-wow-delay="ms" 
+                          style="background: transparent;"
+                          sizes="(max-width: 550px) 100vw, 550px"
+                          srcset="
+                          /static/img/lektiehjælp_230.png 230w,
+                          /static/img/lektiehjælp_335.png 335w,
+                          /static/img/lektiehjælp_416.png 416w,
+                          /static/img/lektiehjælp_492.png 492w,
+                          /static/img/lektiehjælp_550.png 550w"
+                          src="/static/img/lektiehjælp_550.png"
+                          alt="{{ mainword }}: {{ desc }}">
+                        </li>
+                    </ul>
+                    <!-- /.banner__image-lists -->
+                </div>
+                <!-- /.banner__feature-multiimage -->
+            </div>
+        </div>
+
+          
+          <!-- /.col-md-6 -->
+      </div>
+  </div>
+
+</section>
+
+{% include "sections/levels.html" %}
+
+{% include "sections/subjects_folkeskole.html" %}
+
+{% include "sections/benefits2.html" %}
+
+{% include "sections/testimonials.html" %}
+
+{% include "sections/cta1.html" %}
+
+{% include "sections/tutor_section.html" %}
+
+{% include "sections/seo_faq.html" %}
+
+{% include "sections/cta2.html" %}
+
+<section class="testimonial-two-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div>
+                    <h2 class="section-title ">Vi har tutors i alle fag</h2>
+                    <p class="description " data-wow-delay="0.3s">
+                        Vi har tutors, der kan hjælpe i alle fag i folkeskolen og gymnasiet i mange danske byer.
+                    </p>
+                </div>
+            </div>
+            <!-- Undervisningsfag -->
+            <div class="col-md-12" style="margin-bottom: 30px;">
+                <h4 class="">Populære fag at få lektiehjælp i</h4>
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/matematik">Matematik lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/dansk">Dansk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/engelsk">Engelsk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/tysk">Tysk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/biologi">Biologi lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/fransk">Fransk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/spansk">Spansk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/kemi">Kemi lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/fysik">Fysik lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/virksomhedsøkonomi">Virksomhedsøkonomi lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/afsætning">Afsætning lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/bioteknologi">Bioteknologi lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/samfundsfag">Samfundsfag lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/historie">Historie lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/latin">Latin lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/religion">Religion lektiehjælp</a>
+                    </div>
+                
+                </div>
+                <!-- /.section-heading -->
+            </div>
+
+             <!-- Byer -->
+             <div class="col-md-12" style="margin-bottom: 30px;">
+                <h4 class="">Populære byer vi har tutors i</h4>
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/København">Lektiehjælp i København</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Aarhus">Lektiehjælp i Aarhus</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Odense">Lektiehjælp i Odense</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Aalborg">Lektiehjælp i Aalborg</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Esbjerg">Lektiehjælp i Esbjerg</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Randers">Lektiehjælp i Randers</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Kolding">Lektiehjælp i Kolding</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Horsens">Lektiehjælp i Horsens</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Gentofte">Lektiehjælp i Gentofte</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Hillerød">Lektiehjælp i Hillerød</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Roskilde">Lektiehjælp i Roskilde</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Hørsholm">Lektiehjælp i Hørsholm</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Herlev">Lektiehjælp i Herlev</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Albertslund">Lektiehjælp i Albertslund</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Nærum">Lektiehjælp i Nærum</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Silkeborg">Lektiehjælp i Silkeborg</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Byer -->
+            <div class="col-md-12">
+                <h4 class="">Lektiehjælp på alle niveauer</h4>
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/0.-klasse">Lektiehjælp 0. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/1.-klasse">Lektiehjælp 1. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/2.-klasse">Lektiehjælp 2. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/3.-klasse">Lektiehjælp 3. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/4.-klasse">Lektiehjælp 4. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/5.-klasse">Lektiehjælp 5. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/6.-klasse">Lektiehjælp 6. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/7.-klasse">Lektiehjælp 7. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/8.-klasse">Lektiehjælp 8. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/9.-klasse">Lektiehjælp 9. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/10.-klasse">Lektiehjælp 10. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/STX">Lektiehjælp STX</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/HHX">Lektiehjælp HHX</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/HTX">Lektiehjælp HTX</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/HF">Lektiehjælp HF</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/EUX">Lektiehjælp EUX</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    <!-- /.container -->
+</section>
+
+<section style="padding-top: 115px; padding-bottom: 115px;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div>
+                    <h2 class="section-title " style="font-size: 28px;">5-stjernet lektiehjælp hos TopTutors</h2>
+                    <p style="font-size: 16px;">
+                        Du har helt sikkert hørt om lektiehjælp før. Måske tilbydes der lektiehjælp på dit barns skole eller i fritidsklubben,
+                        og det har fået dig til at undersøge muligheden for at få privat lektiehjælp nærmere.
+                        Det er dog de færreste der ved hvad begrebet reelt set indebærer, og hvor det bliver tilbudt.
+                        Hos TopTutors leverer vi den lektiehjælp, som du brænder for at få. 
+                        Vi matcher dig med den helt rigtige tutor, som både fagligt og pædagogisk kan gøre dit barn skarpere i skolen, 
+                        og samtidig mere motiveret og større lyst til at gå i skole og lære.
+                    </p>
+
+                    <h2 class="" style="font-size: 28px;">
+                        Hvad er lektiehjælp?
+                    </h2>
+                    <p style="font-size: 16px;">
+                        En simpel måde at forklare det på er, at hjælpe eleverne med at frigøre deres fulde potentiale.
+                        Formålet med lektiehjælp er at hjælpe en elev sådan, som vedkommende ønsker, og hjælpe dem på vej i den retning, som de ønsker at gå i.
+                        Der er fokus på ‘nu og her’ snarere end den nærmeste eller fjerne fremtid. Med andre ord,
+                        så er eleven og dennes forbedring af kompetencer i fokus, så de bliver mere velforberedt til undervisningen i skolen og få bedre styr på deres pensum.
+                        <br><br>
+                        Hos Top Tutors mener vi, at der er stor forskel mellem at lære nogen noget og hjælpe dem med at lære. 
+                        De fleste er i stand til at videregive læring fra sig, men de færreste mestrer det at kunne hjælpe en person med at lære.
+                        Og det er her tutorerne kommer ind i billedet.
+                        Vores certificerede tutors er nemlig i stand til at hjælpe eleverne med at forbedre deres præstationer,
+                        og opnå deres fulde potentiale. Sagt på en anden måde: hjælper vi eleverne med at lære, så de til sidst selv kan løse deres opgaver og forstå pensum.
+                    </p>
+
+
+                    <h2 class="section-title " style="font-size: 28px;">Hvad er en tutor? </h2>
+                    <p style="font-size: 16px;">
+                        En tutor er et andet ord for underviser, og er i stand til at skræddersy lektiehjælpen på en måde, så eleven får det størst mulige udbytte. 
+                        Lektiehjælpen er er 1-1 privatundervisning med en certificeret tutor.
+
+                        Hos TopTutors ønsker vi at gøre en forskel for eleverne ved at skræddersye lektionerne til elevens behov, 
+                        så eleven får læringsstoffet serveret på den nemmeste og mest letforståelige måde.
+                        På den måde klarer eleven sig bedre i skolen, og opbygger større selvtillid og motivation i skolen.
+                        <br> <br>
+                        Vi vurderer yderligere de pædagogiske færdigheder hos en tutor som værende afgørende,
+                        når vi screener om vores tutors er egnet til titlen som Top Tutor.
+                        Det er ikke kune vigtigt at de besidder en stor mængde viden, men også at de er i stand til at videregive den på en letforståelig måde.
+                        <br> <br>
+
+                        Hos Top Tutors gør vi tingene på en særlig måde, så du som forælder kan føle dig tryggere.
+                        Dit barn vil bliver matchet med lige nøjagtigt den tutor, som passer det bedst.
+                        
+                        Vi tager udgangspunkt i elevens behov, tutorens baggrund og pædagogiske færdigheder, og finder den tutor, som vi mener vil være det bedste match for dit barn.
+                        Det kan måske være, at dit barn kan lide at spille fodbold, og der er en tutor derude, som ligeledes holder af samme sportsgren, så kunne der potentielt set være et rigtig godt match mellem dem.
+                        For at levere god lektiehjælp er det nemlig ikke kun vigtigt, at tutoren er dygtig, men at der er god kemi mellem elev og lærer.
+                    </p>
+
+                    <h2 class="section-title " style="font-size: 28px;">Hvordan foregår lektiehjælp?</h2>
+                    <p style="font-size: 16px;">
+                        Lektiehjælpen foregår således, at I starter med et gratis og uforpligtende indledende samtale med den lektiehjælper,
+                         som I er blevet matchet med. På den måde bliver tutoren opmærksom på, hvad dit barns behov og mål er. 
+                         Samtidig aftales undervisningsforløbet og vi sikrer os, at der er god kemi mellem tutoren og eleven.
+
+                         Efter tutoren er har sat sig ind i elevens behov, vil tutoren tilrettelægge undervisningsforløbet, således at den passer til dit barns behov.
+                         I lektiehjælpen tager tutoren udgangspunkt i elevens ønsker, og vil formå at skræddersy lektiehjælpen, så eleven får det største udbytte og bliver klædt på til skoleundervisningenen eller den næste eksamen.
+                    </p>
+
+                    <h2 class="section-title " style="font-size: 28px;">Hvad er fordelene ved lektiehjælp?</h2>
+                    <p style="font-size: 16px;">
+                        Fordelene er mange, og nogle gange kan det være bedst at prøve det af, for at opleve hvor stor en forskel blot få timers 1:1 privatundervisning med en dygtig underviser kan gøre.
+                        I vil hurtigt finde ud af, at det er langt mere udbytterigt end i et klasseværelse, hvor der sidder 20-30 andre elever, så læreren underviser på et niveau til alle og hvert enkelt elev får ikke særlig meget opmærksomhed. 
+                        
+                        Netop denne opmærksomhed er nøglen i privatundervisning. Det der kendetegner lektiehjælp er, at du modtager én-til-én opmærksomhed, som der ikke er overskud og tid til i et klasselokale.
+                        Dermed kommer den enkelte elev i fokus og dennes hjælp til hvorledes de skal kunne forbedre deres kompetencer.
+
+                        Lektiehjælpen er hos Top Tutors er 100% online, og derfor skal man ikke bekymre sig om den geografiske afstand. Vi hjælper altså elever i hele Danmark med lektiehjælp.
+                    </p>
+                    
+
+                    <h2 class="section-title " style="font-size: 28px;">Hvad er online lektiehjælp
+                    </h2>
+                    <p style="font-size: 16px;">
+                        Vi er alle bekendte med den traditionelle undervisningsform, som daterer helt tilbage til gamle dage: En lærer træder ind i et lokale, og snakker til en hel klasse.
+                        Få elever vil få et vis udbytte af undervisningen, men desværre ser vi tit at de fleste falder fra, fordi de ikke får den nødvendige opmærksomhed.
+                        
+                        Derfor er TopTutors blevet startet, så alle elever kan få den hjælp, de fortjener.
+                        Vi ønsker at give eleverne den opmærksomhed, som er afgørende for at de føler sig mere motiverede og klarer sig bedre i skolen.
+
+                        Vi har nemlig opdaget, at det der gør den største forskel for eleven, er den underviser, de får. 
+                        Så vi nøjes ikke blot med den tutor der bor tættest på, men matcher familien med den helt rigtige tutor.
+                        I dag har mange elever heller ikke adgng til lektiehjælp, da der i deres nærområde ikke bor nogle potentielle tutors.
+                        Vi har derfor valgt at gå 100% online. Al vores lektiehjælp foregår i vores digitale klasseværelse, hvor en af vores tutors vil sidde klar til at hjælpe dig med lektierne.
+                    </p>
+
+                    <h2 class="section-title " style="font-size: 28px;">TopTutors er førende for online lektiehjælp
+                    </h2>
+                    <p style="font-size: 16px;">
+                        Vidste du, at vi er den førende lektiehjælps platform, som er 100% online? Hvis svaret er nej, så gør du nu. 
+                        Vi er nemlig godt klar over, at din bedste underviser ikke bor lige rundt om hjørnet, og det kan være belastende, at skulle bruge lang tid for at køre ud for at mødes. 
+                        Derfor ser vi online lektiehjælp som den bedste løsning til, at du kan blive matchet med den helt rigtige underviser. 
+                        Du skal ikke længere tænke på transport og mødestedet, som passer jer begge, men det eneste du behøver er en internetforbindelse og en computer.
+                        Lyder det ikke meget nemt? Det synes vi nemlig også hos TopTutors.
+
+                    </p>
+                    
+
+                    <h2 class="section-title " style="font-size: 28px;">Hvad koster lektiehjælp med en tutor?
+                    </h2>
+                    <p style="font-size: 16px;">
+                        Vi forsøger hos Top Tutors at gøre priserne så fleksible som muligt. Det er ingen hemmelighed, at vi går op i kvalitet, og derfor har vi valgt at gøre de fleste af forløbene længerevarende, så den enkelte elev kan mærke størst mulig forskel.
+                        Timeprisen vil derfor være lavere desto flere timer et forløb er på, og prisen svinger alt fra 229 til 309 kr. per time. 
+                        Det er vigtigt, at alle de familier, vi hjælper er tilfredse med deres tutor, så hvis du efterfølgende finder ud af, at det alligevel ikke var noget for dig, så har vi ingen forpligtelse eller binding hos TopTutors.
+                        Ingen binding betyder, at du kan vælge fra når som helst. Du vil få refunderet dine ubrugte timer, og ingen ekstra gebyrer vil blive pålagt.
+                        Samtidig kan man få lov til at blive matchet og møde sin tutor helt gratis til et opstartsmøde før I beslutter om lektiehjælp er noget for jer.
+                    </p>
+                    
+
+                    <h2 class="section-title " style="font-size: 28px;">Hvem får typisk lektiehjælp? 
+                    </h2>
+                    <p style="font-size: 16px;">
+                        I princippet kan enhver modtage lektiehjælp, så længe det lyster.
+                        
+                        Vi har hos TopTutors valgt at sætte fokuset primært på folkeskole- og gymnasieelever, hvor de fleste elever har behov for lektiehjælp i ét eller flere fag.
+                        Forældrene kan have for travlt i perioder, og eleven selv kan have en del fritidsaktiviteter at se til, og det er netop en lektiehjælper, som her kan komme til undsætning.
+                        Som du nok allerede er bekendt med, så tilbyder vi 100% online lektiehjælp, og derfor får eleven stadig rigeligt med tid til alt muligt andet.
+                        Hvis du derimod er en nysgerrig person, som gerne vil lære mere om hvad integralregning er for en størrelse eller bare vil have genopfrisket kommareglerne i dansk, så tilbyder vi selvfølgelig også lektiehjælp til dig. 
+                        Så længe lysten til at lære er på rette sted, så står vi klar til at hjælpe!
+                    </p>
+
+                    <h2 class="section-title " style="font-size: 28px;">Hvilke fag får elever lektiehjælp i?
+                    </h2>
+                    <p style="font-size: 16px;">
+                        Hvis dit barn går i folkeskolen, og du ønsker at hyre en tutor, er der en række fag som vi tilbyder lektiehjælp i. Vi oplever som oftest, at det største lektiehjælps behov ligger i <a href="/lektiehjælp/matematik">matematik</a>, hvorfor vi har lagt et stort fokus her. Uanset om der er tale om brøkregning, geometri eller ligninger, så tilbyder vi hos Top Tutors den hjælp, som kan klæde dit barn på til succes.
+                         Hvis det derimod drejer sig om naturvidenskabelige fag, så står vi også klar til at hjælpe i <a href="/lektiehjælp/fysik-kemi">fysik/kemi</a> eller <a href="/lektiehjælp/biologi">biologi</a>. Hvis dit barn går i en af de lavere klasser, så tilbyder vi også den nødvendige lektiehjælp i <a href="/lektiehjælp/samfundsfag">samfundsfag</a>.
+                        Vi tilbyder også lektiehjælp i de sproglige fag. Hvis der er tale om hjælp i  <a href="/lektiehjælp/dansk">dansk</a>,  <a href="/lektiehjælp/engelsk">engelsk</a>,  <a href="/lektiehjælp/tysk">tysk</a> eller et helt fjerde fag, så står en af vores fageksperter klar til at assistere dig.
+                        <br><br>
+                        Bare rolig. Vi har ikke efterladt gymnasieeleverne i glemmebogen. Også her vægter lektiehjælpen i <a href="/lektiehjælp/matematik">matematik</a> rigtig tungt. Alt afhængig af niveauet, så tilbyder vi den nødvendige hjælp til dig. Du har måske <a href="/lektiehjælp/matematik">matematik</a> på A-niveau og ønsker assistance i integralregning eller er det sandsynlighedsregningen på C-niveau der driller, men du kan være helt rolig, for vi har den fornødne hjælp til alle. Er der derimod tale om nogle sproglige udfordringer, så kan vi assistere i fag som blandt andet  <a href="/lektiehjælp/dansk">dansk</a> og <a href="/lektiehjælp/engelsk">engelsk</a> på alle niveauer. 
+                        Vi sidder også tungt på de naturvidenskabelige fag, hvor lektiehjælp i fag som <a href="/lektiehjælp/matematik">fysik</a>, <a href="/lektiehjælp/matematik">kemi</a> eller <a href="/lektiehjælp/biologi">biologi</a> bliver prioriteret rigtig højt.
+                        Samtidig er der mange HHX fag, som elever vælger at få hjælp til. Det kan være fag som  <a href="/lektiehjælp/afsætning">afsætning</a>,  <a href="/lektiehjælp/virksomhedsøkonomi">virksomhedsøkonomi</a> eller <a href="/lektiehjælp/erhvervsret">erhvervsret</a>.                     
+                    </p>
+
+                    <h2 class="section-title " style="font-size: 28px;">Hvornår kan lektiehjælp bruges?
+                    </h2>
+                    <p style="font-size: 16px;">
+                        Hvis du sidder og klør dig selv i hovedet over hvordan du skal tackle en større afleveringsopgave eller er afleveringsfristen for <a href="/SRP-hjælp">SRP-opgaven</a> lige rundt om hjørnet ellers behøver du bare fast ugentlig lektiehjælp med en tutor. Uanset hvad, så står vi klar til at hjælpe, for vii mener det, når vi siger, at vi har tutors af højeste klasse under vingen, så tøv ikke med at give os et kald!
+                        Det kan også være at du befinder dig i eksamensperioden og stresser helt vildt over de kommende prøver. Vi kender godt følelsen, og derfor står vi også i disse situationer klar til at række ud og klæde dig på til <a href="/eksamenshjælp">eksamen</a>, så du består dem med et brag. 
+                    </p>
+
+
+                    <h2 class="section-title " style="font-size: 28px;">Hvor kan man få lektiehjælp? 
+                    </h2>
+                    <p style="font-size: 16px;">
+                        Du er måske bosat på <a href="/lektiehjælp/skagen">Skagen</a>, hvor der ikke er så mange tutors, eller måske bor du i <a href="/lektiehjælp/københavn">København</a> eller omegn, hvor du ikke rigtigt kan finde den rigtige tutor.
+                        Uanset hvor du bor, så er du kommet det rette sted. Vi er nemlig til stede online, så det er fuldstændig underordnet hvor du befinder dig i landet. 
+                        Modsat den traditionelle læringsform og de mange andre lektiehjælpsplatforme, så er vi langt mere fleksible og nemmere at tage fat i. 
+                        Traditionelt har man kun kunne få lektiehjælp i storbyer som <a href="/lektiehjælp/københavn">København</a>, <a href="/lektiehjælp/aarhus">Aarhus</a> eller <a href="/lektiehjælp/odense">Odense</a>. 
+                        De mindre byer skal næppe snydes for lektiehjælp. Hvis du er bosat i trekantsområdet i en af byerne som <a href="/lektiehjælp/kolding">Kolding</a>, <a href="/lektiehjælp/vejle">Vejle</a> eller <a href="/lektiehjælp/fredericia">Fredericia</a> eller <a href="/lektiehjælp/slagelse">Slagelse</a>, <a href="/lektiehjælp/korsør">Korsør</a> eller <a href="/lektiehjælp/næstved">Næstved</a>, som ligger på Vestsjælland, så er du i sikre hænder.
+                        Det er nemlig ikke afgørende, hvor du befinder dig og derfor er det hos os muligt, at få tilbudt lektiehjælp i det fag, som du eftertragter. 
+                    </p>                 
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</section>
+
+
+{% endblock %}

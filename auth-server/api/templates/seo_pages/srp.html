@@ -1,0 +1,303 @@
+{% extends "base.html" %}
+
+{% block title %}SRP Lektiehjælp | Prøv Nu - Helt Gratis | TopTutors ★{% endblock %}
+
+{% block desc %}
+Skræddersyet hjælp til SRP | Certificerede Tutors i Hele Danmark | Alle Skolefag | Prøv Nu - Helt Gratis | ★ 5 Stjerner På Trustpilot ☝
+{% endblock %}
+
+{% block body %}
+
+{% block scripts %}
+
+<script>
+    function lektieFormSubmit(token) {
+        document.getElementById("banner-phone-form").submit();
+    }
+</script>
+{% endblock %}
+
+<section class="banner banner--one banner_bg d-flex align-items-center homework-hero">
+  <div class="container">
+      <div class="row align-items-center">
+          <div class="col-lg-6">
+              <div class="banner__content">
+                  <h1 class="banner__title_long">
+                    Skræddersyet SRP hjælp
+                  </h1>
+                  <h2 class="banner__title2" style="color:#1c1e21; font-size: 1rem; font-weight: 500;">
+                    {{ desc }}
+                  </h2>
+
+                  <ul class="banner__feature  d-none d-lg-block">
+                      <li><i class="ei ei-icon_check"></i>Certificerede og passionerede tutors</li><br>
+                      <li><i class="ei ei-icon_check"></i>Alle fag i folkeskolen og gymnasiet</li><br>
+                      <li><i class="ei ei-icon_check"></i>I hele Danmark 🇩🇰</li>
+                  </ul>
+                  
+                  <form action="/" method="post" class="banner__newsletter-form  needs-validation seo-pages-form" data-wow-delay="0.7s" id="banner-phone-form">
+                    <input type='hidden' id="zc_gad" name="zc_gad" value=""/>
+                    
+                      <p class="" style="margin-bottom: 0; font-size: 16px; color: #1c1e21; text-align: left;">Få gratis vejledning i dag:</p>
+                      <div class="newsletter-inner">
+                          <input type="tel" name="tlf" class="form-control" id="tlf" pattern=".{8,15}" placeholder="Indtast dit telefonnummer" required="">
+                          <button type="submit" id="newsletter-submit" class="tt__btn newsletter-submit g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="lektieFormSubmit" data-action='submit'>
+                              <span>Ring mig op</span>
+                              <i class="fas fa-spinner fa-spin"></i>
+                          </button>
+                      </div>
+                      <p class="" data-wow-delay="0.3s" style="margin-bottom: 0; text-align: left; font-size: 14px; color: #1c1e21;"><a href="tel:+4593839757" style="font-weight: 500; color: #1c1e21;">Eller ring <i class="feather-phone"></i> 93 83 97 57</a></p>
+
+                      <div class="form-result alert">
+                          <div class="content"></div>
+                      </div>
+                  </form>
+
+                <div class="col-lg-12 banner-trustpilot trust-index">
+                    <a href="https://dk.trustpilot.com/review/toptutors.dk" target="_blank" rel="noopener">
+                        <img class="" src="../../static/svgs/Trustpilot_ratings_5star-RGB.svg" alt="">
+                    </a>
+                    <a href="https://dk.trustpilot.com/review/toptutors.dk" target="_blank" rel="noopener">
+                        <img class="" src="../../static/svgs/Trustpilot_brandmark_gr-blk-RGB.svg" alt="">
+                    </a>
+                </div>
+
+
+              </div>
+          </div>
+          <div class="col-lg-6 d-none d-lg-block">
+
+            <div class="banner__feature-image">
+
+                <div class="banner__feature-multiimage">
+                    <ul class="banner__image-lists">
+                        <li class="image_item">
+                          <img loading="lazy" 
+                          class="wow fadeInDown" 
+                          data-wow-delay="ms" 
+                          style="background: transparent;"
+                          sizes="(max-width: 550px) 100vw, 550px"
+                          srcset="
+                          /static/img/lektiehjælp_230.png 230w,
+                          /static/img/lektiehjælp_335.png 335w,
+                          /static/img/lektiehjælp_416.png 416w,
+                          /static/img/lektiehjælp_492.png 492w,
+                          /static/img/lektiehjælp_550.png 550w"
+                          src="/static/img/lektiehjælp_550.png"
+                          alt="{{ mainword }}: {{ desc }}">
+                        </li>
+                    </ul>
+                    <!-- /.banner__image-lists -->
+                </div>
+                <!-- /.banner__feature-multiimage -->
+            </div>
+        </div>
+
+          
+          <!-- /.col-md-6 -->
+      </div>
+  </div>
+
+</section>
+
+{% include "sections/levels.html" %}
+
+{% include "sections/subjects_folkeskole.html" %}
+
+{% include "sections/benefits2.html" %}
+
+{% include "sections/testimonials.html" %}
+
+{% include "sections/cta1.html" %}
+
+{% include "sections/tutor_section.html" %}
+
+{% include "sections/seo_faq.html" %}
+
+{% include "sections/cta2.html" %}
+
+<section class="testimonial-two-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div>
+                    <h2 class="section-title ">Vi har tutors i alle fag</h2>
+                    <p class="description " data-wow-delay="0.3s">
+                        Vi har tutors, der kan hjælpe i alle fag i folkeskolen og gymnasiet i mange danske byer.
+                    </p>
+                </div>
+            </div>
+            <!-- Undervisningsfag -->
+            <div class="col-md-12" style="margin-bottom: 30px;">
+                <h4 class="">Populære fag at få lektiehjælp i</h4>
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/matematik">Matematik lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/dansk">Dansk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/engelsk">Engelsk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/tysk">Tysk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/biologi">Biologi lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/fransk">Fransk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/spansk">Spansk lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/kemi">Kemi lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/fysik">Fysik lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/virksomhedsøkonomi">Virksomhedsøkonomi lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/afsætning">Afsætning lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/bioteknologi">Bioteknologi lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/samfundsfag">Samfundsfag lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/historie">Historie lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/latin">Latin lektiehjælp</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/religion">Religion lektiehjælp</a>
+                    </div>
+                
+                </div>
+                <!-- /.section-heading -->
+            </div>
+
+             <!-- Byer -->
+             <div class="col-md-12" style="margin-bottom: 30px;">
+                <h4 class="">Populære byer vi har tutors i</h4>
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/København">Lektiehjælp i København</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Aarhus">Lektiehjælp i Aarhus</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Odense">Lektiehjælp i Odense</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Aalborg">Lektiehjælp i Aalborg</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Esbjerg">Lektiehjælp i Esbjerg</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Randers">Lektiehjælp i Randers</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Kolding">Lektiehjælp i Kolding</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Horsens">Lektiehjælp i Horsens</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Gentofte">Lektiehjælp i Gentofte</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Hillerød">Lektiehjælp i Hillerød</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Roskilde">Lektiehjælp i Roskilde</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Hørsholm">Lektiehjælp i Hørsholm</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Herlev">Lektiehjælp i Herlev</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Albertslund">Lektiehjælp i Albertslund</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Nærum">Lektiehjælp i Nærum</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/Silkeborg">Lektiehjælp i Silkeborg</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Byer -->
+            <div class="col-md-12">
+                <h4 class="">Lektiehjælp på alle niveauer</h4>
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/0.-klasse">Lektiehjælp 0. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/1.-klasse">Lektiehjælp 1. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/2.-klasse">Lektiehjælp 2. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/3.-klasse">Lektiehjælp 3. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/4.-klasse">Lektiehjælp 4. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/5.-klasse">Lektiehjælp 5. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/6.-klasse">Lektiehjælp 6. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/7.-klasse">Lektiehjælp 7. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/8.-klasse">Lektiehjælp 8. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/9.-klasse">Lektiehjælp 9. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/10.-klasse">Lektiehjælp 10. klasse</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/STX">Lektiehjælp STX</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/HHX">Lektiehjælp HHX</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/HTX">Lektiehjælp HTX</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/HF">Lektiehjælp HF</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-sx-12">
+                        <a href="/lektiehjælp/EUX">Lektiehjælp EUX</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    <!-- /.container -->
+</section>
+
+
+{% endblock %}

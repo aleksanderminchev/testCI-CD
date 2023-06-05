@@ -1,0 +1,128 @@
+<div id="main_content">
+
+
+    <!--=========================-->
+    <!--=        Navbar         =-->
+    <!--=========================-->
+    <header id="masthead" class="site-header header-1 header-width no-transition" data-header-fixed="true" data-mobile-menu-resolution="992">
+            <div class="header-inner">
+                <nav id="site-navigation" class="main-nav visible">
+                    <div class="site-logo" style="max-width: 200px;">
+                        <a href="/" rel="home">
+                            <img loading="lazy" src="/static/svgs/TopTutors-logo-text.svg" alt="TopTutors: Lektiehjælp & Privatundervisning" class="main-logo" width="200px" height="33px">
+                            <img loading="lazy" src="/static/svgs/TopTutors-logo-text.svg" alt="TopTutors: Lektiehjælp & Privatundervisning" class="logo-sticky" width="200px" height="33px">
+                        </a>
+                    </div>
+
+                    <div class="tt-hamburger" id="page-open-main-menu" tabindex="1">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+
+                    <div class="main-nav-container canvas-menu-wrapper" id="mega-menu-wrap">
+
+                        <div class="close-menu page-close-main-menu" id="page-close-main-menu">
+                            <i class="feather-x"></i>
+                        </div>
+
+                        <div class="menu-wrapper">
+                            <ul id="menu-primary-menu" class="menu">
+                                <li class="mega-menu-item has-submenu">
+                                    <a href="/lektiehjælp" class="menu-link"><span><span><span class="fas fa-book"></span> Lektiehjælp <span class="feather-chevron-down d-none d-lg-inline"></span></span></a>
+                                    <ul class="menu-depth-1 sub-menu">
+                                        <li class="mega-menu-item"><a href="/folkeskole"><span><span class="fas fa-school"></span> Folkeskole</span></a></li>
+                                        <li class="mega-menu-item"><a href="/gymnasiet"><span><span class="fas fa-book"></span> Gymnasiet</span></a></li>
+                                        <!-- <li class="mega-menu-item"><a href="/SRP-hjælp"><span><span class="fas fa-chalkboard-teacher"></span> SRP hjælp</span></a></li> -->
+                                    </ul>
+                                </li>
+
+                                <!-- <li><a href="/vores-tutors" class="menu-link"><span>Vores tutors</span></a></li> -->
+                                <li class="d-lg-none d-xl-inline"><a href="/eksamenshjælp"><span><span class="fas fa-child"></span> Eksamenshjælp</span></a></li>
+                                <li class="d-lg-none d-xl-inline"><a href="/SRP-hjælp"><span><span class="fas fa-graduation-cap"></span> SRP hjælp</span></a></li>
+                                <li class="d-lg-none d-lg-inline"><a href="/priser" class="menu-link"><span><span class="fas fa-coins"></span> Priser</span></a></li>
+                                
+                                {% if current_user.is_authenticated %}
+                                <li><a class="text-blue" href="/logout">Sign out</a></li>
+                                {% else %}
+                                <li><a href="/bliv-tutor" class="menu-link d-lg-none"><span><span class="fas fa-user-graduate"></span> Bliv tutor</span></a></li>
+                                <li><a href="/om-os" class="menu-link d-lg-none"><span><span class="fas fa-user-friends"></span> Om os</span></a></li>
+
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                        <!-- /.main-menu -->
+                        <div class="nav-right style1">
+                            <a href="/bliv-tutor" class="nav-link d-none d-xxl-inline" id="bliv-tutor" style="font-weight: 500; font-size: 14px;"><span><span class="fas fa-user-graduate"></span> Bliv tutor</span></a>
+                            <a href="/om-os" class="nav-link d-none d-xxl-inline" style="font-weight: 500; font-size: 14px;"><span><span class="fas fa-user-friends"></span> Om os</span></a>
+                            
+                            <!-- <a href="tel:+4593839757" class="nav-link phone d-none d-lg-inline" style="font-weight: 500; font-size: 16px;"><i class="feather-phone"></i>93 83 97 57</a> -->
+
+                            <!-- <a href="/login" class="nav-link"><i class="feather-unlock"></i>Login</a> -->
+                            <a href="/kontakt" class="nav-btn tt__btn" style="font-weight: 700; margin-right: 20px;">Prøv nu - helt gratis</a>
+                            <a href="/login" class="nav-link" id="login-nav" style="font-size: 14px;"><i class="feather-unlock"></i>Log ind</a>
+                            <a href="tel:+4593839757" class="nav-link phone d-lg-none"><i class="feather-phone"></i> 93 83 97 57</a>
+                        </div>
+                        <!-- /.nav-right -->
+                    </div><!-- #menu-wrapper -->
+                </nav><!-- #site-navigation -->
+            </div><!-- /.header-inner -->
+
+            {% if opening_hours is defined and opening_hours is sameas true %}
+            <div class="sub-nav">
+                <p class="open hide" id="open-navbar" style="font-weight: 600;">
+                    <a href="tel:+4593839757" style="font-weight: 600;"><span style="font-weight: 600;">Åbent </span>nu –– Ring <i class="feather-phone"></i> 93 83 97 57</a>
+                </p>
+                <p class="closed hide" id="closed-navbar" style="font-weight: 600; color: white;">
+                    <a href="tel:+4593839757" style="font-weight: 600;"><i class="feather-phone"></i> Ring nu 93 83 97 57</a>
+                </p>
+            </div>
+            {% endif %}
+    </header>
+
+    {% if opening_hours is defined and opening_hours is sameas true %}
+    <script>
+        const subNav = document.querySelector(".sub-nav");
+
+        // Get current date
+        const now = new Date();
+        // Get current hour in Denmark (0-23)
+        const hour = now.getUTCHours()+2;
+        // Get current weekday from 0-6 (sun-sat)
+        const day = now.getDay();
+
+        function closed() {
+            document.getElementById("closed-navbar").classList.remove("hide");
+            console.log(document.getElementById("open-navbar"))
+        }
+
+        function open() {
+            document.getElementById("open-navbar").classList.remove("hide");
+        }
+
+        if (day > 0 && day < 5 ) { // Monday - Friday
+            if (hour < 9 || hour > 19) {
+                closed();
+              }
+              else {
+                open();
+            }
+        } else if (day === 0) { // Sunday
+            if(hour < 12 || hour > 16){
+                closed();
+            }
+            else {
+                open();
+            }
+        } else if (day === 6) { // Saturday
+            if(hour < 12 || hour > 16){
+                closed();
+            }
+            else {
+                open();
+            }
+        }
+
+    </script>
+{% endif %}

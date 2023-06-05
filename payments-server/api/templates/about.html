@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block title %}
+Om TopTutors | DKs Førende Online Lektiehjælp | TopTutors ★
+{% endblock %}
+
+{% block desc %}
+Om TopTutors | Inspirere den næste generation af elever | TopTutors ★
+{% endblock %} 
+
+{% block body %}
+
+<!-- HERO SECTION -->
+<section class="page-header page-header-bg-about"></section>
+
+<!-- amount of tutors, total lessons, reviews -->
+<section class="facts-bar">
+  <div class="row align-items-center">
+    <div class="col-xl-4 col-md-6 text-center" style="color: #ffff">
+      400+ undervisere
+    </div>
+
+    <div
+      class="col-xl-4 col-md-6 tt-star-rating tt-star-50 tt-star-rating tt-star-40 tt-star-rating tt-star-35 text-center"
+    >
+      <a
+        href="https://dk.trustpilot.com/review/toptutors.dk"
+        target="_blank"
+        rel="noopener"
+        style="color: #ffff"
+      >
+        98% positive
+        <span class="tt-star-1 fa"></span>
+        <span class="tt-star-2 fa"></span>
+        <span class="tt-star-3 fa"></span>
+        <span class="tt-star-4 fa"></span>
+        <span class="tt-star-5 fa"></span>
+        anmeldelser
+      </a>
+    </div>
+
+    <div
+      class="col-xl-4 col-md-6 d-md-none d-lg-block text-center"
+      style="color: #ffff"
+    >
+      Hjulpet hundredevis af børnefamilier
+    </div>
+  </div>
+</section>
+
+<section class="security-feature-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 col-md-12 offset-lg-2 section-heading style-four">
+        <h1 class="section-title">Danmarks største online lektiehjælp</h1>
+        <h4 class="description">
+          For at inspirere den næste generation af elever til at opnå deres
+          fulde potentiale skaber TopTutors en kategori for online lektiehjælp,
+          hvor geografi ikke længere er en begrænsning for at få en inspirerende
+          underviser.
+        </h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="security-feature-section" style="background-color: #f3f8ff">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 col-sm-12">
+        <div class="security-content">
+          <div class="section-heading style-four">
+            <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">
+              Den bedste underviser bor ikke lige rundt om hjørnet
+            </h2>
+
+            <p class="description wow fadeInUp" data-wow-delay="0.5s">
+              Problemet med gammeldags lektiehjælp er, at man får den underviser
+              som bor tættest på, men ikke den bedste underviser til den enkelte
+              elev. I virkeligheden bor den den perfekte underviser ikke lige
+              rundt om hjørnet, men måske på den anden side af landet.
+            </p>
+          </div>
+
+          <!-- /.tt__btn -->
+        </div>
+        <!-- /.security-content -->
+      </div>
+      <!-- /.col-lg-5 -->
+
+      <div class="col-lg-4 col-sm-12">
+        <img
+          src="{{ url_for('static', filename='svgs/world.svg') }}"
+          alt="illustration af jorden"
+        />
+      </div>
+      <!-- /.col-lg-7 -->
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-lg-4 col-sm-12 d-none d-lg-block">
+        <img
+          src="{{ url_for('static', filename='svgs/familie.svg') }}"
+          alt="illustration af en familie"
+        />
+      </div>
+
+      <div class="col-lg-8 col-sm-12">
+        <div class="security-content">
+          <div class="section-heading style-four">
+            <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">
+              Flere børnefamilier får adgang til hjælp
+            </h2>
+
+            <p class="description wow fadeInUp" data-wow-delay="0.5s">
+              Børnefamilier i mange steder af landet har ikke adgang til
+              lektiehjælp. Især da mange af de dygtigste undervisere bor i
+              universitetsbyerne, så mange elever får ikke den hjælp, de
+              virkelig har brug for.
+            </p>
+          </div>
+
+          <!-- /.tt__btn -->
+        </div>
+        <!-- /.security-content -->
+      </div>
+
+      <div class="col-lg-4 col-sm-12 d-block d-lg-none">
+        <img
+          src="{{ url_for('static', filename='svgs/familie.svg') }}"
+          alt="illustration af en familie"
+        />
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-lg-8 col-sm-12">
+        <div class="security-content">
+          <div class="section-heading style-four">
+            <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">
+              Online lektiehjælp i verdensklasse
+            </h2>
+
+            <p class="description wow fadeInUp" data-wow-delay="0.5s">
+              Nu kan elever i hele landet blive matchet med den helt rette tutor
+              gennem en online undervisningsplatform og digital tavle, der gør
+              det muligt at levere højkvalitets privatundervisning, hvor tutor
+              og elev i fællesskab kan skrive, tegne, regne og meget mere med
+              digitale læringsværktøjer.
+            </p>
+          </div>
+
+          <!-- /.tt__btn -->
+        </div>
+        <!-- /.security-content -->
+      </div>
+      <!-- /.col-lg-5 -->
+
+      <div class="col-lg-4 col-sm-12">
+        <img
+          src="{{ url_for('static', filename='svgs/online_tutor.svg') }}"
+          alt="illustration af en undervisning"
+        />
+      </div>
+      <!-- /.col-lg-7 -->
+    </div>
+  </div>
+  <!-- /.container -->
+</section>
+
+<section class="dashboard-preview-section">
+  <div class="container">
+    <div class="dashboard-preview-wrapper">
+      <div
+        class="section-heading text-center style-three"
+        style="margin-bottom: 0"
+      >
+        <h2
+          class="section-title wow fadeInUp"
+          data-wow-delay="0.3s"
+          style="
+            visibility: visible;
+            animation-delay: 0.3s;
+            animation-name: fadeInUp;
+            font-size: 48px;
+          "
+        >
+          Vores stiftere
+        </h2>
+      </div>
+
+      <div class="dashboard-image">
+        <img
+          src="{{ url_for('static', filename='img/founders7.JPG') }}"
+          alt="billede af stifterne"
+          style="margin-bottom: 10px"
+          loading="lazy"
+        />
+        <p class="description">
+          <i
+            >Stifterne af TopTutors Yasmin El Youssef, Hasan El Youssef & Elmar
+            J. Jóhannsson.</i
+          >
+        </p>
+      </div>
+
+      <div class="dashboard-text">
+        <blockquote>
+          <p class="description text-left">
+            <i>
+              Vi er tre superstudenter med passion for læring, der gik sammen om
+              at stifte TopTutors med en simpel, men stor mission; Alle elever
+              skal kunne opnå deres fulde potentiale - uanset hvor de bor.
+              <br /><br />
+
+              Jeg var selv bagud i skolen, indtil jeg fik en underviser, der
+              kunne forklare svære koncepter på en forståelig måde og hjalp mig
+              med at koncentrere mig. Nogle år senere blev jeg student, hvor jeg
+              opdagede den forskel, som underviseren havde på min fremtid. Jeg
+              begyndte derfor selv at undervise for at hjælpe og inspirere andre
+              elever med at opnå deres fulde potentiale.<br /><br />
+
+              De to andre stiftere af TopTutors, søskendeparret Yasmin og Hasan,
+              har undervist i flere år, hvor de opdagede at det er utroligt
+              givende, at gøre en forskel i børn og unges liv ved at
+              viderebringe viden og skabe aha-oplevelser. For os handler det
+              ikke kun om læring, men om at give eleven et boost i faglighed,
+              selvtillid og motivation.<br /><br />
+
+              Vores mål er at sprede de succesoplevelser, vi skaber i
+              undervisningen, til hele Danmark, da børnefamilier i mange dele af
+              landet ikke har adgang til lektiehjælp. Vi vidste, at online
+              lektiehjælp giver alle elever adgang til de bedste undervisere, så
+              geografi ikke længere er et problem. Derfor satte vi os for at
+              transformere lektiehjælp i Danmark ved at skabe en kategori for
+              online lektiehjælp.<br />
+              <br />
+              Gennem online lektiehjælp er vi nu i gang med at inspirere den
+              næste generation af elever til at opnå deres fulde potentiale -
+              uanset hvor de bor. Fordi vi tror på, at alle kan lære alt med en
+              inspirerende underviser.
+            </i>
+          </p>
+        </blockquote>
+        <img
+          class="round-img"
+          src="{{ url_for('static', filename='img/elmar.png') }}"
+          alt="billede af Elmar"
+          height="250px"
+          width="250px"
+          loading="lazy"
+        />
+        <h5 class="section-title">Elmar J. Jóhannsson</h5>
+        <p class="description">Medstifter af TopTutors</p>
+      </div>
+
+      <!-- /.dashboard-image -->
+    </div>
+    <!-- /.dashboard-preview-wrapper -->
+  </div>
+  <!-- /.container -->
+</section>
+
+{% include "sections/cta3.html" %} {% endblock %}

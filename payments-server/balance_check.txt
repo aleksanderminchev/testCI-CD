@@ -1,0 +1,208 @@
+Incorrect balance for 1523019
+0.0 9960.0 Okay confused with another customer when searching
+Incorrect balance for 1519016
+-4944.0 2472.0 1 payment missing
+Incorrect balance for 1504799
+-32976.0 0.0 Elmar to look at 
+Incorrect balance for 1408809
+-11952.0 9960.0 1 payment missing
+Incorrect balance for 1417436
+-21984.0 20152.0 1 payment missing
+Incorrect balance for 1312209
+-5327.9 4944.0 Elmar to look at
+Incorrect balance for 1407327
+-6456.0 4304.0 1 payment missing
+Incorrect balance for 1518333
+-4944.0 2472.0 1 payment missing
+Incorrect balance for 1531982
+0.0 4944.0 1 order and payment for it missing
+Incorrect balance for 1170255
+-5382.0 0.0 set to 0(refunds)
+Incorrect balance for 1411336
+-8405.71 10955.0 Elmar to look at
+Incorrect balance for 1253867
+-23904.0 11952.0 1 order is pending
+Incorrect balance for 1488780
+-27480.0 25648.0 1 payment is missing
+Incorrect balance for 1521190
+-4944.0 2472.0 1 payment is missing
+Incorrect balance for 1531584
+0.0 3990.0 1 order missing
+Incorrect balance for 1129530
+-2392.0 0.0 set to 0 refunded
+Incorrect balance for 1359078
+-5976.0 3984.0 Elmar to look at
+Incorrect balance for 1409983
+2512.8 0.0 Probably set to 0
+Incorrect balance for 1205274
+-2390.3999999999887 0.0 Elmar to look at
+Incorrect balance for 1381908
+-3090.0 2472.0 1 payment is missing from csv
+Incorrect balance for 1433289
+-25648.0 23816.0 1 payment is missing
+Incorrect balance for 1378610
+-32976.0 29312.0 no payments in csv
+Incorrect balance for 1199470
+-5975.0 3984.0 1 payment is missing
+Incorrect balance for 1502839
+-29312.0 27480.0 1 payment is missing
+Incorrect balance for 1299850
+-1936.8000000000031 0.0 1 payment is missing probably from csv
+Incorrect balance for 1359075
+-5976.0 3984.0 1 payment is missing
+Incorrect balance for 1516289
+-11560.0 9248.0 1 payment is missing
+Incorrect balance for 1304272
+-244.29999999999995 0.0 Elmar to look at
+Incorrect balance for 1357734
+-3468.0 2312.0 1 payment is missing
+Incorrect balance for 1206589
+-13156.0 1196.0 Elmar to look at
+Incorrect balance for 1500778
+-9248.0 6936.0 1 payment is missing
+Incorrect balance for 1533180
+0.0 32976.0 1 order is missing
+Incorrect balance for 1507029
+-3192.0 0.0 1 payment is missing from csv
+Incorrect balance for 1311205
+-349.0 0.0 Should probably be 0
+Incorrect balance for 1301223
+-20388.199999999983 17928.0 Elmar to look at,probably missing 1 payment
+Incorrect balance for 1531955
+0.0 3192.0 1 order is missing
+Incorrect balance for 1363036
+-5976.0 3984.0 1 payment is missing
+Incorrect balance for 1316969
+-1387.2000000000007 0.0 Elmar to look at
+Incorrect balance for 1444851
+-4108.0 1236.0 1 payment is missing
+Incorrect balance for 1441358
+0.09000000000014552 -0.09 Rounding error
+Incorrect balance for 1505047
+-9248.0 6936.0 1 payment is missing
+Incorrect balance for 1315710
+-1387.2000000000007 693.6 Elmar to look at
+Incorrect balance for 1396576
+-20152.0 18320.0 1 payment is missing
+Incorrect balance for 1313050
+-741.5999999999995 0.0 Elmar to look at
+Incorrect balance for 1524376
+-13872.0 11560.0 1 payment is missing
+Incorrect balance for 1302203
+7497.5999999999985 -7811.2 Elmar to look at
+Incorrect balance for 1308924
+-401.3499999999999 3192.0 1 order is missing, also Elmar to look at
+Incorrect balance for 1533626
+0.0 3192.0 1 order is missing
+Incorrect balance for 1400376
+-1076.0 1156.0 Elmar to look at 
+Incorrect balance for 1528950
+0.0 11560.0 1 order and payment is missing
+Incorrect balance for 1201025
+-4704.599999999991 0.0 Elmar to look at
+Incorrect balance for 1420724
+-60.69999999999982 2472.0 60 dkk missing from csv payment, 1 payment not registered in teachworks
+Incorrect balance for 1287038
+-836.0100000000002 0.0 Elmar to look at
+Incorrect balance for 1503403
+-22908.0 20916.0 1 payment is missing
+Incorrect balance for 1408022
+-21984.0 20152.0 1 payment is missing
+Incorrect balance for 1481371
+-27480.0 25648.0 1 payment is missing
+Incorrect balance for 1439878
+-25648.0 23816.0 1 payment is missing
+Incorrect balance for 1512079
+-31144.0 29312.0 1 payment is missing
+Incorrect balance for 1366569
+-5976.0 0.0 Elmar to look at
+Incorrect balance for 1524827
+0.0 31144.0 1 order and 1 payment is missing
+Incorrect balance for 1499767
+-29312.0 27480.0 1 payment is missing
+Incorrect balance for 1314743
+-558.4000000000001 3192.0 Elmar to look at
+Incorrect balance for 1447257
+-25648.0 23816.0 1 payment is missing
+Incorrect balance for 1474230
+-27480.0 25648.0 1 payment is missing
+Incorrect balance for 1523512
+4186.0 4788.0 Elmar to look at
+Incorrect balance for 1502813
+-9248.0 6936.0 1 payment is missing
+Incorrect balance for 1109500
+-13481.949999999997 0.0 Elmar to look at
+Incorrect balance for 1364630
+-2152.0 0.0 Elmar to look at
+Incorrect balance for 1529385
+2472.0 4944.0 1 order is missing
+Incorrect balance for 1329827
+-5976.0000000000055 3585.6 Elmar to look at
+Incorrect balance for 1519663
+-31144.0 29312.0 1 payment is missing
+Incorrect balance for 1212407
+-2391.999999999999 0.0 Elmar to look at
+Incorrect balance for 1488176
+-741.5999999999995 0.0 Elmar to look at
+Incorrect balance for 1244833
+-4183.200000000007 0.0 1 payment is missing, Elmar to look at
+Incorrect balance for 1427593
+-5024.0 0.0 Elmar to look at
+Incorrect balance for 1502123
+-1428.13 2472.0 probably 1 payment is not registered in teachworks, Elmar to look at
+Incorrect balance for 1438435
+-6456.0 3228.0 1 payment is missing
+Incorrect balance for 1321275
+-28688.0 10760.0 Elmar to look at
+Incorrect balance for 1534298
+0.0 11560.0 1 order is missing
+Incorrect balance for 1500270
+-31144.0 30228.0 1 payment is missing
+Incorrect balance for 1438313
+-25648.0 23816.0 1 payment is missing
+Incorrect balance for 1493424
+-31144.0 29312.0 1 payment is missing
+Incorrect balance for 1418204
+-21984.0 20152.0 1 payment is missing
+Incorrect balance for 1312654
+-349.0 0.0 Elmar to look at
+Incorrect balance for 1358561
+-2472.0 1236.0 Elmar to look at 1 payment is missing
+Incorrect balance for 1312191
+-9561.600000000006 7181.2 Elmar to look at
+Incorrect balance for 1312070
+-209.4000000000001 0.0 Elmar to look at
+Incorrect balance for 1303308
+-42223.99999999999 399.0 Elmar to look at
+Incorrect balance for 1533562
+0.0 4788.0 1 order is missing
+Incorrect balance for 1438918
+0.0 3192.0 Elmar to look at
+Incorrect balance for 1313340
+-494.39999999999964 0.0 Elmar to look at
+Incorrect balance for 1307514
+-741.5999999999995 2472.0 Elmar to look at
+Incorrect balance for 1486353
+-27480.0 25648.0 1 payment is missing
+Incorrect balance for 1501156
+-29312.0 27480.0 1 payment is missing
+Incorrect balance for 1488096
+-6936.0 4624.0 1 payment is missing
+Incorrect balance for 1238745
+4485.0 -4485.0 Correct 
+Incorrect balance for 1529919
+0.0 3192.0 1 payment is missing
+Incorrect balance for 1444883
+-2472.0 1236.0 1 payment is missing
+Incorrect balance for 1128839
+-19067.5 16488.0 1 payment is missing, Elmar to look at
+Incorrect balance for 1311744
+-2390.400000000005 0.0 Elmar to look at
+Incorrect balance for 1527874
+0.0 31144.0 1 order and 1 payment is missing
+Incorrect balance for 1208872
+-2390.3999999999974 0.0 Elmar to look at
+Incorrect balance for 1248362
+7176.0 0.0 2 payments are missing
+Incorrect balance for 1501680
+-4944.0 3708.0 1 payment is missing

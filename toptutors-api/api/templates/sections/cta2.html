@@ -1,0 +1,56 @@
+{% block scripts %}
+
+
+{% endblock %}
+<!-- Phone number CTA -->
+<section class="newsletter">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <div class="section-heading">
+                    <h2 class="section-title wow fadeInUp">
+                        Få vejledning af vores fageksperter
+                    </h2>
+                </div>
+                <!-- /.section-heading -->
+            </div>
+            <!-- /.col-lg-4 -->
+
+            <div class="col-lg-5 offset-lg-3">
+                <form action="/" method="POST" id="cta2-phone-form"
+                    class="newsletter-form wow fadeInUp needs-validation">
+                    <input type='hidden' id="zc_gad" name="zc_gad" value="" />
+
+                    <h6 class="wow fadeInDown" data-wow-delay="0.3s" style="color: white; margin-top: 10px;">
+                        Vi kontakter dig inden for 24 timer - helt uforpligtende.
+                    </h6>
+
+                    <div class="newsletter-inner d-flex justify-content-center style_two">
+                        <input id="tlf" type="tel" name="tlf" placeholder="12 34 56 78" />
+                        <input type="hidden" type="tel" id="fulltlf" name="fulltlf">
+                        <button id="phonelead-submit" class="newsletter-submit g-recaptcha tt__btn"
+                            data-sitekey="{{ sitekey }}" data-callback="ct2PhoneFormSubmit" data-action='submit'>
+                            <span>Ring mig op</span>
+                            <i class="feather-phone"></i>
+                        </button>
+                    </div>
+                    <span class="validation_message hidden">Angiv venligst et gyldigt telefonnummer</span>
+
+
+                    <div class="form-result alert">
+                        <div class="content"></div>
+                    </div>
+                </form>
+
+                <ul class="newsletter-info wow fadeInUp" data-wow-delay="0.3s">
+                    <li><i class="ei ei-icon_check"></i>Ingen forpligtelse eller binding</li>
+                    <li><i class="ei ei-icon_check"></i>100% Tilfredshedsgaranti</li>
+                    <li><i class="ei ei-icon_check"></i>Elsk din første lektion eller få pengene tilbage</li>
+                </ul>
+            </div>
+            <!-- /.col-lg-5 offset-md-2 -->
+        </div>
+        <!-- /.row -->
+    </div>
+</section>
+<!-- /.newsletter -->

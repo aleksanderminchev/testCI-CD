@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% block title %} Nyt Undervisningsforløb hos
+TopTutors {% endblock %}
+{% block body %}
+<style>
+    .student_courses {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        row-gap: 1rem;
+        column-gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .student_courses h3 {
+        grid-column: 1/-1;
+    }
+
+    .course_student {
+        background-color: var(--my-blue05);
+        border-radius: 15px;
+        font-size: 16px;
+        padding-bottom: 1rem;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        color: #1c1e21;
+        transition: none;
+    }
+
+    .course_student_name_class {
+        padding: 1rem 0 0.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .course_student_name {
+        font-weight: 600;
+        margin-bottom: -10px;
+
+    }
+
+    .course_student_class_grade {
+        font-size: 14px;
+    }
+
+    .course_student_subjects {
+        background-color: var(--my-white);
+        border-radius: 15px;
+        display: flex;
+        padding: 1rem;
+        align-items: center;
+        /*justify-content: space-between;
+        align-items: center;*/
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin: auto 0;
+        height: 124px;
+    }
+
+    .course_student_subjects svg {
+        margin-left: auto;
+        color: var(--my-blue05);
+    }
+
+    .course_student:hover {
+        color: #1c1e21;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        transition: none;
+    }
+
+    .course_student:hover svg {
+        color: #4587f9;
+
+    }
+
+
+    .course_student_subjects ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    @media screen and (min-width:768px) and (max-width:1079px) {
+        .student_courses {
+            /*display: flex;
+            flex-direction: column;*/
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media screen and (max-width:767px) {
+        .student_courses {
+
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+<div class="container">
+    <div class="form-group" style="margin-top: 200px">
+
+        <h1>Ledige forløb 🎓</h1>
+        {%if tutor is none %}
+        <form method='POST' action=''>
+            <label>Se alle ledige elever for at starte et nyt undervisningsforløb. <br><br>Indsæt din e-mail for at se alle ledige forløb.</label>
+            <br><br>
+            <input type='email' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='email'
+                placeholder='Indsæt din E-mail' />
+                <br>
+            <input class="tt__btn" type="submit" style="font-weight: 700; margin-bottom: 30px; font-size: 18px;" value="Få adgang"/>
+        </form>
+        {%endif%}
+    </div>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <section id="available_courses" class="student_courses">
+        <!-- Available courses -->
+        {% if tutor.tutor_email %}
+        
+        {% if found_courses.match %}
+        <h3>Forløb i dine fag</h3>
+        {% endif%}
+        {%for course in found_courses.match %}
+
+        <a class="course_student"
+            href="{{url_for('courses.view_course',hashed_id=course.hashed_id,tutor_id=tutor.tutor_id)}}">
+            <div class="course_student_name_class">
+                <span class="course_student_name">{{course.name.partition(' ')[0]}}</span>
+                <span class="course_student_class_grade">{{course.class_grade}}</span>
+            </div>
+            <div class="course_student_subjects">
+                <ul>
+                    <li>{{course.subjects}}</li>
+                </ul>
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                </svg>
+            </div>
+        </a>
+        {%endfor%}
+
+        {%endif%}
+    </section>
+    <section id="other_courses" class="student_courses">
+        <!-- All other courses -->
+        {% if tutor.tutor_email %}
+        {% if found_courses.all_courses %}
+        <h3>Alle ledige forløb</h3>
+        {% else %}
+        <p>Der er desværre ingen ledige forløb i øjeblikket.</p>
+        {% endif%}
+        {%for course in found_courses.all_courses %}
+
+        <a class="course_student"
+            href="{{url_for('courses.view_course',hashed_id=course.hashed_id,tutor_id=tutor.tutor_id)}}">
+            <div class="course_student_name_class">
+                <span class="course_student_name">{{course.name.partition(' ')[0]}}</span>
+                <span class="course_student_class_grade">{{course.class_grade}}</span>
+            </div>
+            <div class="course_student_subjects">
+                <ul>
+                    {{course.subjects}}
+                </ul>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                </svg>
+            </div>
+        </a>
+        {%endfor%}
+        {%endif%}
+    </section>
+</div> <!-- end container -->
+
+<script>
+
+    document.querySelectorAll(".course_student_subjects ul").forEach((subjects) => {
+        // Split the string of subjects by commas into an array
+        let formatted_subjects = subjects.innerHTML.split(",");
+        // Clear the ul
+        subjects.innerHTML = "";
+        // Create a li for each subject
+        formatted_subjects.forEach((item, index) => {
+            let li = document.createElement("li");
+
+            if (index < 3) {
+                li.innerHTML = item;
+                subjects.appendChild(li);
+            } else if (index == 3) {
+                li.innerHTML = "ofl...";
+                subjects.appendChild(li);
+            } else {
+
+            }
+
+        });
+    })
+
+</script>
+
+{% endblock %}

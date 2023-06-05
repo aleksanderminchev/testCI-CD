@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block title %}Betaling af ordre | TopTutors Lektiehjælp & Privatunderundervisning{% endblock %}
+
+
+{% block styles %}
+
+
+
+{% block javascript %}
+{% raw %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    {% for date, packages in formatted_data.items() %}
+    <div id="chart_div_{{ loop.index }}" style="width: 100%; height: 500px;"></div>
+    {% endfor %}
+
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCharts);
+    
+    function drawCharts() {
+    {% for date, packages in formatted_data.items() %}
+    var data_{{ loop.index }} = new google.visualization.DataTable();
+    data_{{ loop.index }}.addColumn('string', 'Package');
+    data_{{ loop.index }}.addColumn('number', 'Count');
+    data_{{ loop.index }}.addRows([
+      {% for package, count in packages.items() %}
+      ['{{ package }}', {{ count }}],
+      {% endfor %}
+    ]);
+
+    var options_{{ loop.index }} = {
+      title: 'Packages - {{ date.strftime('%B %Y') }}',
+      pieHole: 0.4,
+      colors: ['#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FF5722']
+    };
+
+    var chart_{{ loop.index }} = new google.visualization.PieChart(document.getElementById('chart_div_{{ loop.index }}'));
+    chart_{{ loop.index }}.draw(data_{{ loop.index }}, options_{{ loop.index }});
+    {% endfor %}
+}
+
+</script>
+{% endraw %}
+{% endblock %}
+
+
+
+
+
+
+<style>
+  .booking-table {
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    width: auto;
+    padding: 10px;
+  }
+
+  .header {
+    background-color: #0a61f7;
+    color: white;
+  }
+
+  .title-header {
+    background-color: white;
+    color: black;
+    text-align: center;
+  }
+
+  .header-upsell {
+    background-color: #00b53c;
+    color: white;
+  }
+
+  .container {
+    margin-top: 7%;
+  }
+
+  .container,
+  #chart_div {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  #chart_div {
+    width: 50%;
+    height: 500px;
+    margin-left: 5%;
+  }
+</style>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div class="booking-div">
+    {% for entry in booking_data %}                                                
+      <table class="table table-bordered booking-table">
+        <!-- MONTH-YEAR TITLE -->
+          <tr>
+            <td class="title-header" colspan="5" >{{entry["date"].strftime("%B").capitalize() }} <b>{{entry["date"].strftime("%Y").capitalize()}}</b> </th>
+          </tr>
+        <!-- ROWS I.E HEADERS -->
+          <tr>
+            <th class="header" colspan="2"></th>
+            <th class="header" scope="col">Bookings sum</th>
+            <th class="header" scope="col">Number of bookings</th>
+            <th class="header" scope="col">Average of paid bookings</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- FIRST TABLE: TOAL -->
+          <tr>
+            <th colspan="2">Total</th>
+            <td>{{ entry["total_total"] }} kr.</td>
+            <td>{{ entry["total_amount_of_bookings"] }}</td>
+            <td>{{ entry["total_average"] }} kr.</td>
+          </tr>
+        <!-- SECOND TABLE: NEW -->
+          <tr>
+            <th colspan="2">New</th>
+            <td>{{ entry["new_total"] }} kr.</td>
+            <td>{{ entry["new_amount_of_bookings"] }}</td>
+            <td>{{ entry["new_average"] }} kr.</td>
+          </tr>
+        <!-- THIRD TABLE: UPSELL -->
+          <tr>
+            <th colspan="2">Upsell</th>
+            <td>{{ entry["upsell_total"] }} kr.</td>
+            <td>{{ entry["upsell_amount_of_bookings"] }}</td>
+            <td>{{ entry["upsell_average"] }} kr.</td>
+          </tr>
+    {% endfor %}
+        </tbody>
+      </table>
+  </div>
+  <div id="chart_div" style="width: 900px; height: 500px;"></div>
+</div>
+
+
+{% endblock %}

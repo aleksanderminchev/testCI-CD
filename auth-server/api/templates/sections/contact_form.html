@@ -1,0 +1,846 @@
+<style>
+    /*-----------------------//
+    //-------- MOBILE -------//
+    //-----------------------*/
+
+
+    .hero_contact {
+        padding-top: 100px;
+        /* background-color: var(--my-white); */
+    }
+
+    .hero_contact h1 {
+        font-size: 2rem;
+        font-weight: 900;
+    }
+
+    .heading {
+        text-align: center;
+        padding-top: 25px;
+    }
+
+    .blue {
+        color: #0373e2;
+    }
+
+    .contact_form_wrapper {
+        overflow: hidden;
+        margin: 0 -10px;
+    }
+
+    .contact_form_step_counter {
+        background: var(--my-blue06);
+        height: 4px;
+        display: flex;
+        justify-content: space-between;
+        max-width: 300px;
+        margin: 0 auto;
+        position: relative;
+        top: 7px;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+        visibility: hidden;
+    }
+
+    .contact_form_step_counter::after {
+        content: "";
+        position: absolute;
+        background: var(--my-blue01);
+        width: calc(var(--current-slide)* 25%);
+        height: 5px;
+        transition-property: width;
+        transition-duration: 0.5s;
+    }
+
+    .step_ball {
+        width: 0.8rem;
+        height: 0.8rem;
+        background: var(--my-blue06);
+        border-radius: 100%;
+        position: relative;
+        top: -5.5px;
+        z-index: 1;
+    }
+
+    .step_ball.full {
+        background: var(--my-blue01);
+        transition-property: background;
+        transition-delay: 0.4s;
+        transition-duration: 0.2s;
+    }
+
+    .contact_form {
+        display: flex;
+        flex-direction: row;
+        transition: transform 0.5s;
+        transform: translateX(calc(-100% * (var(--current-slide))));
+        --current-slide: 0;
+        padding-bottom: 1rem;
+    }
+
+    .contact_form_step {
+        flex: 0 0 100%;
+    }
+
+    .contact_form_step h2 {
+        text-align: center;
+        font-size: 1.25rem;
+    }
+
+    .contact_form_step .back {
+        border: none;
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        align-self: flex-start;
+        font-size: 16px;
+    }
+
+    .contact_form_step .back:active {
+        color: #0373e2;
+    }
+
+    .contact_form_selections {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1rem;
+        padding-top: 1rem;
+        flex-wrap: wrap;
+        height: 80%;
+
+    }
+
+    .contact_form_selection {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        background-color: #a7d5ff;
+        border-radius: 0 20px 20px 0;
+        padding: 1rem;
+        min-height: 193px;
+    }
+
+    .contact_form_selection:nth-child(2) {
+        flex-direction: row-reverse;
+        align-self: flex-end;
+        border-radius: 20px 0 0 20px;
+
+    }
+
+    .contact_image_container {
+        flex-basis: 45%;
+        display: flex;
+    }
+
+    .contact_form_step img {
+        margin: auto;
+    }
+
+
+
+    @media screen and (max-width: 991px) {
+        .contact_form_selections img {
+            max-height: 200px;
+        }
+
+        .contact_image_container {
+            display: none;
+        }
+
+        .contact_form_selections img:nth-child(1) {
+            order: 1;
+        }
+
+        .contact_form_selections img:nth-child(3) {
+            order: 2;
+        }
+
+        .contact_form_buttons {
+            order: 3;
+        }
+
+
+    }
+
+    .contact_form_buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .contact_form_buttons input {
+        background-color: var(--my-white);
+        border: 2px solid var(--my-blue01);
+        font-weight: 600;
+        color: #0373e2;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        align-self: center;
+        padding: 0.5rem 1rem;
+        width: 15rem;
+    }
+
+    .contact_form_buttons input:hover {
+        background-color: var(--my-blue06);
+        color: #0373e2;
+    }
+
+
+    .contact_form_buttons input:active {
+        background-color: #a7d5ff;
+        color: #0373e2;
+        transition-duration: 0s;
+    }
+
+    .nextStep.nextStepWhite {
+        background-color: white;
+        color: #0373e2;
+    }
+
+    .third_step .contact_form_selections,
+    .fourth_step .contact_form_selections,
+    .fifth_step .contact_form_selections {
+        display: flex;
+        justify-content: center;
+    }
+
+    .contact_form_selections form {
+        padding: 0 1rem;
+    }
+
+    .contact_form_inputs {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact_form_step .input-wrap {
+        margin-bottom: 0.5rem;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .contact_form_step .input-field {
+        margin-bottom: auto;
+    }
+
+    .contact_form_step .input-field input {
+        height: 2.5rem;
+        background-color: white;
+        border-color: var(--my-blue06);
+
+    }
+
+    .contact_form_step .input-field input:focus {
+        border-color: var(--my-blue01);
+    }
+
+    .contact_form_step label,
+    .contact_form_step input {
+        font-size: 16px;
+    }
+
+    .contact_form_step label {
+        margin-top: auto;
+    }
+
+    .contact_form_step .input-checkbox {
+        margin-top: 1rem;
+    }
+
+    .back_forward {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 1rem;
+        font-size: 16px;
+    }
+
+    .back_forward .nextStep2 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        color: #4f5158;
+        background-color: var(--my-white);
+        border: 2px solid #0373e2;
+        color: #0373e2;
+        border-radius: 13px;
+        padding: 0 1rem;
+    }
+
+    .back_forward .nextStep2:hover {
+        background-color: var(--my-blue06);
+        color: #0373e2;
+    }
+
+    .back_forward .nextStep2:active {
+        color: #0373e2;
+        background-color: #a7d5ff;
+    }
+
+    .third_step .input-wrap,
+    .fourth_step .input-wrap,
+    .fifth_step .input-wrap {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 1rem;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .nextStep.nextStep2.hide {
+        visibility: hidden;
+    }
+
+    .validation_message {
+        color: red;
+        font-size: 16px;
+        position: relative;
+        width: 100%;
+    }
+
+    .fifth_step .input-checkbox label {
+        margin-bottom: 0;
+        font-size: 13px;
+    }
+
+    .third_step .input-field,
+    .fourth_step .input-field {
+        margin-bottom: auto;
+    }
+
+    .input-field .iti {
+        display: block;
+    }
+
+    .iti__country-list {
+        max-width: 400px;
+        font-size: 14px;
+    }
+
+    .iti__selected-flag {
+        padding-left: 10px;
+    }
+
+    .iti input[type="tel"] {
+        margin-bottom: auto;
+    }
+
+    .didYouKnow {
+        padding: 0 1rem;
+        font-size: 16px;
+        font-style: italic;
+        margin: auto 0;
+    }
+
+
+    /*-----------------------//
+    //-------- TABLET -------//
+    //-----------------------*/
+    @media screen and (min-width:810px) {
+        .hero_contact h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+
+        .contact_form_selections img {
+            max-height: 330px;
+        }
+
+        .contact_form_selections {
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        div.contact_form_step:nth-child(2)>div:nth-child(2)>img:nth-child(3) {
+            padding-left: 1rem;
+        }
+    }
+
+    /*-----------------------//
+    //------- DESKTOP -------//
+    //-----------------------*/
+    @media screen and (min-width:1080px) {
+        .hero_contact {
+            /*background: radial-gradient(white, #a7d5ff);*/
+            margin: 0 -10px;
+            padding-top: 150px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .blue {
+            color: #0373e2;
+        }
+
+        .contact_form_wrapper {
+            overflow: hidden;
+
+        }
+
+        .contact_form {
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        .contact_form_step:nth-child(3) h2 {
+            top: -1rem;
+        }
+
+        .contact_form_selections {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: nowrap;
+        }
+
+        .contact_form_selection {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            height: 300px;
+            background-color: transparent;
+            min-height: auto;
+        }
+
+        .contact_form_selection:nth-child(2) {
+            flex-direction: row-reverse;
+        }
+
+        .contact_form_selections img {
+            /*height: auto;*/
+            max-width: 400px;
+        }
+
+        .contact_form_buttons .nextStep {
+            background-color: var(--my-white);
+            border: 2px solid #0373e2;
+            color: #0373e2;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+            align-self: center;
+            padding: 0.5rem 1rem;
+            position: relative;
+        }
+
+        .contact_form_inputs input {
+            background-color: white;
+        }
+    }
+
+    /*-----------------------//
+    //---- DESKTOP WIDE ----//
+    //-----------------------*/
+    @media screen and (min-width: 1350px) {
+        .contact_form_selections {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+    }
+</style>
+<form id="contact-form" action="/kontakt" method="POST" class="contact_form_wrapper contact-form needs-validation">
+
+    <div class="blue contact_form_step_counter">
+        <span class="step_ball full"></span>
+        <span class="step_ball full "></span>
+        <span class="step_ball"></span>
+        <span class="step_ball"></span>
+        <span class="step_ball"></span>
+    </div>
+    <div class="contact_form">
+        <!-- STEP 1 -->
+        <div class="contact_form_step first_step">
+            <h2 style="word-break: break-word;">Hvem søger lektiehjælp i {{ subject }}?</h2>
+            <div class="contact_form_selections">
+                <div class="contact_image_container">
+                    <img src="../../static/img/temp/foraeldre2.png" alt="illustration af pige og hendes mor">
+                </div>
+                <div class="contact_form_buttons">
+                    <input type="button" class="nextStep elev" value="Mig" />
+                    <input type="button" class="nextStep foraeldre" value="Mit barn" />
+                    <input type="button" class="nextStep anden" value="En anden" />
+                </div>
+                <div class="contact_image_container">
+                    <img src="../../static/img/temp/elev2.png" alt="illustration af elev">
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="contact_form_step second_step">
+            <h2>Hvad <span class="parentOrStudent">er det</span> i?</h2>
+            <div class="contact_form_selections">
+                <div class="contact_image_container">
+                    <img src="../../static/img/temp/folkeskole2.png" alt="illustration af folkeskole">
+                </div>
+                <div class="contact_form_buttons">
+                    <input type="button" class="nextStep folkeskole" value="Folkeskole" />
+                    <input type="button" class="nextStep gymnasiet" value="Gymnasiet" />
+                    <input type="button" class="nextStep andet" value="Andet" />
+                    <div class="back">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+                        </svg>
+                        <span>Tilbage</span>
+                    </div>
+                </div>
+                <div class="contact_image_container">
+                    <img src="../../static/img/temp/gymnasium2.png" alt="illustration af gymnasium">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="contact_form_step third_step">
+            <h2>Perfekt! Hvad hedder du?</h2>
+            <input type='hidden' id="zc_gad" name="zc_gad" value="" />
+
+            <div class="input-wrap">
+                <!-- <span class="blue contact_form_step_counter">3/5</span> -->
+                <input class="hide" name="hidden_field" type="text">
+
+                <div class="input-field">
+                    <input type="text" name="navn" id="navn" placeholder="Navn">
+                    <i class="feather-user"></i>
+                </div>
+                <p class="didYouKnow"><b>Vidste du?</b><br> Vi har hjulpet hundredvis af elever i hele landet med at få flere succesoplevelser i skolen.</p>
+
+                <div class="back_forward">
+                    <div class="back">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+                        </svg>
+                        <span>Tilbage</span>
+                    </div>
+                    <div class="nextStep nextStep2 hide">
+                        <span>Næste</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="contact_form_step fourth_step">
+            <h2>Tak<span id="first_name">.</span> Hvordan kommer vi i kontakt med dig?</h2>
+
+            <div class="input-wrap" id="email-div">
+                <!-- <span class="blue contact_form_step_counter">4/5</span> -->
+
+                <div class="input-field">
+                    <input type="email" name="email" id="email" placeholder="E-mail">
+                    <i class="feather-mail"></i>
+                </div>
+                <p class="didYouKnow"><b>Vidste du?</b><br>
+                    Vi har en imponerende 5-stjernet Trustpilot for kundetilfredshed! Vores elever elsker den personlige lektiehjælp, vi tilbyder. 
+                </p>
+
+                <div class="back_forward">
+                    <div class="back">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+                        </svg>
+                        <span>Tilbage</span>
+                    </div>
+                    <div class="nextStep nextStep2 hide">
+                        <span>Næste</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                            class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="contact_form_step fifth_step">
+            <h2>Super! Hvad er dit telefonnummer</h2>
+
+            <div class="input-wrap" id="tlf-div">
+                <!-- <span class="blue contact_form_step_counter">5/5</span> -->
+                <div class="input-field">
+                    <input id="tlf" type="tel" name="tlf" />
+                    <input type="hidden" type="tel" id="fulltlf" name="fulltlf">
+                    <!-- <input type="tel" name="tlf" id="tlf" pattern=".{8,15}" placeholder="Telefonnummer" required> -->
+                    <!-- <i class="feather-phone"></i> -->
+                </div>
+                <span class="validation_message hide">Angiv venligst et gyldigt telefonnummer</span>
+                <div class="input-checkbox">
+                    <input type="checkbox" id="marketing" name="marketing" checked="true">
+                    <label for="marketing">Jeg vil gerne modtage nyheder fra TopTutors.</label>
+                </div>
+                <button type="submit" class="tt__btn submit-btn g-recaptcha" value="submit" id="contact_submit_btn"
+                    data-sitekey="{{ sitekey }}" data-callback="contactFormSubmit" data-action='submit'
+                    style="opacity: 0.5">
+                    <span class="btn-text">Få en gratis prøvetime</span>
+                    <i class="fas fa-spinner fa-spin"></i>
+                </button>
+                <p class="small-note">Vi kontakter dig hurtigst muligt og helt uforpligtende for at matche dig med den helt rette tutor i {{ subject }}.</p>
+                <div class="back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                        class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+                    </svg>
+                    <span>Tilbage</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 banner-trustpilot" style="left: 0; margin-bottom: 25px; top:-50px;">
+        <a href="https://dk.trustpilot.com/review/toptutors.dk" target="_blank" rel="noopener">
+            <img class="" src="../../static/svgs/Trustpilot_ratings_5star-RGB.svg" alt="">
+        </a>
+        <a href="https://dk.trustpilot.com/review/toptutors.dk" target="_blank" rel="noopener">
+            <img class="" src="../../static/svgs/Trustpilot_brandmark_gr-blk-RGB.svg" alt="">
+        </a>
+    </div>
+
+</form>
+
+<script>
+
+    let currentSlide = 0;
+    const contactForm = document.querySelector(".contact_form");
+    const backButton = document.querySelectorAll(".back");
+
+    const foraeldreBtn = document.querySelector('.foraeldre');
+    const elevBtn = document.querySelector('.elev');
+    const anden = document.querySelector('.anden');
+
+    const folkeBtn = document.querySelector('.folkeskole');
+    const gymBtn = document.querySelector('.gymnasiet');
+    const andet = document.querySelector('.andet');
+    const step1Buttons = [folkeBtn, gymBtn, andet];
+
+    const nameInputField = document.querySelector(".input-field #navn");
+    const emailInputField = document.querySelector(".input-field #email");
+    const phoneInputField = document.querySelector(".input-field #tlf");
+
+    const nextThirdStep = document.querySelector(".third_step .nextStep");
+    const nextFourthStep = document.querySelector(".fourth_step .nextStep");
+    const submitButton = document.querySelector(".fifth_step #contact_submit_btn");
+
+    document.querySelectorAll(".nextStep").forEach((button) => {
+        button.addEventListener("click", () => {
+            currentSlide++;
+            contactForm.style.setProperty("--current-slide", currentSlide);
+            progressBar.style.setProperty("--current-slide", currentSlide);
+            progressBarBalls();
+            if (document.activeElement === elevBtn) {
+                document.activeElement = folkeBtn
+                currentSlide = 1
+            }
+        });
+    });
+
+    backButton.forEach((button) => {
+        button.addEventListener("click", () => {
+            currentSlide--;
+            contactForm.style.setProperty("--current-slide", currentSlide);
+            progressBar.style.setProperty("--current-slide", currentSlide);
+            progressBarBalls();
+        })
+    });
+
+    // Progress bar
+    const progressBar = document.querySelector(".contact_form_step_counter");
+    const allBalls = document.querySelectorAll(".step_ball");
+
+    function progressBarBalls() {
+        if (currentSlide <= 1) {
+            progressBar.style.visibility = "hidden"
+        } else {
+            progressBar.style.visibility = "visible"
+
+        }
+        allBalls.forEach((ball, index) => {
+            if (currentSlide >= index) {
+                ball.classList.add("full")
+            } else {
+                ball.classList.remove("full")
+            }
+        })
+    }
+
+
+    document.querySelector("body").addEventListener("keyup", (e) => {
+        if (e.keyCode == 9) {
+            if (foraeldreBtn === document.activeElement || elevBtn === document.activeElement) {
+                currentSlide = 0;
+                contactForm.scrollLeft = 0;
+                contactForm.style.setProperty("--current-slide", currentSlide);
+                progressBar.style.setProperty("--current-slide", currentSlide);
+                progressBarBalls();
+            } else if (folkeBtn === document.activeElement || gymBtn === document.activeElement) {
+                currentSlide = 1;
+                contactForm.parentElement.scrollLeft = 0;
+                contactForm.style.setProperty("--current-slide", currentSlide);
+                progressBar.style.setProperty("--current-slide", currentSlide);
+                progressBarBalls();
+            } else if (nameInputField === document.activeElement) {
+                currentSlide = 2;
+                contactForm.parentElement.scrollLeft = 0;
+                contactForm.style.setProperty("--current-slide", currentSlide);
+                progressBar.style.setProperty("--current-slide", currentSlide);
+                progressBarBalls();
+            } else if (emailInputField === document.activeElement) {
+                currentSlide = 3;
+                contactForm.parentElement.scrollLeft = 0;
+                contactForm.style.setProperty("--current-slide", currentSlide);
+                progressBar.style.setProperty("--current-slide", currentSlide);
+                progressBarBalls();
+            } else if (document.querySelector(".iti__selected-flag") === document.activeElement) {
+                currentSlide = 4;
+                contactForm.parentElement.scrollLeft = 0;
+                contactForm.style.setProperty("--current-slide", currentSlide);
+                progressBar.style.setProperty("--current-slide", currentSlide);
+                progressBarBalls();
+            }
+        }
+    });
+
+    if (nameInputField.value !== "") {
+        nextThirdStep.classList.remove("hide");
+    }
+    nameInputField.addEventListener("input", () => {
+        if (nameInputField.value !== "") {
+            nextThirdStep.classList.remove("hide");
+        } else {
+            nextThirdStep.classList.add("hide");
+        }
+    })
+
+    if (emailInputField.value !== "") {
+        nextFourthStep.classList.remove("hide");
+    }
+    emailInputField.addEventListener("input", () => {
+        if (emailInputField.value !== "") {
+            nextFourthStep.classList.remove("hide");
+        } else {
+            nextFourthStep.classList.add("hide");
+        }
+    })
+
+    // Parent or student
+    const parentOrStudent = document.querySelector(".parentOrStudent");
+    foraeldreBtn.addEventListener("click", () => parentOrStudent.textContent = "går dit barn");
+    elevBtn.addEventListener("click", () => parentOrStudent.textContent = "går du");
+    anden.addEventListener("click", () => parentOrStudent.textContent = "er det");
+
+    const name = document.querySelector("#first_name");
+    const first_name = document.querySelector('#navn').value.split(' ')[0]
+    document.querySelector('.nextStep2').addEventListener("click", () => name.textContent = ", " + document.querySelector('#navn').value.split(' ')[0] + ".")
+
+
+    //-----------------------//
+    // ---- PHONE INPUT ---- //
+    //-----------------------//
+
+    // intl-tel-input plugin setup
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        preferredCountries: ["dk", "fo", "gl"],
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        autoPlaceholder: "aggressive",
+    });
+
+    let fulltlf = document.querySelector("#fulltlf");
+
+    function isValid() {
+        submitButton.style.opacity = "1";
+        phoneInputField.style.borderColor = "var(--my-blue06)";
+        document.querySelector(".validation_message").classList.add("hide");
+        fulltlf.value = phoneInput.getNumber();
+    }
+
+    function isInvalid() {
+        phoneInputField.style.borderColor = "red";
+        submitButton.style.opacity = "0.5";
+        document.querySelector(".validation_message").classList.remove("hide");
+    }
+
+    // Event listeners 
+
+    // country click 
+    document.querySelector(".iti__selected-flag").addEventListener("click", () => {
+        phoneInputField.style.borderColor = "var(--my-blue01)";
+        document.querySelector(".validation_message").classList.add("hide");
+    })
+
+    // input change
+    phoneInputField.addEventListener("input", () => {
+        document.querySelector(".validation_message").classList.add("hide");
+    });
+
+    // input blur
+    phoneInputField.addEventListener("blur", (e) => {
+        if (phoneInput.isValidNumber()) {
+            isValid();
+        } else if (e.relatedTarget && e.relatedTarget.className === "iti__selected-flag") {
+            phoneInputField.style.borderColor = "var(--my-blue01)";
+            document.querySelector(".validation_message").classList.add("hide");
+        } else if (phoneInputField.value.length === 0) {
+            phoneInputField.style.borderColor = "var(--my-blue06)";
+            document.querySelector(".validation_message").classList.add("hide");
+        } else {
+            isInvalid();
+        }
+    });
+
+    // input focus
+    phoneInputField.addEventListener("focus", () => {
+        phoneInputField.style.borderColor = "var(--my-blue01)";
+    });
+
+    // country change
+    phoneInputField.addEventListener("countrychange", function () {
+        document.querySelector(".validation_message").classList.add("hide");
+        if (phoneInput.isValidNumber()) {
+            submitButton.style.opacity = "1";
+        } else {
+            submitButton.style.opacity = "0.5";
+        }
+    });
+
+    //  Send information
+    function contactFormSubmit(token) {
+        if (phoneInput.isValidNumber()) {
+            isValid();
+            document.getElementById("contact-form").submit();
+        } else {
+            isInvalid();
+        }
+    }
+</script>

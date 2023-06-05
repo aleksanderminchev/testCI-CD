@@ -1,0 +1,43 @@
+
+{% block scripts %}
+
+<script>
+  function gymHeroFormSubmit(token) {
+    document.getElementById("banner-phone-form").submit();
+  }
+</script>
+
+{% endblock %}
+
+<section class="page-header page-header-bg page-header-subject">
+    <div class="container">
+        <div class="page-header_wrapper">
+            <h1 class="page-header_title subject-title" style="overflow-wrap: break-word;">Skræddersyet lektiehjælp i <br><span style="color: var(--my-blue01);">{{ subject }} </span><img loading="lazy" src="/static/svgs/subjects/{{ subject }}.svg" alt="Tutor job hos Top Tutors. Bliv Tutor og hjælp elever med lektierne." width="45px" height="45px"></h1>
+            <h3 class="description subject-subtitle" style="font-weight:600; margin-top: 10px;">Opnå dit fulde potentiale <img loading="lazy" src="/static/svgs/subjects/graduation.svg" alt="Tutor job hos Top Tutors. Bliv Tutor og hjælp elever med lektierne." width="45px" height="45px"></h3>
+            <p class="description" style="margin-bottom: 40px;">Ingen forpligtelse eller binding. Certificerede tutors. 100% tilfredshedsgaranti. </p>
+
+            <a class="tt__btn" href="/kontakt" style="font-weight: 700; margin-bottom: 30px; font-size: 22px;">Prøv nu - helt gratis</a>
+            
+            <form action="/" method="post" class="banner__newsletter-form needs-validation subject-cta" style="margin: 0 auto;" id="banner-phone-form">
+                <input type='hidden' id="zc_gad" name="zc_gad" value=""/>
+                
+                  <p class="wow fadeInUp" data-wow-delay="0.3s" style="margin-bottom: 0; font-size: 18px; color: #1c1e21;">Få gratis vejledning i dag::</p>
+                  <div class="newsletter-inner">
+                      <input type="tel" name="tlf" pattern=".{8,15}" class="form-control" id="tlf" placeholder="Dit telefonnummer..." required="">
+                      <button type="submit" value="submit" id="newsletter-submit" class="tt__btn newsletter-submit g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="gymHeroFormSubmit" data-action='submit'>
+                          <span>Ring mig op</span>
+                          <i class="fas fa-spinner fa-spin"></i>
+                      </button>
+                  </div>
+                  <p class="wow fadeInUp" data-wow-delay="0.3s" style="margin-bottom: 0; font-size: 16px; color: #1c1e21;">Eller ring <a href="tel:+4593839757" style="font-weight: 700; color: #1c1e21; font-size: 18px;"> <i class="feather-phone"></i> 93 83 97 57</a></p>
+
+                  <div class="form-result alert">
+                      <div class="content"></div>
+                  </div>
+            </form>
+
+        </div>
+        <!-- /.page-title-wrapper -->
+    </div>
+    <!-- /.container -->
+</section>

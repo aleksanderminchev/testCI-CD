@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.1",
+    "@fullcalendar/daygrid": "^6.1.1",
+    "@fullcalendar/interaction": "^6.1.1",
+    "@fullcalendar/list": "^6.1.1",
+    "@fullcalendar/react": "^6.1.2",
+    "@fullcalendar/timegrid": "^6.1.1",
+    "@fullcalendar/timeline": "^6.1.1",
+    "@mui/base": "^5.0.0-alpha.119",
+    "@mui/x-date-pickers": "^5.0.18",
+    "@reduxjs/toolkit": "^1.9.2",
+    "@types/numeral": "^2.0.2",
+    "dayjs": "^1.11.7",
+    "flask": "^0.2.10",
+    "fullcalendar": "^6.1.1",
+    "moment": "^2.29.4",
+    "numeral": "^2.0.6",
+    "react-dropzone": "^14.2.3",
+    "redux-persist": "^6.0.0",
+    "yet-another-react-lightbox": "^2.2.7"
+  },
+  "devDependencies": {
+    "redux-immutable-state-invariant": "^2.1.0"
+  }
+}

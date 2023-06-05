@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %} Lektiehjælp Priser | Priser fra 229 kr. i timen | TopTutors ★{% endblock %}
+
+{% block desc %}
+ Prøv Lektiehjælp - Gratis Prøvetime | Priser fra 229 kr. i timen | Priser på Lektiehjælp | Certificerede Tutors i Hele Danmark | ★ 5 Stjerner På Trustpilot ☝
+{% endblock %}
+
+{% block scripts %}
+<script defer src="{{ url_for('static', filename='js/carousel.min.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+
+{% include "sections/hero_priser.html" %}
+
+<!-- <section class="page-header page-header-bg pricing-page-header">
+    <div class="container">
+        <div class="page-header_wrapper"> -->
+            <!-- <h1 class="page-header_title discount-title" style="overflow-wrap: break-word; color:var(--my-blue)">SPAR 10% RESTEN AF SKOLEÅRET</h1> -->
+
+            <!-- <h1 class="page-header_title" style="overflow-wrap: break-word;">Skræddersyet lektiehjælp, der gør en forskel</h1> -->
+            <!-- <h3 class="page-header_title" style="font-size:42px; font-weight:600;">Vi hjælper dig med at opnå dit fulde potentiale</h3> -->
+            <!-- <p class="description">Betal kun for de timer du bruger. Ingen forpligtelse eller binding. 100% tilfredshedsgaranti. </p> -->
+             <!-- <ul class="banner__feature price_features" style="margin-top: 50px; margin-bottom: 0;">
+                <li><i class="ei ei-icon_check"></i>Betal kun for de timer du bruger</li><br>
+                <li><i class="ei ei-icon_check"></i>Ingen forpligtelse eller binding</li><br>
+                <li><i class="ei ei-icon_check"></i>Certificerede Top Tutors</li><br>
+                <li><i class="ei ei-icon_check"></i>100% tilfredshedsgaranti</li>
+            </ul> -->
+            
+        <!-- </div> -->
+        <!-- /.page-title-wrapper -->
+    <!-- </div> -->
+    <!-- /.container -->
+    
+<!-- </section> -->
+
+<!-- <div class="price-text">
+    <div class="container">
+        <div class="row offset-lg-1">
+            <div class="section-heading text-center col-lg-6" style="margin-bottom: 20px;">
+                <h2 class="section-title" style="font-weight: 800;">
+                    Kvalitet til<br> bedste pris<br>
+                </h2>
+    
+                <div class="description">
+                    <p class="description" style="font-size: 24px;">
+                        Vi skræddersyer det perfekte forløb med priser fra 229 til 309 kr. per time, ud fra hvilken forløbspakke der passer jer bedst.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="col-lg-5 ">
+                <ul class="banner__feature" style="margin-top: 40px;">
+                    <li class="icon-price"><i class="ei ei-icon_check"></i>Ingen forpligtelse eller binding</li><br>
+                    <li class="icon-price"><i class="ei ei-icon_check"></i>Få ubrugte timer refunderet</li><br>
+                    <li class="icon-price"><i class="ei ei-icon_check"></i>Ingen ekstra gebyrer</li><br>
+                    <li class="icon-price"><i class="ei ei-icon_check"></i>100% tilfredshedsgaranti</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- /.pricing -->
+{% include "sections/process.html" %}
+
+{% include "sections/cta1.html" %}
+
+{% include "sections/garantiSection.html" %}
+
+{% include "sections/testimonials.html" %}
+
+{% include "sections/cta2.html" %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+apifairy
+faker
+flask
+flask-cors
+flask-httpauth
+flask-mail
+flask-marshmallow
+flask-migrate
+gunicorn
+marshmallow-sqlalchemy
+pyjwt
+python-dotenv

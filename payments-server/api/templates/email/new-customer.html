@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="da">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+
+        <style type="text/css">
+            a[x-apple-data-detectors] {color: inherit !important;}
+        </style>
+        
+    </head>
+    <body style="margin: 0; padding: 0; font-family: 'Titillium Web', sans-serif;" bgcolor="#F3F8FE">
+      <!-- The data dump -->
+      <div class="container">
+        <h1>Kontaktformularen er blevet udfyldt af:</h1>
+        <table>
+            {% for key, value in information.items() %}
+                <tr>
+                  <td>
+                    <h1>{{ key }}</h1>
+                  </td>
+                  <td>
+                    <h2>{{ value }}</h2>
+                  </td>
+                </tr>
+            {% endfor %}
+          </table>
+    </div>
+
+    <hr>
+    <!-- The mail to be resent to the assigned tutor -->
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td style="padding: 20px 0 30px 0;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+                        <tr>
+                            <td align="center" bgcolor="#ffffff" style="padding: 40px 0 30px 0;">
+                                <img src="{{ url_for('static', filename='icons/logo.png', _external=True) }}" height="150" style="display: block;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                        <tr>
+                            <td style="color: #000000;">
+                                <h1 style="font-size: 24px; margin: 0;">Undervisningsforløb</h1>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td style="color: #000000; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;">
+                            <p style="margin: 0; color: #000000">Kære tutor, <br><br> Vi har matchet dig med en ny elev, som du har accepteret!
+                                Nedenfor finder du alle nødvendige informationer, så du kan komme i gang med dit nye undervisningsforløb.<br>
+                                <strong>Kontakt gerne eleven hurtigst muligt</strong> 
+                                for at aftale dato, tidspunkt og mødested angående første undervisningsomgang samt forventningsafstemme forløbet.
+                                <br> Hvis eleven ikke svarer dig inden for 24 timer må du meget gerne rette henvendelse til mig. 
+                            </p>
+                        </td>
+                    </tr>
+                    <br><br><br>
+                    <tr>
+                      <td style="color: #000000;">
+                          <h1 style="font-size: 18px; margin: 0;">Elevens informationer:</h1>
+                      </td>
+                    </tr>
+                    <tr>
+                      <!-- TODO: WHY IS THIS A DIFFERENT FONT????????????? -->
+                      <!-- TODO: Change the "course_subject" to be formatted nicely -->
+                        <td style="color: #000000; font-size: 16px; line-height: 24px; padding: 20px 0 30px 0;">
+                            <ul style="margin: 0; color: #000000">
+                                <li>Navn: {{information.name}}</li>
+                                <li>Fag: {{information.course_subject}}</li>
+                                <li>Uddannelse: {{information.education}}</li>
+                                <li>Antal elever: {{information.number_of_pupils}}</li>
+                                <li>Timer:</li>
+                              {% if information.zip_code %}
+                                <li>Postnr: {{information.zip_code}}</li>
+                              {% else %}
+                                <li>Onlineundervisning</li>
+                              {% endif %}
+                                <li>Telefonnummer: {{information.phone_number}}</li>
+                                <li>Mail: {{information.email}}</li>
+                            </ul>
+                            <br><br>
+                            <i>Hvis du har nogle spørgsmål eller problemer under forløbet, er du mere end velkommen til at skrive til mig ellers så tjek vores guide til tutors ud her:
+                                 <a href="https://www.notion.so/TopTutors-Wiki-8b14e3a42c624207ac3aa8f0dac81c08">https://www.notion.so/TopTutors-Wiki-8b14e3a42c624207ac3aa8f0dac81c08</a>
+                            </i>
+                            <br>
+                            Jeg håber du og eleven bliver glad for forløbet!
+                        </td>
+                    </tr>
+                      
+                    <td bgcolor="#2773F8" style="padding: 30px 30px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; color:#ffffff;">
+                            <tr>
+                                <td style=" font-size: 14px;">
+                                    <p style="margin: 0;"><a href="http://maps.google.com/?q=Porcelænshaven,26,2000,Frederiksberg,Danmark" target="_blank" style="color: #ffffff;  text-decoration: none;">Porcelænshaven 26, 2.sal, 2000 Frederiksberg</a><br/>
+                                    <p style="margin: 0;"><a href="tel:+4593839757" style="color: #ffffff;  text-decoration: none;">Telefon: 93 83 97 57</a><br/>href="
+                                    <p style="margin: 0;"><a href="mailto:kontakt@toptutor.dk" style="color: #ffffff;  text-decoration: none;">Email: kontakt@toptutors.dk</a><br/>
+                                    <p style="margin: 0;"><a href="https://www.toptutors.dk" style="color: #ffffff;  text-decoration: none;">Web: www.toptutors.dk</a><br/>
+
+                                </td>
+                                <td align="right">
+                                    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                                        <tr style="font-size: 14px;">
+                                            <td>
+                                                <p>TopTutors ApS</p>
+                                            </td>
+                                            <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
+                                            <td>
+                                                <p>CVR-NR: 41867442</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+

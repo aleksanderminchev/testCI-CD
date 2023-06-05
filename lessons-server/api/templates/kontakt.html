@@ -1,0 +1,673 @@
+{% extends "base.html" %}
+
+{% block styles %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stepper.min.css') }}">
+    
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/stepper.js') }}"></script>
+
+
+
+{% endblock %}
+
+{% block title %}Få Lektiehjælp | Start med en Gratis Prøvetime |  Bliv Kontaktet Nu | TopTutors ★{% endblock %}
+
+{% block desc %}
+  Få Lektiehjælp med en Tutor | Prøv Nu - Helt Gratis | Bliv Kontaktet i dag | Certificerede Tutors i Hele Danmark | ★ 5 Stjerner På Trustpilot ☝
+{% endblock %}
+
+{% block body %}
+
+<section class="page-header page-header-contact">
+  <div class="container">
+      <div class="page-header_wrapper">
+          <h1 class="page-header_title" id="contact_title" style="overflow-wrap: break-word;">Prøv en gratis prøvetime</h1>
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <p class="description" style="margin-top: 10px;">Bliv kontaktet og få vejledning af en fagekspert inden for 24 timer</p>
+            </div>
+          </div>
+      </div>
+      <!-- /.page-title-wrapper -->
+  </div>
+  <!-- /.container -->
+</section>
+
+<section class="contact-page">
+  <div class="container">
+
+
+    <!-- Q1 LEVEL QUESTION -->
+    <div class="row" id="q1">
+        <h4 class="mx-auto col-sm-12 text-center" style="margin-bottom: 0px; font-weight: 800;">Hvilket niveau søger du hjælp til?</h4>
+        <p class="mx-auto text-center description col-sm-12" style="margin-bottom: 20px; font-weight: 600; font-size: 16px;">Vi matcher dig med den helt rette tutor ud fra dine behov.</p>
+      
+      <div class="progress mx-auto" style="width: 80%; height: 6px; margin-bottom: 20px;">
+        <div class="progress-bar" style="width: 33%;" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="background-color: var(--my-blue);"></div>
+      </div>
+      
+      <div class="col-lg-10 offset-lg-1">
+        <div class="row">
+          <div class="col-lg-6 text-center" id="q1-folkeskole">
+            <div class="tt-icon-box style-two mx-auto">
+              <div class="icon-container color__one mx-auto levels-contact">
+                  <img src="/static/svgs/Numeracy.svg" loading="lazy" alt="Folkeskole Lektiehjælp, tutor & Privatunderundervisning hos TopTutors. Hjælp med lektier i alle fag i folkeskolen og gymnasiet sammen med en tutor." width="90px" height="90px">
+              </div>
+              <!-- /.icon-container -->
+
+              <div class="box-content">
+                  <h4 class="box-title">
+                      Folkeskole
+                  </h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 text-center" id="q1-gym">
+            <div class="tt-icon-box style-two mx-auto">
+
+              <div class="icon-container color__two mx-auto levels-contact">
+                  <img src="/static/svgs/Girl_Graduation.svg" loading="lazy" alt="Lektiehjælp, tutor & Privatunderundervisning hos TopTutors. Få lektiehjælp med en tutor, der underviser dig i alle fag i folkeskolen og gymnasiet." width="90px" height="90px">
+              </div>
+              <!-- /.icon-container -->
+
+              <div class="box-content">
+                  <h4 class="box-title">
+                      Gymnasiet
+                  </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
+    </div>
+
+    <!-- Q2 SUBJECT QUESTION FOR ELEMENTARY SCHOOL -->
+    <div class="row contact-inactive" id="q2-folkeskole" style="transition: height 0ms 1000ms, opacity 1000ms 0ms;">
+      <h4 class="mx-auto col-sm-12 text-center" style="margin-bottom: 0px; font-weight: 800;">Hvilket fag?</h4>
+      <p class="mx-auto text-center description col-sm-12" style="margin-bottom: 20px; font-weight: 600; font-size: 16px;">Du starter med et gratis opstartsmøde med din tutor.</p>
+
+      
+      <div class="progress mx-auto" style="width: 80%; height: 6px; margin-bottom: 30px;">
+        <div class="progress-bar" style="width: 66%;" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="background-color: var(--my-blue);"></div>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+            <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                <div class="icon-container" style="margin-bottom: 10px;">
+                    <img loading="lazy" src="/static/svgs/subjects/matematik.svg" alt="Tutor matematik. Lektiehjælp matematik. Privatundervisning matematik." width="45px" height="45px">
+                </div>
+                <!-- /.icon-container -->
+
+                <div class="box-content justify-content-center align-self-center">
+                    <h4 class="box-title">
+                        Matematik
+                    </h4>
+
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/dansk.svg" alt="Tutor dansk. Lektiehjælp dansk. Privatundervisning dansk." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Dansk
+                        </h4>
+
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/engelsk.svg" alt="Tutor engelsk. Lektiehjælp engelsk. Privatundervisning engelsk." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Engelsk
+                        </h4>
+
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/biologi.svg" alt="Tutor biologi. Lektiehjælp biologi. Privatundervisning biologi." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Biologi
+                        </h4>
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/fysik-kemi.svg" alt="Tutor fysik-kemi. Lektiehjælp fysik-kemi. Privatundervisning fysik-kemi." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Fysik/kemi
+                        </h4>
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/tysk.svg" alt="Tutor tysk. Lektiehjælp tysk. Privatundervisning tysk." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Tysk
+                        </h4>
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/spansk.svg" alt="Tutor spansk. Lektiehjælp spansk. Privatundervisning spansk." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Spansk
+                        </h4>
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/fransk.svg" alt="Tutor fransk. Lektiehjælp fransk. Privatundervisning fransk." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Fransk
+                        </h4>
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/samfundsfag.svg" alt="Tutor samfundsfag. Lektiehjælp samfundsfag. Privatundervisning samfundsfag." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Samfundsfag
+                        </h4>
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/historie.svg" alt="Tutor historie. Lektiehjælp historie. Privatundervisning historie." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Historie
+                        </h4>
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/geografi.svg" alt="Tutor geografi. Lektiehjælp geografi. Privatundervisning geografi." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Geografi
+                        </h4>
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+               <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                    <div class="icon-container" style="margin-bottom: 10px;">
+                        <img loading="lazy" src="/static/svgs/subjects/natur-teknik.svg" alt="Tutor naturo-teknologi. Lektiehjælp naturo-teknologi. Privatundervisning naturo-teknologi." width="45px" height="45px">
+                    </div>
+                    <!-- /.icon-container -->
+                    <div class="box-content justify-content-center align-self-center">
+                        <h4 class="box-title">
+                            Andet fag
+                        </h4>
+                    </div>
+                </div>
+
+        </div>
+        <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+        
+    </div>
+  
+
+    </div>
+
+
+    <!-- Q2 SUBJECT QUESTION FOR HIGH SCHOOL -->
+    <div class="row contact-inactive" id="q2-gym" style="transition: height 0ms 1000ms, opacity 1000ms 0ms;">
+        <h4 class="mx-auto" style="margin-bottom: 0px; font-weight: 800;">Hvilket fag?</h4>
+        <p class="mx-auto text-center description col-sm-12" style="margin-bottom: 20px; font-weight: 600; font-size: 16px;">Du starter med et gratis opstartsmøde med din tutor.</p>
+        
+        <div class="progress mx-auto" style="width: 80%; height: 6px; margin-bottom: 30px;">
+          <div class="progress-bar" style="width: 66%;" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="background-color: var(--my-blue);"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/matematik.svg" alt="Tutor matematik. Lektiehjælp matematik. Privatundervisning matematik." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Matematik
+                            </h4>
+
+                        </div>
+                    </div>
+
+                
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/dansk.svg" alt="Tutor dansk. Lektiehjælp dansk. Privatundervisning dansk." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Dansk
+                            </h4>
+
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/engelsk.svg" alt="Tutor engelsk. Lektiehjælp engelsk. Privatundervisning engelsk." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Engelsk
+                            </h4>
+
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/biologi.svg" alt="Tutor biologi. Lektiehjælp biologi. Privatundervisning biologi." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Biologi
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/tysk.svg" alt="Tutor tysk. Lektiehjælp tysk. Privatundervisning tysk." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Tysk
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/spansk.svg" alt="Tutor spansk. Lektiehjælp spansk. Privatundervisning spansk." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Spansk
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/fransk.svg" alt="Tutor fransk. Lektiehjælp fransk. Privatundervisning fransk." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Fransk
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/samfundsfag.svg" alt="Tutor samfundsfag. Lektiehjælp samfundsfag. Privatundervisning samfundsfag." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Samfundsfag
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/historie.svg" alt="Tutor historie. Lektiehjælp historie. Privatundervisning historie." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Historie
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/geografi.svg" alt="Tutor geografi. Lektiehjælp geografi. Privatundervisning geografi." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Geografi
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/fysik.svg" alt="Tutor fysik. Lektiehjælp fysik. Privatundervisning fysik." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Fysik
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/kemi.svg" alt="Tutor kemi. Lektiehjælp kemi. Privatundervisning kemi." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Kemi
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+
+
+            <div class="col-lg-3 col-md-4 col-sm-6 d-none d-block d-sm-none d-md-none d-lg-block" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/økonomi.svg" alt="Tutor økonomi. Lektiehjælp økonomi. Privatundervisning økonomi." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Økonomi
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/afsætning.svg" alt="Tutor afsætning. Lektiehjælp afsætning. Privatundervisning afsætning." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Afsætning
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/SRP-SOP.svg" alt="Tutor SRP-SOP. Lektiehjælp SRP-SOP. Privatundervisning SRP-SOP." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                SRP/SOP
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+
+            <div class="col-lg-3 col-md-4 col-sm-6" style="margin-bottom:10px">
+                   <div class="tt-icon-box style-four q2-subject" style="margin-bottom: 5px;">
+                        <div class="icon-container" style="margin-bottom: 10px;">
+                            <img loading="lazy" src="/static/svgs/subjects/idræt.svg" alt="Tutor idræt. Lektiehjælp idræt. Privatundervisning idræt." width="45px" height="45px">
+                        </div>
+                        <!-- /.icon-container -->
+                        <div class="box-content justify-content-center align-self-center">
+                            <h4 class="box-title">
+                                Andet fag
+                            </h4>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- /.col-lg-3 col-md-4 col-sm-6 -->
+            
+        </div>
+    
+  
+    </div>
+
+
+    <!-- Q3 CONTACT INFORMATION -->
+    <div class="row contact-inactive" id="q3" style="transition: height 0ms 1000ms, opacity 1000ms 0ms;">
+        <h4 class="mx-auto" style="margin-bottom: 20px; font-weight: 800;">Perfekt! Hvordan kommer vi i kontakt med dig?</h4>
+        
+        <div class="progress mx-auto" style="width: 80%; height: 6px; margin-bottom: 20px;">
+            <div class="progress-bar" style="width: 90%;" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="background-color: var(--my-blue);"></div>
+        </div>
+
+        <div class="row mx-auto">
+            <form id="contact-form" action="/kontakt" method="POST" class="contact-form needs-validation">
+                <input type='hidden' id="zc_gad" name="zc_gad" value=""/>
+                  <div class="input-wrap">
+                    <input class="hide" name="hidden_field" type="text">
+                 
+                 
+                    <label class="contact-label" for="navn">Hvad er dit navn?</label>
+                    <div class="input-field">
+                        <input type="text" name="navn" id="navn" placeholder="Navn">
+                        <i class="feather-user"></i>
+                    </div>
+                  </div>
+                  
+                  <div class="input-wrap" id="email-div">
+                    <label class="contact-label" for="email">Hvad er din E-mail?</label>
+                    <div class="input-field">
+                        <input type="email" name="email" id="email" placeholder="E-mail">
+                        <i class="feather-mail"></i>
+                    </div>
+                  </div>
+
+                  <div class="input-wrap" id="tlf-div">
+                    <label class="contact-label" for="tlf">Hvad er dit telefonnummer?</label>
+                    <div class="input-field">
+                        <input id="tlf" type="tel" name="tlf" placeholder="32 12 34 56" />
+                        <input type="hidden" type="tel" id="fulltlf" name="fulltlf">
+                    </div>
+                    <span class="validation_message hidden">Angiv venligst et gyldigt telefonnummer</span>
+
+                  </div>
+
+                  <!-- <div class="input-wrap mb--5 hide" id="message-div">
+                    <label class="contact-label">Har du yderligere kommentarer? (valgfrit) </label>
+                    <div class="input-field message-field">
+                        <textarea name="comment" id="comment" placeholder="F.eks. min søn har svært med matematik i 7. klasse. (valgfrit)"></textarea>
+                        <i class="feather-message-square"></i>
+                    </div>
+                  </div> -->
+
+                  <!-- <div class="hide" id="checkboxes-div"> -->
+
+                    <!-- <div class="input-checkbox">
+                      <input type="checkbox" id="terms" name="terms" required>
+                      <p>Jeg accepterer <a href="/betingelser" target="_blank">vilkår og betingelser</a></p>
+                    </div> -->
+                    
+                    <div class="input-checkbox">
+                      <input type="checkbox" id="marketing" name="marketing" checked>
+                      <p>Jeg vil gerne modtage nyheder fra TopTutors.</p>
+                    </div>
+
+
+                <button type="submit" class="tt__btn submit-btn g-recaptcha" value="submit" id="contact_submit_btn" data-sitekey="{{ sitekey }}" data-callback="contactFormSubmit" data-action='submit'>
+                    <span class="btn-text">Prøv nu - helt gratis</span>
+                    <i class="fas fa-spinner fa-spin"></i>
+                </button>
+                <p class="small-note">Vi kontakter dig hurtigst muligt - helt uforpligtende.</p>
+              </form>
+
+        </div>
+
+
+        
+
+
+  </div> 
+</section>
+
+
+<!-- /.contact-page -->
+{% include "sections/testimonials.html" %}
+
+{% include "sections/garantiSection.html" %}
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} Vores TopTutors {% endblock %}
+{% block desc %}
+  Lektiehjælp & Privatundervisning hos TopTutors: Skræddersyet Lektiehjælp af Danmarks Topstuderende i Alle fag i Folkeskolen og Gymnasiet.
+{% endblock %}
+
+{% block styles %}
+<script src="{{ url_for('static', filename='css/glide.core.min.css') }}"></script>
+<script src="{{ url_for('static', filename='css/glide.theme.min.css') }}"></script>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/glide.min.js') }}"></script>
+<script defer>
+    new Glide('.glide', {
+        type: 'carousel',
+        perView: 1,
+        // autoplay: 5000,
+        // peek: 100
+    }).mount()
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="security-feature-section">
+    <div class="container">
+        <div class="section-heading text-center" style="margin-bottom: 20px;">
+            <h2 class="section-title wow fadeInUp" data-wow-delay="0.3s">
+                Boost i motivation, <br> selvtillid og faglighed<br>
+            </h2>
+
+            <div class="description wow fadeInUp" data-wow-delay="0.5s">
+                <p>
+                    Vi har topkvalificerede tutors til at øge din faglige selvtillid <br>gennem undervisning skræddersyet dine mål, interesser og behov. 
+                </p>
+            </div>
+        </div>
+        {% include "sections/tutor-section-large.html" %}
+        
+    </div>
+</div>
+
+
+{% include "sections/cta1.html" %}
+
+
+{% endblock %}

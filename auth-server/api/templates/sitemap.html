@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+<!-- Define a title -->
+{% block title %}  Sitemap | TopTutors ★ {% endblock %}
+
+<!-- Main Body -->
+{% block body %}
+
+<div class="container" style="margin-top: 150px;">
+  <div class="row">
+    <div class="col-lg-4 col-md-4">
+      <div class="section-heading">
+        <h2 class="section-title">Alle lokationer</h2>
+        <ul>
+          {% for page in location_pages %}
+            <li><a href="{{ page['url'] }}">{{ page['name'] }}</a></li>
+          {% endfor %}   
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4">
+      <div class="section-heading">
+        <h2 class="section-title">Alle skolefag</h2>
+        <ul> 
+          {% for page in subject_pages %}
+            <li><a href="{{ page['url'] }}">{{ page['name'] }}</a></li>
+          {% endfor %}   
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4">
+      <div class="section-heading">
+        <h2 class="section-title">Alle faglige niveauer</h2>
+        <ul>
+          {% for page in level_pages %}
+            <li><a href="{{ page['url'] }}">{{ page['name'] }}</a></li>
+          {% endfor %}   
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

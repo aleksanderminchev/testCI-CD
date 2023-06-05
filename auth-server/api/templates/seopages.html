@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} {{ mainword }} | Prøv Nu - Helt Gratis | TopTutors ★ {% endblock %}
+
+{% block desc %}
+  Skræddersyet {{ mainword }} | Certificerede Tutors i Hele Danmark | Alle Skolefag | Prøv Nu - Helt Gratis | ★ 5 Stjerner På Trustpilot ☝
+{% endblock %}
+
+{% block snippets %}
+{% include "sections/seo_snippets.html" %}
+{% endblock %}
+
+{% block body %}
+
+{% include "sections/seo_pages_hero.html" %}
+
+{% include "sections/tutor_section.html"%}
+
+{% include "sections/cta2.html" %}
+
+{% include "sections/process.html" %}
+
+{% include "sections/testimonials.html" %}
+
+{% include "sections/cta1.html" %}
+
+{% include "sections/seo_faq.html" %}
+
+{% include "sections/seo_links.html" %}
+
+{% endblock %}

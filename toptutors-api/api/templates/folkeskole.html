@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+<!-- Define a title -->
+{% block title %}Få Lektiehjælp i Folkeskolen |  Prøv Nu - Helt Gratis | TopTutors ★{% endblock %}
+
+{% block desc %}
+Skræddersyet Lektiehjælp i Folkeskolen | Certificerede Tutors i Hele Danmark | Alle Skolefag | Prøv Nu - Helt Gratis | ★ 5 Stjerner På Trustpilot ☝
+{% endblock %}
+
+{% block snippets %}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Lektiehjælp & Tutors i folkeskolen",
+      "description": "Få skræddersyet lektiehjælp af Danmarks topstuderende i alle fag i folkeskolen og gymnasiet i hele Danmark.",
+      "provider": {
+        "@type": "Organization",
+        "name": "TopTutors: Lektiehjælp & Tutors",
+        "sameAs": "https://toptutors.dk"
+      }
+    }
+</script>
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Lektiehjælp",
+        "item": "https://toptutors.dk/lektiehjælp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Folkeskole",
+        "item": "https://toptutors.dk/lektiehjælp/folkeskole"
+      }]
+    }
+</script>
+
+{% endblock %}
+
+{% block body %}
+
+{% include "sections/hero_folkeskole.html" %}
+
+{% include "sections/benefits2.html" %}
+
+{% include "sections/cta2.html" %}
+
+{% include "sections/subjects_folkeskole.html" %}
+
+{% include "sections/testimonials.html" %}
+
+{% include "sections/tutor_section.html" %}
+
+{% endblock %}

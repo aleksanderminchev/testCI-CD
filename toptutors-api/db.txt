@@ -1,0 +1,3 @@
+postgresql://toptutors-admin
+postgresql://toptutors-admin:kjjbtuy1co1qr78q@db-postgresql-ams3-toptutors-do-user-8329955-0.b.db.ondigitalocean.com:25060/tt-portal?sslmode=require
+

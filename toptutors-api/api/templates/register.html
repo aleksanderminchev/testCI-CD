@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+<!-- Define a title -->
+{% block title %} Opret konto | TopTutors ★ {% endblock %}
+
+{% block desc %}
+Opret en TopTutors Konto | ★ 5 Stjerner På Trustpilot ☝
+{% endblock %}
+
+<!-- Scripts -->
+{% block scripts %}
+
+<script>
+  function registerFormSubmit(token) {
+    document.getElementById("register-form").submit();
+  }
+</script>
+
+
+{% endblock %}
+
+<!-- Main Body -->
+{% block body %}
+
+<div class="container">
+  <div class="row marginToNav2">
+    <form
+      id="register-form"
+      class="col s8 push-s2 m6 push-m3 l4 push-l4"
+      method="POST"
+      action="/register"
+    >
+      <div class="row">
+        <h5 class="center-align" style="margin-bottom: 30px; margin-top: 30px;">Opret konto</h5>
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <div class="chip my-red white-text">
+          {{ message }}
+          <i class="close material-icons">close</i>
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+        <div class="input-field col s12 no-margin">
+          <input
+            id="email"
+            type="email"
+            name="email"
+            class="validate"
+            required
+          />
+          <label for="email">Email</label>
+          <span
+            class="helper-text"
+            data-error="Please enter a valid email address."
+          ></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 no-margin">
+          <input
+            id="password"
+            type="password"
+            class="validate"
+            name="password"
+            required
+          />
+          <label for="password">Adgangskode</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 no-margin">
+          <input
+            id="password_confirm"
+            type="password"
+            class="validate"
+            name="password_confirm"
+            required
+          />
+          <label
+            for="password_confirm"
+            data-error="Adgangskoder matcher ikke"
+            data-success=""
+            >Bekræft adgangskode</label
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m6 offset-m3 l4 offset-l4">
+          <button
+            class="waves-effect waves-light btn no-caps g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="registerFormSubmit" data-action='submit'
+            type="submit"
+            style="width: 100%; border-radius: 30px 30px;"
+            >
+            Opret konto
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <a
+            href="/admin-login"
+            class="text-blue"
+            style="width: 100%; border-radius: 30px 30px;"
+            >Allrede oprettet? Log ind her</a
+          >
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

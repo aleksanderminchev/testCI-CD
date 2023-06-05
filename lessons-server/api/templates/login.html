@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+<!-- Define a title -->
+{% block title %} TopTutors Log Ind ★{% endblock %}
+{% block desc %}
+  Log ind på din TopTutors Profil | Inspirerende undervisning til at opnå dit fulde potentiale | ★ 5 Stjerner På Trustpilot ☝
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    function loginFormSubmit(token) {
+        document.getElementById("login-form").submit();
+    }
+</script>
+
+{% endblock %}
+
+<!-- Main Body -->
+{% block body %}
+
+<section class="login-form-area">
+  <div class="container pr">
+      <div class="tt-form-heading text-center">
+          <h2 class="form-title">
+              Log ind på din konto
+          </h2>
+      </div>
+      <div class="tt-form-wrapper">
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for
+            message in messages %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+          <form id="login-form" action="/admin-login" class="tt-form" method="POST">
+              <div class="input-wrap">
+                  <label for="email">E-mail</label>
+
+                  <div class="input-field">
+                      <input type="email" placeholder="E-mail" name="email" id="email" required>
+                      <i class="feather-mail"></i>
+                  </div>
+              </div>
+
+              <div class="input-wrap mb-9">
+                  <label for="password">Adgangskode</label>
+                  <div class="input-field">
+
+                      <input type="password" placeholder="Password" id="password" name="password" required>
+                      <i class="feather-lock"></i>
+                  </div>
+              </div>
+
+              <!-- /.condition-wrap -->
+              <button class="tt__btn btn-round g-recaptcha" type="submit" data-sitekey="{{ sitekey }}" data-callback="loginFormSubmit" data-action='submit'>Log ind</button>
+          </form>
+          <!-- /.tt-form -->
+      </div>
+      <!-- /.tt-form-wrapper -->
+  </div>
+  <!-- /.container -->
+</section>
+<!-- /.login-form-area -->
+
+{% endblock %}

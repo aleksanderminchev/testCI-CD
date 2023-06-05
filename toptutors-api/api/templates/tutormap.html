@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tutor Map</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/static/js/tutormapJS.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Mohave&family=Outfit:wght@100&family=Poppins:wght@200&display=swap"
+    rel="stylesheet">
+  <!-- <link href="/static/css/select2.min.css" rel="stylesheet" />
+    <script src="/static/js/select2.min.js"></script> -->
+
+
+  <style type="text/css">
+    /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #description {
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .sideBar {
+      position: fixed;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+
+      border-radius: 25px;
+
+      top: 52%;
+      left: 19%;
+
+      padding: 0;
+
+      height: 93%;
+      width: 37%;
+
+      transition: 0.5s;
+      background-color: white;
+      font-family: 'Mohave', sans-serif;
+      font-size: 17px;
+      overflow-y: auto;
+      padding-left: 10px;
+
+    }
+
+    .collapsible {
+      background-color: #eee;
+      color: #444;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1px;
+    }
+
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    .active,
+    .collapsible:hover {
+      background-color: #ccc;
+    }
+
+    /* Style the collapsible content. Note: hidden by default */
+    .content {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+      background-color: #f1f1f1;
+    }
+
+    #infowindow-content .title {
+      font-weight: bold;
+    }
+
+    #infowindow-content {
+      display: none;
+    }
+
+    #map #infowindow-content {
+      display: inline;
+    }
+
+    .pac-card {
+      border-radius: 2px 0 0 2px;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      outline: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      background-color: #fff;
+      font-family: Roboto;
+    }
+
+    #pac-container {
+
+      margin-right: 12px;
+    }
+
+    .pac-controls {
+      display: inline-block;
+      padding: 5px 11px;
+    }
+
+    .pac-controls label {
+      font-family: Roboto;
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+    #pac-input {
+      margin-top: 0px;
+      background-color: #fff;
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: 300;
+      padding: 0 11px 0 13px;
+      text-overflow: ellipsis;
+      width: 400px;
+    }
+
+    #pac-input:focus {
+      border-color: #4d90fe;
+    }
+
+    #title {
+      color: #fff;
+      background-color: #4d90fe;
+      font-size: 25px;
+      font-weight: 500;
+    }
+
+    #target {
+      width: 345px;
+    }
+  </style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      background-image: url(map.png);
+      background-repeat: no-repeat;
+    }
+
+    .wrapper {
+      /* width: 60vw; */
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: row;
+      /* grid-template-columns: 2fr 1fr; */
+    }
+
+    .tutorlist-wrapper {
+      background-color: #f3f8ff;
+      width: 550px;
+      /* min-height: 100vh; */
+      height: 100vh;
+      border-radius: 0 20px 0 0;
+      padding: 0 1rem;
+      overflow: scroll;
+      z-index: 1;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      display: flex;
+      justify-content: center;
+      /* transform: skew(-10deg); */
+      padding: 2rem 0;
+      font-weight: normal;
+    }
+
+    h1 #counter {
+      color: #0758e2;
+      text-align: center;
+      padding: 0.05rem 0.5rem;
+      font-weight: bolder;
+    }
+
+    .search-sort {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .search-click {
+      border: none;
+      outline: none;
+      /* background-size: 22px;
+          background-position: 13px; */
+      width: 2rem;
+      height: 2rem;
+      padding-left: 31px;
+      transition: all 0.5s;
+      border-radius: 100px;
+      position: relative;
+      overflow: hidden;
+      background-color: #0758e2;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+
+    .search-click:focus {
+      width: 100%;
+      padding-left: 50px;
+      background-color: white;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-click.search_focused {
+      width: 100%;
+      padding-left: 50px;
+      background-color: white;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-click input {
+      background: transparent;
+      outline: none;
+      position: absolute;
+      width: 100%;
+      height: 32px;
+      left: 0%;
+      padding: 10px;
+    }
+
+    .search-container {
+      position: relative;
+      display: flex;
+      margin: 1rem 0;
+      width: 80%;
+    }
+
+    .search-container svg {
+      position: absolute;
+      align-self: center;
+      margin-left: 0.5rem;
+      user-select: none;
+      color: white;
+      pointer-events: none;
+    }
+
+    .search-click:focus+svg {
+      color: #0758e2;
+    }
+
+    .search-container svg.search_focused {
+      color: #0758e2;
+
+    }
+
+    .sort-tutors {
+      font-size: 0.8rem;
+      background: white;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      text-align: center;
+      overflow: clip;
+      max-width: 200px;
+      border-radius: 50px;
+      margin-left: auto;
+      gap: 0.1rem;
+      height: 2rem;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .sort-tutors button {
+      border: none;
+      background-color: #0758e2;
+      cursor: pointer;
+      color: white;
+    }
+
+    .sort-tutors .a-z {
+      padding: 0.5rem 1rem 0.5rem 2rem;
+    }
+
+    .sort-tutors .z-a {
+      padding: 0.5rem 2rem 0.5rem 1rem;
+    }
+
+    .sort-tutors button {
+      width: 60%;
+      transform: skew(-25deg);
+      /*font-weight: bold;
+      text-transform: uppercase;*/
+      background: #0758e2;
+      color: white;
+      /*border-top: 2px solid #0758e2;
+      border-bottom: 2px solid #0758e2;*/
+      transition: border 200ms ease, background 200ms ease;
+      display: flex;
+    }
+
+
+    .sort-tutors button span {
+      transform: skew(25deg);
+      display: block;
+      width: 4rem;
+    }
+
+    .sort-tutors button svg {
+      transform: skew(25deg);
+    }
+
+    .sort-tutors button:hover {
+      background: white;
+      color: #474747;
+    }
+
+    .sort-tutors button:active {
+      box-shadow: inset 20px 20px 60px #bebebe,
+        inset -20px -20px 60px #ffffff;
+    }
+
+
+    /*TUTORLIST*/
+    .tutors {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* TUTOR CARD */
+
+    .tutor,
+    .tutor.expand {
+      width: 100%;
+      background-color: white;
+      border-radius: 20px;
+      color: #a0a0a0;
+      height: 98px;
+      max-height: 150px;
+      transition-duration: 2s;
+      transition-property: box-shadow, max-height;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.05);
+
+    }
+
+    .tutor:hover,
+    .tutor.expand:hover {
+      transition-duration: 0.5s;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .tutor_green::before {
+      content: " ";
+      position: absolute;
+      left: -11px;
+      top: 5px;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: #00e94d;
+      border-radius: 100%;
+    }
+
+    .tutor_yellow::before {
+      content: " ";
+      position: absolute;
+      left: -11px;
+      top: 5px;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: #eeee74;
+      border-radius: 100%;
+    }
+
+    .tutor_red::before {
+      content: " ";
+      position: absolute;
+      left: -11px;
+      top: 5px;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: #fd7567;
+      border-radius: 100%;
+    }
+
+    .tutor-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 1rem;
+      align-items: center;
+      cursor: pointer;
+      gap: 1rem;
+      margin-bottom: 3px;
+    }
+
+    .tutor-info h3 {
+      color: #474747;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .tutor-info .profile-image {
+      width: 75px;
+      height: 75px;
+      margin-top: -4px;
+      text-align: center;
+    }
+
+    .tutor-info .profile-image img {
+      color: #474747;
+      object-fit: cover;
+      object-position: center;
+      height: 75px;
+      width: 75px;
+      border-radius: 20px;
+    }
+
+    .tutor-info h3 {
+      color: #474747;
+      font-size: 1rem;
+    }
+
+    .name-phone {
+      margin-right: auto;
+    }
+
+    .tutor-info .name-phone div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tutor-info .name-phone span {
+      font-weight: lighter;
+      font-size: 0.8rem;
+    }
+
+    .tutor-info .name-phone svg {
+      fill: rgb(7, 88, 226);
+      position: relative;
+      top: -3px;
+    }
+
+    .teachworks-tutorlink {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 28px;
+    }
+
+    /* .teachworks-tutorlink:hover {
+          background-color: #0758e2;
+          border-radius: 100%;
+        } */
+    .teachworks-tutorlink:hover>svg {
+      /* fill: white; */
+      transition: filter 0.5s;
+      filter: drop-shadow(2px 3px 3px rgba(7, 88, 226, 1));
+    }
+
+    .teachworks-tutorlink:active>svg {
+      fill: rgb(134, 163, 212);
+    }
+
+    .elever-timer {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      font-weight: lighter;
+      font-size: 0.8rem;
+      gap: 0.2rem;
+    }
+
+    .elever-timer span {
+      font-weight: bold;
+      color: #474747;
+    }
+
+    .arrow {
+      stroke: #0758e2;
+      cursor: pointer;
+      z-index: 1s;
+      transition-duration: 0.2s;
+      transition-property: transform;
+    }
+
+    .tutor-courses {
+      visibility: hidden;
+      padding: 0 1rem 1rem;
+      font-weight: lighter;
+      transform: translateY(-15px);
+      opacity: 0;
+    }
+
+    .tutor-courses.show {
+      visibility: visible;
+      transform: translateY(0);
+      transition-duration: 0.5s;
+      transition-property: transform, opacity;
+      opacity: 1;
+    }
+
+    .tutor-courses ul {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 1fr 1fr;
+      font-size: 14px;
+      list-style: none;
+      row-gap: 1rem;
+      column-gap: 1rem;
+    }
+
+    .tutor.expand {
+      height: auto;
+      max-height: 800px;
+      transition-duration: 0.3s;
+      transition-property: max-height, box-shadow;
+    }
+
+    .arrow.activeArrow {
+      transform: rotate(-180deg);
+      transition-duration: 0.2s;
+      transition-property: transform;
+    }
+
+    .clear_filters {
+      padding: 0.5rem 3.3rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      background-color: white;
+      border: none;
+      color: #474747;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      border: #0758e2;
+      border: 2px solid white;
+      transition: border 200ms ease;
+      cursor: pointer;
+
+    }
+
+    .clear_filters:hover {
+      border: 2px solid #0758e2;
+    }
+
+    .clear_filters:active {
+      box-shadow: inset 20px 20px 60px #bebebe,
+        inset -20px -20px 60px #ffffff;
+    }
+
+    .collapse-expand {
+      font-size: 0.8rem;
+      background: white;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      text-align: center;
+      overflow: clip;
+      max-width: 200px;
+      border-radius: 6px;
+      gap: 0.1rem;
+    }
+
+    .collapse-expand a {
+      text-decoration: none;
+    }
+
+    .collapse-expand .collapse {
+      padding: 0.5rem 2rem 0.5rem 3.3rem;
+
+    }
+
+    .collapse-expand .expand {
+      padding: 0.5rem 3.3rem 0.5rem 2rem;
+
+    }
+
+    .collapse-expand .button {
+      width: 60%;
+      transform: skew(-25deg);
+      font-weight: bold;
+      text-transform: uppercase;
+      background: #0758e2;
+      color: white;
+      /*border-top: 2px solid #0758e2;
+      border-bottom: 2px solid #0758e2;*/
+      transition: border 200ms ease, background 200ms ease;
+    }
+
+
+
+    .collapse-expand .button span {
+      transform: skew(25deg);
+      display: block;
+      width: 100%;
+    }
+
+    .collapse-expand .button:hover {
+      background: white;
+      color: #474747;
+    }
+
+    .collapse-expand .button:active {
+      box-shadow: inset 20px 20px 60px #bebebe,
+        inset -20px -20px 60px #ffffff;
+    }
+
+
+    .tutor-filters {
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+      background-color: #dde2e8;
+      /* width: 336px; */
+      /* min-height: 100vh; */
+      height: 100vh;
+      border-radius: 0 20px 0 0;
+      padding: 2rem 1rem 2rem 2rem;
+      overflow: scroll;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      position: relative;
+      left: -20px;
+    }
+
+    .tutor-filters .tutor-filter {
+      background-color: white;
+      width: 200px;
+      padding: 1rem;
+      border-radius: 6px;
+      /* height: 49px; */
+      max-height: 49px;
+      border: 2px solid white;
+
+    }
+
+    .tutor-filter.blue-dot span::before {
+      content: " ";
+      display: inline-block;
+      width: 0.3rem;
+      height: 0.3rem;
+      background-color: #0758e2;
+      border-radius: 100%;
+      position: absolute;
+      left: -10px;
+      top: 9px;
+    }
+
+    .tutor-filter-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      top: -.2rem;
+    }
+
+    .tutor-filter-title span {
+      font-size: 0.8rem;
+      font-weight: lighter;
+    }
+
+    .tutor-filter-title svg {
+      margin-left: auto;
+    }
+
+    .tutor-filter-selections {
+      all: unset;
+      visibility: hidden;
+      padding: 0.7rem 0 0.5rem;
+      font-weight: lighter;
+      transform: translateY(-15px);
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      width: 97.5%;
+      justify-content: space-between;
+      height: auto;
+      transition-duration: 0.5s;
+      transition-property: transform, opacity;
+    }
+
+    .tutor-filter-selections.show {
+      visibility: visible;
+      transform: translateY(0);
+
+      opacity: 1;
+    }
+
+    .tutor-filter.expand {
+      height: auto;
+      max-height: 720px;
+      transition-duration: 0.5s;
+      transition-property: max-height;
+    }
+
+    .filter-arrow {
+      transition-duration: 0.2s;
+      transition-property: transform;
+    }
+
+    .filter-arrow.activeArrow {
+      transform: rotate(-180deg);
+
+    }
+
+    .tutor-filter-title.activeFilter span {
+      color: #0758e2;
+    }
+
+    .filter-selection-input {
+      display: flex;
+      justify-content: space-between;
+      color: #a0a0a0;
+      font-size: 0.8rem;
+      gap: 0.3rem;
+    }
+
+    input[type='checkbox'],
+    input[type='radio'] {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    #subject1,
+    #subject2,
+    #subject3,
+    #uni_uddannelse_input {
+      width: 100%;
+      border: none;
+      outline: none;
+      height: 1.5rem;
+      border-radius: 100px;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+      padding-left: 1rem;
+      color: #a0a0a0;
+    }
+
+    .clear-subject {
+      border: none;
+      font-weight: bolder;
+      cursor: pointer;
+      background: #0758e2;
+      border-radius: 50px;
+      width: 1.5rem;
+      height: 1.5rem;
+      text-align: center;
+      color: white;
+      transition-duration: 0.2s;
+      transition-property: background-color;
+      position: absolute;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .clear-subject:hover {
+      color: #474747;
+      background-color: white;
+    }
+
+
+
+    .hide {
+      display: none !important;
+    }
+  </style>
+  <script>
+
+    gmarkers = [];
+    filteredMarkers = [];
+    markers = [];
+    markerSecond = [];
+    test = [];
+    var map;
+    var infowindow;
+    var i = 0;
+    //let new_formatted_subjects;
+    let activeTutors = 0;
+
+    {% for tutor in tutor_list %}
+      markers.push([
+      {{tutor['id']}},
+      "{{tutor['first_name']}}",
+      "{{tutor['last_name']}}",
+      "{{tutor['email']}}",
+      "{{tutor['phone']}}",
+      parseFloat("{{tutor['lat']}}"),
+      parseFloat("{{tutor['lng']}}"),
+      parseFloat("{{tutor['lat_alternative']}}"),
+      parseFloat("{{tutor['lng_alternative']}}"),
+      "{{tutor['status']}}",
+      "{{tutor['high_school']}}",
+      "{{tutor['gender']}}",
+      "{{tutor['car']}}",
+     "{{tutor['grade_average']}}",
+      "{{tutor['course']}}",
+      "{{tutor['programs']}}",
+      "{{tutor['languages']}}",
+      "{{tutor['languages']}}",
+      {% if tutor['open_for_new_students'] %}
+      "Yes",
+      {% else %}
+      "No",
+      {% endif %}
+      "{{tutor['higher_education_institutions']}}",
+      "{{tutor['age']}}",
+      "{{tutor['age_interval']}}",
+      "{{tutor['subjects']}}",
+      "{{tutor['inactive_reason']}}",
+      "{{tutor['has_second']}}",
+      "{{tutor['finished_highschool']}}",
+      "{{tutor['high_school']}}",
+      "{{tutor['hours']}}",
+      "{{tutor['hour_interval']}}",
+      "{{tutor['qualifications']}}",
+      "{{tutor['higher_education_programmes']}}",
+      "{{tutor['address']}}",
+      JSON.parse("{{tutor['students']}}").length,
+      "{{tutor['subjects']}}",
+      "{{tutor['interests']}}",
+      "{{tutor['photo']}}"
+      ]);
+
+    {% endfor %}
+
+
+    
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        //center: { lat: 55.86392, lng: 9.601785 },
+        center: { lat: 55.906782, lng: 7.302433 },
+        zoom: 7.5,
+      });
+
+      infowindow = new google.maps.InfoWindow({
+        content: ''
+      });
+
+      for (i = 0; i < markers.length; i++) {
+        checkMarker(markers[i]);
+      }
+
+      // This is where you add html elements inside the map
+      const input = document.getElementById("pac-input");
+      const filter = document.getElementById("status");
+      const gymType = document.getElementById("gymtype");
+      const still_gym = document.getElementById("still_gym");
+      const gender = document.getElementById("gender");
+      // const car = document.getElementById("car");
+      const grade = document.getElementById("grade");
+      const programs = document.getElementById("programs");
+      const fluent_danish = document.getElementById("fluent_danish");
+      const fluent_other = document.getElementById("fluent_other");
+      const open_for_new_students = document.getElementById("open_for_new_students");
+      const educational_institution = document.getElementById("educational_institution");
+      const age_interval = document.getElementById("age_interval");
+      const subject = document.getElementById("subject");
+      const subject2 = document.getElementById("subject2");
+      const subject3 = document.getElementById("subject3");
+      // const secondAddress = document.getElementById("secondAddress");
+      const hour_interval = document.getElementById("hour_interval");
+      const qualification = document.getElementById("qualification");
+      const uni = document.getElementById("uni");
+      const inactive_reason = document.getElementById("inactive_reason");
+      const interests = document.getElementById("interests")
+
+      const searchBox = new google.maps.places.SearchBox(input);
+
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      map.controls[google.maps.ControlPosition.LEFT_TOP].push(searchBox);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(filter);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(open_for_new_students);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(fluent_danish);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(gymType);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(still_gym);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(gender);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(grade);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(programs);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(fluent_other);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(inactive_reason);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(subject);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(subject2);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(subject3);
+      // husk at push køn her
+
+      // Bias the SearchBox results towards current map's viewport.
+      map.addListener("bounds_changed", () => {
+        searchBox.setBounds(map.getBounds());
+      });
+
+      let markers2 = [];
+      // Listen for the event fired when the user selects a prediction and retrieve
+      // more details for that place.
+      searchBox.addListener("places_changed", () => {
+        const places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+          return;
+        }
+        // Clear out the old markers.
+        markers2.forEach((marker) => {
+          marker.setMap(null);
+        });
+        markers2 = [];
+        // For each place, get the icon, name and location.
+        const bounds = new google.maps.LatLngBounds();
+        places.forEach((place) => {
+          if (!place.geometry || !place.geometry.location) {
+            console.log("Returned place contains no geometry");
+            return;
+          }
+          const icon = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25),
+          };
+          // Create a marker for each place.
+          markers2.push(
+            new google.maps.Marker({
+              map,
+              icon,
+              title: place.name,
+              position: place.geometry.location,
+            })
+          );
+
+          if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+        map.fitBounds(bounds);
+      });
+    }
+
+    function checkMarker(marker) {
+      var lat_alternative = marker[7]
+      var lng_alternative = marker[8]
+
+
+      if (isNaN(lat_alternative) && isNaN(lng_alternative)) {
+        addMarker(marker);
+      }
+      else {
+        addMarker(marker);
+        addMarkerSecond(marker);
+      }
+    }
+
+    function addMarker(marker) {
+      var id = marker[0]
+      var first_name = marker[1]
+      var last_name = marker[2]
+      var email = marker[3]
+      var mobile = marker[4]
+      var lat = marker[5]
+      var lng = marker[6]
+      var lat_alternative = marker[7]
+      var lng_alternative = marker[8]
+      var status = marker[9]
+      var gym_type = marker[10]
+      var gender = marker[11]
+      var car = marker[12]
+      var grade = marker[13]
+      var course = marker[14]
+      var programs = marker[15]
+      var fluent_danish = marker[16]
+      var fluent_other = marker[17]
+      var open_for_new_students = marker[18]
+      var educational_institution = marker[19]
+      var age = marker[20]
+      var age_interval = marker[21]
+      var subjects = marker[22]
+      var inactive_reason = marker[23]
+      var has_second = marker[24]
+      var still_gym = marker[25]
+      var tutor_gym = marker[26]
+      var hours = marker[27]
+      var hour_interval = marker[28]
+      var tutor_qualification = marker[29]
+      var tutor_uni = marker[30]
+      var tutor_address = marker[31]
+      var tutor_amount_of_students = marker[32]
+      var formatted_subjects = marker[33]
+      var tutor_interests = marker[34]
+      var photo = marker[35];
+
+
+
+      if (inactive_reason == "Blank") {
+        var content =
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h1 id="firstHeading" class="firstHeading">' + first_name + ' ' + last_name + '</h1>' +
+          '<div id="bodyContent">' +
+          '<p><b>Kontaktinformationer:</b>' +
+          '<p>Email: ' + email + '</p>' +
+          '<p>Mobil: ' + mobile + '</p>' +
+          '<p><b>Praktiske oplysninger:</b>' +
+          '<p>Status: ' + status + '</p>' +
+          '<p>Online prioritet: ' + course + '</p>' +
+          '<p>Timer: ' + hours + '</p>' +
+          '<p>Antal elever: ' + tutor_amount_of_students + '</p>' +
+          '<p>Gymnasium type: ' + gym_type + '</p>' +
+          '<p>Gymnasium: ' + tutor_gym + '</p>' +
+          '<p>Tutors Universitet: ' + tutor_uni + '</p>' +
+          '<p><b>Om Tutoren:</b>' +
+          '<p>Køn: ' + gender + '</p>' +
+          '<p>Alder: ' + age + '</p>' +
+          '<p>Kvalifikation: ' + tutor_qualification + '</p>' +
+          '<p>Interesser: ' + tutor_interests + '</p>' +
+          '<p><b>Skole relateret:</b>' +
+          '<p>Karakter gennemsnit: ' + grade + '</p>' +
+          '<p>Programmer som kan anvendes: ' + programs + '</p>' +
+          '<p>Fag: ' + formatted_subjects + '</p>' +
+          '<p>Uddannelsesinstitution: ' + educational_institution + '</p>' +
+          '<p>andre sprog: ' + fluent_other + '</p>' +
+          '<br>' +
+          '<a target="_blank" href="https://toptutors.teachworks.com/employees/' + id + '">' +
+          "Teackworks Profil</a> " +
+          "</div>" +
+          "</div>";
+      }
+      else {
+        var content =
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h1 id="firstHeading" class="firstHeading">' + first_name + ' ' + last_name + '</h1>' +
+          '<div id="bodyContent">' +
+          '<p><b>Kontaktinformationer:</b>' +
+          '<p>Email: ' + email + '</p>' +
+          '<p>Mobil: ' + mobile + '</p>' +
+          '<p><b>Praktiske oplysninger:</b>' +
+          '<p>Inaktivitets grundlag: ' + inactive_reason + '</p>' +
+          '<p>Online prioritet: ' + course + '</p>' +
+          '<p>Timer: ' + hours + '</p>' +
+          '<p>Antal elever: ' + tutor_amount_of_students + '</p>' +
+          '<p>Gymnasium type: ' + gym_type + '</p>' +
+          '<p>Gymnasium: ' + tutor_gym + '</p>' +
+          '<p>Tutors Uddannelse: ' + tutor_uni + '</p>' +
+          '<p><b>Om Tutoren:</b>' +
+          '<p>Køn: ' + gender + '</p>' +
+          '<p>Alder: ' + age + '</p>' +
+          '<p>Kvalifikation: ' + tutor_qualification + '</p>' +
+          '<p>Interesser: ' + tutor_interests + '</p>' +
+          '<p><b>Skole relateret:</b>' +
+          '<p>Karakter gennemsnit: ' + grade + '</p>' +
+          '<p>Programmer som kan anvendes: ' + programs + '</p>' +
+          '<p>Fag: ' + formatted_subjects + '</p>' +
+          '<p>Uddannelsesinstitution: ' + educational_institution + '</p>' +
+          '<p>andre sprog: ' + fluent_other + '</p>' +
+          '<br>' +
+          '<a target="_blank" href="https://toptutors.teachworks.com/employees/' + id + '">' +
+          "Teackworks Profil</a> " +
+          "</div>" +
+          "</div>";
+      }
+
+      var url;
+
+      if (status == 'inactive') {
+        url = "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+      }
+      else if (status == 'active') {
+        url = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+      }
+      else if (status == 'prospective') {
+        url = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+      }
+      else {
+        url = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+      }
+
+
+      var marker = new google.maps.Marker({
+        position: { lat: lat, lng: lng },
+        map,
+        title: 'Tutor ' + id,
+        icon: {
+          url: url
+        },
+        id: id,
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        mobile: mobile,
+        lat: lat,
+        lng: lng,
+        lat_alternative: lat_alternative,
+        lng_alternative: lng_alternative,
+        status: status,
+        gym_type: gym_type,
+        gender: gender,
+        car: car,
+        grade: grade,
+        course: course,
+        programs: programs,
+        fluent_danish: fluent_danish,
+        fluent_other: fluent_other,
+        open_for_new_students: open_for_new_students,
+        educational_institution: educational_institution,
+        age: age,
+        age_interval: age_interval,
+        subjects: subjects,
+        inactive_reason: inactive_reason,
+        has_second: has_second,
+        still_gym: still_gym,
+        tutor_gym: tutor_gym,
+        hours: hours,
+        hour_interval: hour_interval,
+        tutor_qualification: tutor_qualification,
+        tutor_uni: tutor_uni,
+        tutor_address: tutor_address,
+        tutor_amount_of_students: tutor_amount_of_students,
+        formatted_subjects: formatted_subjects,
+        tutor_interests: tutor_interests,
+        photo: photo
+      });
+
+
+      google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+        return function () {
+          infowindow.setContent(content);
+          infowindow.open(map, marker);
+        };
+      })(marker, content, infowindow));
+
+      gmarkers.push(marker);
+    }
+
+    function addMarkerSecond(marker) {
+
+      var id = marker[0]
+      var first_name = marker[1]
+      var last_name = marker[2]
+      var email = marker[3]
+      var mobile = marker[4]
+      var lat = marker[5]
+      var lng = marker[6]
+      var lat_alternative = marker[7]
+      var lng_alternative = marker[8]
+      var status = marker[9]
+      var gym_type = marker[10]
+      var gender = marker[11]
+      var car = marker[12]
+      var grade = marker[13]
+      var course = marker[14]
+      var programs = marker[15]
+      var fluent_danish = marker[16]
+      var fluent_other = marker[17]
+      var open_for_new_students = marker[18]
+      var educational_institution = marker[19]
+      var age = marker[20]
+      var age_interval = marker[21]
+      var subjects = marker[22]
+      var inactive_reason = marker[23]
+      var has_second = marker[24]
+      var still_gym = marker[25]
+      var tutor_gym = marker[26]
+      var hours = marker[27]
+      var hour_interval = marker[28]
+      var tutor_qualification = marker[29]
+      var tutor_uni = marker[30]
+      var tutor_address = marker[31]
+      var tutor_amount_of_students = marker[32]
+      var formatted_subjects = marker[33]
+      var tutor_interests = marker[34]
+      var photo = marker[35]
+
+      var content =
+        '<div id="content">' +
+        '<div id="siteNotice">' +
+        '</div>' +
+        '<h1 id="firstHeading" class="firstHeading">' + first_name + ' ' + last_name + '</h1>' +
+        '<div id="bodyContent">' +
+        '<p><b>Kontaktinformationer:</b>' +
+        '<p>Email: ' + email + '</p>' +
+        '<p>Mobil: ' + mobile + '</p>' +
+        '<p><b>Praktiske oplysninger:</b>' +
+        '<p>Status: ' + status + '</p>' +
+        '<p>Online prioritet: ' + course + '</p>' +
+        '<p>Timer: ' + hours + '</p>' +
+        '<p>Gymnasium type: ' + gym_type + '</p>' +
+        '<p>Gymnasium: ' + tutor_gym + '</p>' +
+        '<p>Tutors Uddannelse: ' + tutor_uni + '</p>' +
+        '<p><b>Om Tutoren:</b>' +
+        '<p>Køn: ' + gender + '</p>' +
+        '<p>Alder: ' + age + '</p>' +
+        '<p>Kvalifikation: ' + tutor_qualification + '</p>' +
+        '<p>Interesser: ' + tutor_interests + '</p>' +
+        '<p><b>Skole relateret:</b>' +
+        '<p>Karakter gennemsnit: ' + grade + '</p>' +
+        '<p>Programmer som kan anvendes: ' + programs + '</p>' +
+        '<p>Fag: ' + formatted_subjects + '</p>' +
+        '<p>Uddannelsesinstitution: ' + educational_institution + '</p>' +
+        '<p>andre sprog: ' + fluent_other + '</p>' +
+        '<br>' +
+        '<a target="_blank" href="https://toptutors.teachworks.com/employees/' + id + '">' +
+        "Teackworks Profil</a> " +
+        "</div>" +
+        "</div>";
+
+
+      var url = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+
+      var marker = new google.maps.Marker({
+        position: { lat: lat_alternative, lng: lng_alternative },
+        map,
+        title: 'Tutor ' + id,
+        icon: {
+          url: url
+        },
+        id: id,
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        mobile: mobile,
+        lat: lat,
+        lng: lng,
+        lat_alternative: lat_alternative,
+        lng_alternative: lng_alternative,
+        status: status,
+        gym_type: gym_type,
+        gender: gender,
+        car: car,
+        grade: grade,
+        course: course,
+        programs: programs,
+        fluent_danish: fluent_danish,
+        fluent_other: fluent_other,
+        open_for_new_students: open_for_new_students,
+        educational_institution: educational_institution,
+        age: age,
+        age_interval: age_interval,
+        subjects: subjects,
+        inactive_reason: inactive_reason,
+        has_second: has_second,
+        still_gym: still_gym,
+        tutor_gym: tutor_gym,
+        hours: hours,
+        hour_interval: hour_interval,
+        tutor_qualification: tutor_qualification,
+        tutor_uni: tutor_uni,
+        tutor_address: tutor_address,
+        tutor_amount_of_students: tutor_amount_of_students,
+        formatted_subjects: formatted_subjects,
+        tutor_interests: tutor_interests,
+        photo: photo
+
+      });
+    
+
+      google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+        return function () {
+          infowindow.setContent(content);
+          infowindow.open(map, marker);
+        };
+      })(marker, content, infowindow));
+
+      gmarkers.push(marker);
+      markerSecond.push(marker);
+    }
+
+    filterInactive = function () {
+      var filter = document.getElementById("inactive_reason").value;
+
+      for (i = 0; i < gmarkers.length; i++) {
+        marker = gmarkers[i];
+        if (filter == "show" && marker.inactive_reason != "Blank") {
+          marker.setVisible(true);
+        }
+        else if (filter == "hide" && marker.inactive_reason == "Blank") {
+          marker.setVisible(false);
+        }
+
+        else {
+          marker.setVisible(false);
+        }
+      }
+    }
+
+    filterMarkers = function () {
+      $('.tutors').empty();
+      $('#counter').text('');
+
+
+
+
+      var counter = 0;
+      var status = document.querySelector('input[name="status"]:checked').value;
+      var gym = []
+      document.querySelectorAll('input[name="gymtype"]:checked').forEach((gymtype) => { gym.push(gymtype.value) });
+      var still_gym = document.getElementById("still_gym").value;
+
+      var gender = []
+      document.querySelectorAll('input[name="gender"]:checked').forEach((gen) => { gender.push(gen.value) });
+
+      var grade = []
+      document.querySelectorAll('input[name="karakter"]:checked').forEach((kar) => { grade.push(kar.value) });
+
+
+      var programs = []
+      document.querySelectorAll('input[name="programmer"]:checked').forEach((pro) => { programs.push(pro.value) });
+
+      //var fluent_danish = document.getElementById("fluent_danish").value;
+      var fluent_other = []
+      document.querySelectorAll('input[name="sprog"]:checked').forEach((sprog) => { fluent_other.push(sprog.value) });
+
+
+      var open_for_new_students = document.querySelector('input[name="open_for_new_students"]:checked').value;
+
+      var educational_institution = [];
+      document.querySelectorAll('input[name="uddannelsesinstitution"]:checked').forEach((edu) => { educational_institution.push(edu.value) });
+
+      var age_interval = []
+      document.querySelectorAll('input[name="age_interval"]:checked').forEach((int) => { age_interval.push(int.value) });
+
+
+
+      var selected_subject1 = document.querySelector('input[id="subject1"]').value;
+      var selected_subject2 = document.querySelector('input[id="subject2"]').value;
+      var selected_subject3 = document.querySelector('input[id="subject3"]').value;
+
+      var hour_interval = document.getElementById("hour_interval").value;
+      // var subject = document.getElementById("subject1").value;
+      // var subject2 = document.getElementById("subject2").value;
+      // var subject3 = document.getElementById("subject3").value;
+      var qualification = [];
+      document.querySelectorAll('input[name="qualification"]:checked').forEach((qua) => { qualification.push(qua.value) });
+
+      var uni_uddannelse = document.getElementById("uni_uddannelse_input").value;
+
+      var tutor_uni = document.getElementById("uni").value;
+      var inactive = document.getElementById("inactive_reason").value
+      var interests = [];
+      document.querySelectorAll('input[name="interests"]:checked').forEach((inter) => { interests.push(inter.value) });
+
+      var bounds = map.getBounds();
+
+
+
+      // ALL INPUT NAMES
+      let inputNames = [];
+      google_inputs=new Set(["vote","sl","tl","query","gtrans"])
+      document.querySelectorAll("input").forEach((input) => {
+
+        if (!inputNames.includes(input.name) && input.name !== "" && !google_inputs.has(input.name)) {
+          inputNames.push(input.name);
+        }
+      })
+
+      // IF INPUT === CHECKED, ADD BLUE DOT
+      inputNames.forEach((name) => {
+        if (document.querySelectorAll(`input[name='${name}']:checked`).length > 0) {
+          document.querySelector(`.${name}`).classList.add("blue-dot");
+        } else {
+          document.querySelector(`.${name}`).classList.remove("blue-dot");
+        }
+      });
+      // IF INPUT SUBJECTS TYPE TEXT IS NOT EMPTY, ADD BLUE DOT
+
+      document.querySelectorAll(`input[name='subjects'][type='text']`).forEach((input) => {
+        if (input.value !== "") {
+          document.querySelector(".subjects").classList.add("blue-dot");
+        }
+      })
+      // IF INPUT UNI_UDDAN TYPE TEXT IS NOT EMPTY, ADD BLUE DOT
+      if (document.querySelector(`input[name='uni_uddannelse'][type='text']`).value !== "") {
+        document.querySelector(".uni_uddannelse").classList.add("blue-dot");
+      }
+
+
+
+
+
+
+      let inputsGymtype = document.querySelectorAll("input[name='gymtype']:checked");
+
+      for (i = 0; i < gmarkers.length; i++) {
+        marker = gmarkers[i];
+        new_formatted_programs = marker.programs.slice(1, -1).split(", ").map(item => item.slice(5, -5));
+        new_formatted_other_languages = marker.fluent_other.slice(1, -1).split(", ").map(item => item.slice(5, -5));
+        new_formatted_tutor_interests = marker.tutor_interests.slice(1, -1).split(", ").map(item => item.slice(5, -5));
+        new_formatted_tutor_qualifications = marker.tutor_qualification.slice(1, -1).split(", ").map(item => item.slice(5, -5));
+        new_formatted_tutor_gym = marker.gym_type.slice(1, -1).split(", ").map(item => item.slice(5, -5));
+        new_formatted_higher_educations = marker.educational_institution.slice(1, -1).split(", ").map(item => item.slice(5, -5));
+        new_formatted_higher_programmes = marker.tutor_uni.slice(1, -1).split(", ").map(item => item.slice(5, -5));
+        if (marker.status === "active" && marker.open_for_new_students === "Yes") {
+          activeTutors++;
+          //console.log(activeTutors);
+        }
+
+        // Check if all selected filters match 
+        let checker = (arr, target) => target.every(v => arr.includes(v));
+
+        // TODO if any show all gym types elif: 
+        if (new_formatted_tutor_gym.some(item =>gym.includes(item)) || gym.length === 0) {
+          marker.setVisible(true);
+        }
+        else {
+          marker.setVisible(false);
+        }
+
+        if (marker.still_gym == still_gym || still_gym.length === 0) { }
+        else {
+          marker.setVisible(false);
+        }
+
+        if (status.includes(marker.status) || status.length === 0) {
+        }
+        else {
+          marker.setVisible(false);
+        }
+
+        if (gender.includes(marker.gender) || gender.length === 0) {
+        }
+        else {
+          marker.setVisible(false);
+        }
+        
+        if (grade.includes(marker.grade) || grade.length === 0) {}
+         else {
+           marker.setVisible(false);
+         }
+
+        if (programs.some(item => new_formatted_programs.includes(item)) || programs.length === 0) {
+        }
+        else {
+          marker.setVisible(false);
+        }
+
+        //if (marker.fluent_danish == fluent_danish || fluent_danish.length === 0) {}
+        //else {
+        //  marker.setVisible(false);
+        //}
+        if (open_for_new_students.includes(marker.open_for_new_students) || open_for_new_students.length === 0) { }
+        else {
+          marker.setVisible(false);
+        }
+
+        if (fluent_other.some(item => new_formatted_other_languages.includes(item)) || fluent_other.length === 0) {
+        }
+        else {
+
+          marker.setVisible(false);
+        }
+        
+        if (educational_institution.some(item=> new_formatted_higher_educations.includes(item)) || educational_institution.length === 0) { }
+        else {
+          marker.setVisible(false);
+        }
+
+        if (age_interval.includes(marker.age_interval) || age_interval.length === 0) { }
+        else {
+          marker.setVisible(false);
+        }
+
+        if (marker.hour_interval == hour_interval || hour_interval.length === 0) { }
+        else {
+          marker.setVisible(false);
+        }
+
+        if (marker.subjects.includes(selected_subject1)) { }
+        else {
+          marker.setVisible(false);
+        }
+        if (marker.subjects.includes(selected_subject2)) { }
+        else {
+          marker.setVisible(false);
+        }
+        if (marker.subjects.includes(selected_subject3)) { }
+        else {
+          marker.setVisible(false);
+        }
+
+
+        if (qualification.some(item => new_formatted_tutor_qualifications.includes(item)) || qualification.length === 0) {
+        }
+        else {
+          marker.setVisible(false);
+        }
+
+
+
+        if (checker(new_formatted_tutor_interests, interests) || interests.length === 0) {
+        }
+        else {
+          marker.setVisible(false);
+        }
+        //if (interests.some(item=> new_formatted_tutor_interests.includes(item)) || interests.length === 0) {          
+        //}
+        //else {
+        //  marker.setVisible(false);
+        //}
+
+        if (new_formatted_higher_programmes.some(item=> uni_uddannelse.includes(item)) || uni_uddannelse.length === 0) {
+        }
+        else {
+          marker.setVisible(false);
+        }
+
+        if (inactive == "show" && marker.inactive_reason != "Blank") {
+          marker.setVisible(true);
+        }
+        else if (inactive == "hide" && marker.inactive_reason == "Blank") {
+          marker.setVisible(false);
+        }
+      }
+      gmarkers.forEach((gmarker)=>DisplaySideBarTutor(gmarker))
+
+
+      document.querySelectorAll(".tutor-info").forEach((tutor) => {
+        tutor.removeEventListener("click", expand);
+        tutor.addEventListener("click", expand);
+      });
+
+
+
+      function expand(e) {
+        if (
+          e.target == this.querySelector(".teachworks-tutorlink") ||
+          e.target == this.querySelector(".teachworks-tutorlink svg")
+        ) {
+        } else {
+          this.parentNode.classList.toggle("expand");
+          this.parentNode.querySelector(".tutor-courses").classList.toggle("show");
+          this.querySelector(".arrow").classList.toggle("activeArrow");
+        }
+      }
+
+    }
+    DisplaySideBarTutor = function (marker) {
+      if (marker.getVisible() == true && marker.id != null) {
+        if ($('.tutors').text != marker.id) {
+
+          //console.log(marker.first_name.sort());
+
+          let temp = document.getElementsByTagName("template")[0];
+          let clone = temp.content.cloneNode(true);
+          //clone.querySelector(".tutor").dataset.firstname = `${marker.first_name}`;
+          clone.querySelector(".tutor").dataset.studentCount = `${marker.tutor_amount_of_students}`;
+          clone.querySelector(".tutor").dataset.hours = `${marker.hours}`;
+          let tutorName = clone.querySelector(".tutor h3");
+          tutorName.textContent = `${marker.first_name} ${marker.last_name}`; clone.querySelector(".tutor .teachworks-tutorlink").href = `https://toptutors.teachworks.com/employees/${marker.id}`;
+          clone.querySelector(".tutor .tutor-tlf").textContent = `Tlf: ${marker.mobile}`;
+          clone.querySelector(".tutor .elever span").textContent = marker.tutor_amount_of_students;
+          clone.querySelector(".tutor .timer span").textContent = marker.hours;
+
+          if (marker.photo !== "") {
+            clone.querySelector(".tutor img").src = marker.photo;
+            clone.querySelector(".tutor img").alt = `photo of ${marker.first_name}`;
+            clone.querySelector("svg.bi-person-circle").style.display = "none";
+          } else {
+            clone.querySelector(".tutor img").style.display = "none";
+          }
+
+          if (marker.status === "active" && marker.open_for_new_students === "Yes") {
+            tutorName.classList.add("tutor_green")
+            //tutorStatus.style.backgroundColor = "#00e94d";
+          } else if (marker.status === "active" && marker.open_for_new_students === "No") {
+            tutorName.classList.add("tutor_yellow")
+            //tutorStatus.style.backgroundColor = "#eeee74";
+          } else if (marker.status === "inactive") {
+            tutorName.classList.add("tutor_red")
+            //tutorStatus.style.backgroundColor = "#fd7567";
+          }
+
+          new_formatted_subjects = marker.formatted_subjects.slice(1, -1).split(", ").map(item => item.slice(5, -5));
+          let unique_subjects = [...new Set(new_formatted_subjects.sort())];
+
+          unique_subjects.forEach((subject) => {
+            //console.log(subject.charAt(subject.length-1))
+            //if(subject.charAt(subject.length-1) === "C" ) {
+            //  console.log(subject)
+            //} 
+            let li = document.createElement("li");
+            li.innerHTML = subject
+            clone.querySelector(".tutor ul").appendChild(li)
+          });
+
+
+          document.querySelector(".tutors").appendChild(clone);
+          //$('.tutors').append('<div class="tutor"><div class="tutor-info"><div class="profile-image"><svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16"> <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" /><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg></div><div class="name-phone"><div><h3>' + marker.first_name +  ' ' + marker.last_name + '</h3><a href="https://toptutors.teachworks.com/employees/'+marker.id+'" class="teachworks-tutorlink"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg></a></div><span>Mobilnummer: ' + marker.mobile + '</span></div><div class="elever-timer"><span>' + marker.tutor_amount_of_students + '</span>Elever</div><div class="elever-timer"><span>' + marker.hours + '</span>Timer</div><div class="arrow"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg></div></div><div class="tutor-courses"><ul>' +  + '</ul></div></div> ')
+
+
+        }
+      }
+
+      document.querySelector('#counter').textContent = ` ${document.getElementsByClassName('tutor').length}`;
+
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <select style="display:none" class="js-example-basic-single" name="status" id="status" onchange="filterMarkers();">
+    <option value="">Aktiv/inaktiv</option>
+    <option selected value="active">Aktiv</option>
+    <option value="inactive">Inaktiv</option>
+    <option value="prospective">Prospective</option>
+  </select>
+
+  <select id="gymtype" style="width: 80px;display:none" onchange="filterMarkers();">
+    <option value="">Gym type</option>
+    <option value="STX">STX</option>
+    <option value="HHX">HHX</option>
+    <option value="HTX">HTX</option>
+    <option value="HF">HF</option>
+    <option value="IB">IB</option>
+    <option value="IBB">IBB</option>
+    <option value="EUX">EUX</option>
+    <option value="EUD">EUD</option>
+    <option value="Foreign high school">Foreign high school</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <select id="still_gym" style="width: 70px;display:none" onchange="filterMarkers();">
+    <option value="">Gym år</option>
+    <option value="1.g">1.g</option>
+    <option value="2.g">2.g</option>
+    <option value="3.g">3.g</option>
+    <option value="Jeg er færdig med gymnasiet">Færdig</option>
+  </select>
+
+  <select id="gender" style="display:none" class="ui dropdown" onchange="filterMarkers();">
+    <option value="">Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+
+  <select id="karakter" style="display:none" onchange="filterMarkers();">
+    <option value="">Karakter</option>
+    <option value="Under 7">Under 7</option>
+    <option value="7 til 8">7 til 8</option>
+    <option value="8 til 9">8 til 9</option>
+    <option value="9 til 10">9 til 10</option>
+    <option value="10 til 11">10 til 11</option>
+    <option value="11 til 12">11 til 12</option>
+    <option value="Over 12">Over 12</option>
+  </select>
+
+  <select id="programmer" style="display:none" onchange="filterMarkers();">
+    <option value="">Programmer</option>
+    <option value="Excel">Excel</option>
+    <option value="TI-Nspire">TI-Nspire</option>
+    <option value="Geogebra">Geogebra</option>
+    <option value="Wordmat">Wordmat</option>
+    <option value="Maple">Maple</option>
+    <option value="Matlab">Matlab</option>
+    <option value="STATA">STATA</option>
+    <option value="JMP">JMP</option>
+    <option value="R">R</option>
+    <option value="Python">Python</option>
+    <option value="Maple">Maple</option>
+  </select>
+
+  <select id="fluent_danish" style="display:none" onchange="filterMarkers();">
+    <option value="">Snakker dansk?</option>
+    <option value="Yes">Ja</option>
+    <option value="No">Nej</option>
+  </select>
+
+  <select id="fluent_other" style="width: 85px; display:none;" onchange="filterMarkers();">
+    <option value="">Flydende i</option>
+    {% for lang in language_list %}
+    <option value="{{lang}}">{{lang}}</option>
+    {% endfor %}
+  </select>
+
+  <select id="open_for_new_students" style="display:none" onchange="filterMarkers();">
+    <option value="">Åben for forløb?</option>
+    <option selected value="Yes">Ja</option>
+    <option value="No">Nej</option>
+  </select>
+
+  <select id="educational_institution" style="width: 160px; position: fixed; margin-left: 427px; display:none"
+    onchange="filterMarkers();">
+    <option value="">Uddannelsesinstitution</option>
+    <option value="Aalborg Universitet">Aalborg Uni</option>
+    <option value="Aarhus Universitet">Aarhus Uni</option>
+    <option value="Absalon Professionshøjskole">Absalon Professionshøjskole</option>
+    <option value="Copenhagen Business Academy">Copenhagen Business Academy</option>
+    <option value="Copenhagen Business School">Copenhagen Business School</option>
+    <option value="Danmarks Tekniske Universitet">Danmarks Tekniske Uni</option>
+    <option value="Danmarks Medie- og Jornalisthøjskole">DMJX</option>
+    <option value="Erhvervsakademi Aarhus">Erhvervsakademi Aarhus</option>
+    <option value="Erhvervsakademi Dania">Erhvervsakademi Dania</option>
+    <option value="Erhvervsakademi Kolding">Erhvervsakademi Kolding</option>
+    <option value="Erhvervsakademi Midtvest">Erhvervsakademi Midtvest</option>
+    <option value="Erhvervsakademi Sydvest">Erhvervsakademi Sydvest</option>
+    <option value="IT-Universitet">IT-Uni</option>
+    <option value="Københavns Universitet">KU</option>
+    <option value="Københavns Professionshøjskole">Københavns Professionshøjskole</option>
+    <option value="Københavns Erhvervsakademi">Københavns Erhvervsakademi</option>
+    <option value="Professionshøjskolen UCN">Professionshøjskolen</option>
+    <option value="Roskilde Universitet">Roskilde Uni</option>
+    <option value="SmartLearning">SmartLearning</option>
+    <option value="Syddansk Universitet">Syddansk Uni</option>
+    <option value="UC Syd">IT-Uni</option>
+    <option value="UCL Erhvervsakademi og Professionshøjskole">UCL</option>
+    <option value="Via University College">Via University College</option>
+    <option value="Zealand">Zealand</option>
+  </select>
+
+  <select id="age_interval" style="width: 60px; position: fixed; margin-left: 747px; display:none;"
+    onchange="filterMarkers();">
+    <option value="">Alder</option>
+    <option value="under 18">Under 18</option>
+    <option value="18 til 20">18 til 20</option>
+    <option value="21 til 23">21 til 23</option>
+    <option value="24 til 26">24 til 26</option>
+    <option value="27+">Over 27</option>
+  </select>
+
+
+
+  <select id="hour_interval" style="display:none" onchange="filterMarkers();">
+    <option value="">Time interval</option>
+    <option value="0 til 2">0 til 2</option>
+    <option value="2 til 10">2 til 10</option>
+    <option value="10 til 50">10 til 50</option>
+    <option value="50 til 100">50 til 100</option>
+    <option value="100+">Over 100</option>
+  </select>
+
+  <select id="qualification" style="display:none" style="width: 110px; position: fixed; margin-left: 997px;"
+    onchange="filterMarkers();">
+    <option value="">Kvalifikationer</option>
+    {% for item in qualification_list %}
+    <option value="{{item}}">{{item}}</option>
+    {% endfor %}
+  </select>
+
+  <select id="interests" style="width: 110px; position: fixed; margin-left: 997px;display:none"
+    onchange="filterMarkers();">
+    <option value="">Interesser</option>
+    {% for item in interests %}
+    <option value="{{item}}">{{item}}</option>
+    {% endfor %}
+  </select>
+
+  <select id="subject1" style="width: 50px; display:none;" onchange="filterMarkers();">
+    {% for subject in subject_list %}
+    <option value="{{subject}}">{{subject}}</option>
+    {% endfor %}
+  </select>
+
+  <select id="subject2" style="width: 50px; display:none;" onchange="filterMarkers();">
+    {% for subject in subject_list %}
+    <option value="{{subject}}">{{subject}}</option>
+    {% endfor %}
+  </select>
+
+  <select id="subject3" style="width: 50px;display:none" onchange="filterMarkers();">
+    {% for subject in subject_list %}
+    <option value="{{subject}}">{{subject}}</option>
+    {% endfor %}
+  </select>
+
+  <select id="uni" style="width: 160px; position: fixed; margin-left: 837px; display:none;" onchange="filterMarkers();">
+    <option value="">Uni Uddannelser</option>
+    {% for uni in lst %}
+    <option value="{{uni}}">{{uni}}</option>
+    {% endfor %}
+  </select>
+
+  <select id="inactive_reason" style="display:none" onchange="filterMarkers();">
+    <option value="">Inaktive tutors med grundlag</option>
+    <option value="show">Vis inaktive tutors</option>
+    <option value="hide">Gem inaktive tutors</option>
+  </select>
+
+  <input id="pac-input" class="controls" style="height: 1.57%;" type="text" placeholder="Søg efter adresse" />
+
+  <div id="map"></div>
+
+  <div class="wrapper">
+    <div class="tutorlist-wrapper">
+      <h1 style="text-align: center;">Tilgængelige Tutors:
+        <span id="counter"></span>
+      </h1>
+
+      <div class="search-sort">
+        <div class="search-container">
+          <input id="searchInput" type="text" class="search-click" name="" placeholder="søg på navn..." />
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg>
+        </div>
+        <div class="sort-tutors">
+          <button class="a-z" onclick="sortTutorsAB()"><span>Elever</span><svg xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+            </svg></button>
+          <button class="z-a" onclick="sortTutorsBA()"><span>Timer </span><svg xmlns="http://www.w3.org/2000/svg"
+              width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+            </svg></button>
+        </div>
+      </div>
+
+      <div class="tutors"></div>
+    </div>
+    <div class="tutor-filters">
+      <button class="clear_filters">Slet filtre</button>
+      <div class="collapse-expand">
+        <a href="#" class="button button-light collapse"><span>Skjul</span></a>
+        <a href="#" class="button button-dark expand"><span>Udvid</span></a>
+      </div>
+      <!-- FIRST FILTER - AKTIV/INAKTIV -->
+      <div class="tutor-filter expand status">
+        <div class="tutor-filter-title activeFilter">
+          <span>Aktiv / inaktiv</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections show" onchange="filterMarkers()">
+          <div class="filter-selection-input">
+            <label for="aktiv">Aktiv</label>
+            <input checked value="active" type="radio" name="status" id="aktiv" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="inaktiv">Inaktiv</label>
+            <input value="inactive" type="radio" name="status" id="inaktiv" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="aktiv_inaktiv">Begge</label>
+            <input value="[active, inactive]" type="radio" name="status" id="aktiv_inaktiv" />
+          </div>
+
+        </div>
+
+      </div>
+      <!-- SECOND FILTER - ÅBEN FOR FORLØB-->
+      <div class="tutor-filter open_for_new_students">
+        <div class="tutor-filter-title ">
+          <span>Åben for forløb</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+          <div class="filter-selection-input">
+            <label for="yes">Ja</label>
+            <input checked value="[Yes]" type="radio" name="open_for_new_students" id="yes" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="no">Nej</label>
+            <input value="[No]" type="radio" name="open_for_new_students" id="no" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="begge">Begge</label>
+            <input value="[Yes, No]" type="radio" name="open_for_new_students" id="begge" />
+          </div>
+        </div>
+      </div>
+      <!-- THIRD FILTER - SUBJECTS -->
+      <div class="tutor-filter subjects">
+        <div class="tutor-filter-title">
+          <span>Fag</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onInput="filterMarkers()">
+
+          <div class="filter-selection-input">
+            <input type="text" placeholder="fag 1..." list="subjects" name="subjects" id="subject1" />
+            <button class="clear-subject">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-x"
+                viewBox="0 0 16 16">
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+              </svg>
+            </button>
+            <datalist id="subjects">
+              {% for subject in subject_list %}
+              <option value="{{subject}}" />
+              {% endfor %}
+            </datalist>
+          </div>
+          <div class="filter-selection-input">
+            <input type="text" placeholder="fag 2..." list="subjects" name="subjects" id="subject2" />
+            <button class="clear-subject"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+              </svg></button>
+            <datalist id="subjects">
+              {% for subject in subject_list %}
+              <option value="{{subject}}" />
+              {% endfor %}
+            </datalist>
+          </div>
+          <div class="filter-selection-input">
+            <input type="text" placeholder="fag 3..." list="subjects" name="subjects" id="subject3" />
+            <button class="clear-subject"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+              </svg></button>
+            <datalist id="subjects">
+              {% for subject in subject_list %}
+              <option value="{{subject}}" />
+              {% endfor %}
+            </datalist>
+          </div>
+
+
+
+        </div>
+      </div>
+      <!-- FOURTH FILTER - GYMNASIUM TYPE-->
+      <div class="tutor-filter gymtype">
+        <div class="tutor-filter-title">
+          <span>Gymnasium type</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+          <div class="filter-selection-input">
+            <label for="STX">STX</label>
+            <input value="STX" type="checkbox" name="gymtype" id="STX" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="HHX">HHX</label>
+            <input value="HHX" type="checkbox" name="gymtype" id="HHX" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="HTX">HTX</label>
+            <input value="HTX" type="checkbox" name="gymtype" id="HTX" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="HF">HF</label>
+            <input value="HF" type="checkbox" name="gymtype" id="HF" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="IB">IB</label>
+            <input value="IB" type="checkbox" name="gymtype" id="IB" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="IBB">IBB</label>
+            <input value="IBB" type="checkbox" name="gymtype" id="IBB" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="EUX">EUX</label>
+            <input value="EUX" type="checkbox" name="gymtype" id="EUX" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="EUD">EUD</label>
+            <input value="EUD" type="checkbox" name="gymtype" id="EUD" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="foreign">Udenlandsk skole</label>
+            <input value="Foreign high school" type="checkbox" name="gymtype" id="foreign" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="Other">Andet</label>
+            <input value="Other" type="checkbox" name="gymtype" id="Other" />
+          </div>
+        </div>
+      </div>
+      <!-- FIFTH FILTER - PROGRAMMER-->
+      <div class="tutor-filter programmer">
+        <div class="tutor-filter-title">
+          <span>Programmer</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+          <div class="filter-selection-input">
+            <label for="excel">Excel</label>
+            <input value="Excel" type="checkbox" name="programmer" id="excel" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="ti-nspire">TI-Inspire</label>
+            <input value="TI-Nspire" type="checkbox" name="programmer" id="ti-inspire" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="geogebra">Geogebra</label>
+            <input value="Geogebra" type="checkbox" name="programmer" id="geogebra" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="wordmat">Wordmat</label>
+            <input value="Wordmat" type="checkbox" name="programmer" id="wordmat" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="maple">Maple</label>
+            <input value="Maple" type="checkbox" name="programmer" id="maple" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="matlab">Matlab</label>
+            <input value="Matlab" type="checkbox" name="programmer" id="matlab" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="stata">STATA</label>
+            <input value="STATA" type="checkbox" name="programmer" id="stata" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="jmp">JMP</label>
+            <input value="JMP" type="checkbox" name="programmer" id="jmp" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="r">R</label>
+            <input value="R" type="checkbox" name="programmer" id="r" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="python">Python</label>
+            <input value="Python" type="checkbox" name="programmer" id="python" />
+          </div>
+
+        </div>
+      </div>
+      <!-- SIXTH FILTER - KØN-->
+      <div class="tutor-filter gender">
+        <div class="tutor-filter-title">
+          <span>Køn</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+          <div class="filter-selection-input">
+            <label for="mand">Mand</label>
+            <input value="male" type="checkbox" name="gender" id="mand" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="kvinde">Kvinde</label>
+            <input value="female" type="checkbox" name="gender" id="kvinde" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="andet">Andet</label>
+            <input value="Other" type="checkbox" name="gender" id="andet" />
+          </div>
+        </div>
+      </div>
+      <!-- SEVENTH FILTER - ALDER-->
+      <div class="tutor-filter age_interval">
+        <div class="tutor-filter-title">
+          <span>Alder</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+          <div class="filter-selection-input">
+            <label for="under18">Under 18</label>
+            <input value="under 18" type="checkbox" name="age_interval" id="under18" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="18til20">18 til 20</label>
+            <input value="18 til 20" type="checkbox" name="age_interval" id="18til20" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="21til23">21 til 23</label>
+            <input value="21 til 23" type="checkbox" name="age_interval" id="21til23" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="24til26">24 til 26</label>
+            <input value="24 til 26" type="checkbox" name="age_interval" id="24til26" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="over27">Over 27</label>
+            <input value="27+" type="checkbox" name="age_interval" id="over27" />
+          </div>
+        </div>
+      </div>
+      <!-- EIGTHS FILTER - KVALIFIKATIONER-->
+      <div class="tutor-filter qualification">
+        <div class="tutor-filter-title">
+          <span>Kvalifikationer</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+          {% for item in qualification_list %}
+          <div class="filter-selection-input">
+            <label for="{{item}}">{{item}}</label>
+            <input value="{{item}}" type="checkbox" name="qualification" id="{{item}}" />
+          </div>
+          {% endfor %}
+
+
+        </div>
+      </div>
+      <!-- NINETH FILTER - INTERESSER -->
+      <div class="tutor-filter interests">
+        <div class="tutor-filter-title">
+          <span>Interesser</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+          {% for item in interests %}
+          <div class="filter-selection-input">
+            <label for="{{item}}">{{item}}</label>
+            <input value="{{item}}" type="checkbox" name="interests" id="{{item}}" />
+          </div>
+          {% endfor %}
+
+
+        </div>
+      </div>
+      <!-- TENTH FILTER - KARAKTER-->
+      <div class="tutor-filter karakter">
+        <div class="tutor-filter-title">
+          <span>Karakter</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+          <div class="filter-selection-input">
+            <label for="under7">Under 7</label>
+            <input value="Under 7" type="checkbox" name="karakter" id="under7" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="7til8">7 til 8</label>
+            <input value="7 til 8" type="checkbox" name="karakter" id="7til8" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="8til9">8 til 9</label>
+            <input value="8 til 9" type="checkbox" name="karakter" id="8til9" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="9til10">9 til 10</label>
+            <input value="9 til 10" type="checkbox" name="karakter" id="9til10" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="10til11">10 til 11</label>
+            <input value="10 til 11" type="checkbox" name="karakter" id="10til11" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="11til12">11 til 12</label>
+            <input value="11 til 12" type="checkbox" name="karakter" id="11til12" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="over12">Over 12</label>
+            <input value="Over 12" type="checkbox" name="karakter" id="over12" />
+          </div>
+        </div>
+      </div>
+      <!-- ELEVENTH FILTER - ANDRE SPROG -->
+      <div class="tutor-filter sprog">
+        <div class="tutor-filter-title">
+          <span>Andre sprog</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+          {% for lang in language_list %}
+          <div class="filter-selection-input">
+            <label for="{{lang}}">{{lang}}</label>
+            <input value="{{lang}}" type="checkbox" name="sprog" id="{{lang}}" />
+          </div>
+          {% endfor %}
+
+
+        </div>
+      </div>
+      <!-- TWELVTH FILTER - UNI-->
+      <div class="tutor-filter uddannelsesinstitution">
+        <div class="tutor-filter-title ">
+          <span>Uddannelsesinstitution</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" onchange="filterMarkers()">
+
+          <div class="filter-selection-input">
+            <label for="aalborg_uni">Aalborg Uni</label>
+            <input value="Aalborg Universitet" type="checkbox" name="uddannelsesinstitution" id="aalborg_uni" />
+          </div>
+
+
+          <div class="filter-selection-input">
+            <label for="aarhus_uni">Aarhus Uni</label>
+            <input value="Aarhus Universitet" type="checkbox" name="uddannelsesinstitution" id="aarhus_uni" />
+          </div>
+
+          <div class="filter-selection-input">
+            <label for="absalon_proffessions">Absalon Prof.højsk.</label>
+            <input value="Absalon Professionshøjskole" type="checkbox" name="uddannelsesinstitution"
+              id="absalon_proffessions" />
+          </div>
+
+          <div class="filter-selection-input">
+            <label for="cba">CBA</label>
+            <input value="Copenhagen Business Academy" type="checkbox" name="uddannelsesinstitution" id="cba" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="cbs">CBS</label>
+            <input value="Copenhagen Business School" type="checkbox" name="uddannelsesinstitution" id="cbs" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="dtu">DTU</label>
+            <input value="Danmarks Tekniske Universitet" type="checkbox" name="uddannelsesinstitution" id="dtu" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="dmjx">Medie- og Jornalisth.</label>
+            <input value="Danmarks Medie- og Jornalisthøjskole" type="checkbox" name="uddannelsesinstitution"
+              id="dmjx" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="erhversakademi_aarhus">Erhvervs. Aarhus</label>
+            <input value="Erhvervsakademi Aarhus" type="checkbox" name="uddannelsesinstitution"
+              id="erhversakademi_aarhus" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="erhversakademi_dania">Erhvervs. Dania</label>
+            <input value="Erhvervsakademi Dania" type="checkbox" name="uddannelsesinstitution"
+              id="erhversakademi_dania" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="erhversakademi_koldin">Erhvervs. Kolding</label>
+            <input value="Erhvervsakademi Kolding" type="checkbox" name="uddannelsesinstitution"
+              id="erhversakademi_koldin" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="erhversakademi_midtvest">Erhvervs. Midtvest</label>
+            <input value="Erhvervsakademi Midtvest" type="checkbox" name="uddannelsesinstitution"
+              id="erhversakademi_midtvest" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="erhversakademi_sydvest">Erhvervs. Sydvest</label>
+            <input value="Erhvervsakademi Sydvest" type="checkbox" name="uddannelsesinstitution"
+              id="erhversakademi_sydvest" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="it_uni">IT-Uni</label>
+            <input value="IT-Universitet" type="checkbox" name="uddannelsesinstitution" id="it_uni" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="kbh_uni">Kbh Uni</label>
+            <input value="Københavns Universitet" type="checkbox" name="uddannelsesinstitution" id="kbh_uni" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="kbh_professions">Kbh Professions.</label>
+            <input value="Københavns Professionshøjskole" type="checkbox" name="uddannelsesinstitution"
+              id="kbh_professions" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="kbh_erhverv">Kbh Erhvervs</label>
+            <input value="Københavns Erhvervsakademi" type="checkbox" name="uddannelsesinstitution" id="kbh_erhverv" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="aalborg_uni">Professions. UCN</label>
+            <input value="Professionshøjskolen UCN" type="checkbox" name="uddannelsesinstitution" id="aalborg_uni" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="roskilde_uni">Roskilde Uni</label>
+            <input value="Roskilde Universitet" type="checkbox" name="uddannelsesinstitution" id="roskilde_uni" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="smartlearning">SmartLearning</label>
+            <input value="SmartLearning" type="checkbox" name="uddannelsesinstitution" id="smartlearning" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="syddansk_uni">Syddansk Uni</label>
+            <input value="Syddansk Universitet" type="checkbox" name="uddannelsesinstitution" id="syddansk_uni" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="uc_syd">UC Syd</label>
+            <input value="UC Syd" type="checkbox" name="uddannelsesinstitution" id="uc_syd" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="ucl">UCL</label>
+            <input value="UCL Erhvervsakademi og Professionshøjskole" type="checkbox" name="uddannelsesinstitution"
+              id="ucl" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="via_uni">Via Uni College</label>
+            <input value="Via University College" type="checkbox" name="uddannelsesinstitution" id="via_uni" />
+          </div>
+          <div class="filter-selection-input">
+            <label for="zealand">Zealand</label>
+            <input value="Zealand" type="checkbox" name="uddannelsesinstitution" id="zealand" />
+          </div>
+
+        </div>
+      </div>
+      <!-- THIRTEENTH FILTER - UNI UDDANNELSE-->
+      <div class="tutor-filter uni_uddannelse">
+        <div class="tutor-filter-title ">
+          <span>Tutor uddannelse</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-chevron-down filter-arrow" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+        <div class="tutor-filter-selections" oninput="filterMarkers()">
+
+
+
+          <div class="filter-selection-input">
+            <input type="text" placeholder="Uddannelse..." list="uni_uddannelse" name="uni_uddannelse"
+              id="uni_uddannelse_input" />
+            <button class="clear-subject">X</button>
+            <datalist id="uni_uddannelse">
+              {% for uddan in lst %}
+              <option value="{{uddan}}" />
+              {% endfor %}
+            </datalist>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <template>
+      <div class="tutor">
+        <div class="tutor-info">
+          <div class="profile-image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor"
+              class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+              <path fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+            </svg>
+            <img class="tutor-photo" src="" alt="">
+
+            </svg>
+          </div>
+          <div class="name-phone">
+            <div>
+              <h3 class="fullname">Rasmus Jens Hansen</h3>
+              <a href="#" class="teachworks-tutorlink" target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path
+                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                  <path
+                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                </svg>
+              </a>
+            </div>
+
+            <span class="tutor-tlf">12341234</span>
+          </div>
+          <div class="elever-timer elever"><span>2</span>Elever</div>
+          <div class="elever-timer timer"><span>4</span>Timer</div>
+          <div class="arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+              class="bi bi-chevron-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </div>
+        </div>
+        <div class="tutor-courses">
+          <ul>
+          </ul>
+        </div>
+      </div>
+  </div>
+  </template>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script src="https://maps.googleapis.com/maps/api/js?key={{gmaps_key}}&callback=initMap&libraries=places&v=weekly"
+    async></script>
+  <script>
+    document.querySelectorAll(".tutor-info").forEach((tutor) => {
+      tutor.addEventListener("click", expand);
+    });
+
+    function expand(e) {
+      if (
+        e.target == this.querySelector(".teachworks-tutorlink") ||
+        e.target == this.querySelector(".teachworks-tutorlink svg")
+      ) {
+      } else {
+        this.parentNode.classList.toggle("expand");
+        this.parentNode.querySelector(".tutor-courses").classList.toggle("show");
+        this.querySelector(".arrow").classList.toggle("active");
+      }
+    }
+
+    document.querySelectorAll(".tutor-filter-title").forEach((tutorFilter) => {
+      tutorFilter.addEventListener("click", expandFilter);
+    });
+
+    function expandFilter() {
+      this.parentNode.classList.toggle("expand");
+      this.parentNode
+        .querySelector(".tutor-filter-selections")
+        .classList.toggle("show");
+      this.parentNode.querySelector(".filter-arrow").classList.toggle("activeArrow");
+      this.classList.toggle("activeFilter");
+    }
+    //function hideSelects() {
+    //  document.querySelectorAll("select").forEach((select) => {
+    //    select.style.display ="none";
+    //  })
+    //}
+
+    //setTimeout(hideSelects, 3000)
+
+    document.querySelector(".clear_filters").addEventListener("click", clearFilters)
+    document.querySelector(".collapse").addEventListener("click", collapse)
+    document.querySelector(".expand").addEventListener("click", expand)
+
+    function clearFilters() {
+      document.querySelectorAll('input[type="checkbox"]').forEach((input) => input.checked = false);
+      document.querySelectorAll('input[type="text"]').forEach((input) => input.value = "");
+      filterMarkers();
+    }
+
+    function collapse() {
+      document.querySelectorAll(".tutor-filter").forEach((filter) => {
+        filter.classList.remove("expand");
+        filter.querySelector(".tutor-filter-title").classList.remove("activeFilter");
+        filter.querySelector(".filter-arrow").classList.remove("activeArrow");
+        filter.querySelector(".tutor-filter-selections").classList.remove("show");
+      })
+    }
+    function expand() {
+      document.querySelectorAll(".tutor-filter").forEach((filter) => {
+        filter.classList.add("expand");
+        filter.querySelector(".tutor-filter-title").classList.add("activeFilter");
+        filter.querySelector(".filter-arrow").classList.add("activeArrow");
+        filter.querySelector(".tutor-filter-selections").classList.add("show");
+      })
+    }
+
+    document.querySelectorAll(".clear-subject").forEach((button) => button.addEventListener("click", clearSubject))
+
+    function clearSubject() {
+      this.previousElementSibling.value = ""
+      filterMarkers();
+    }
+
+    //SEARCH
+
+    // get search bar element
+    const searchInput = document.getElementById("searchInput");
+
+    // store name elements in array-like object
+    const namesFromDOM = document.getElementsByClassName("fullname");
+
+    // listen for user events
+    searchInput.addEventListener("keyup", (event) => {
+      //   const { value } = event.target;
+      // get user search input converted to lowercase
+      const searchQuery = event.target.value.toLowerCase();
+
+      if (event.target.value !== "") {
+        event.target.classList.add("search_focused");
+        event.target.nextElementSibling.classList.add("search_focused");
+
+
+      } else {
+        event.target.classList.remove("search_focused");
+        event.target.nextElementSibling.classList.remove("search_focused");
+      }
+
+      for (const nameElement of namesFromDOM) {
+        // store name text and convert to lowercase
+        let name = nameElement.textContent.toLowerCase();
+
+        // compare current name to search input
+        if (name.includes(searchQuery)) {
+          // found name matching search, display it
+          nameElement.parentNode.parentNode.parentNode.parentNode.classList.remove("hide");
+        } else {
+          // no match, don't display name
+          nameElement.parentNode.parentNode.parentNode.parentNode.classList.add("hide");
+        }
+      }
+    });
+
+    //END SEARCH
+
+
+
+
+    //SORT
+    let studentDir = -1;
+    let hourDir = -1;
+
+
+
+    function sortTutorsAB() {
+      studentDir = studentDir * -1;
+      if (studentDir === -1) {
+        Array.from(document.querySelectorAll(".tutor"))
+          .sort(({ dataset: { studentCount: a } }, { dataset: { studentCount: b } }) => {
+            const aNumber= parseInt(a)
+            const bNumber= parseInt(b)
+            if( aNumber>=bNumber){
+              return 1
+            }else{
+              return -1
+            }
+          })
+          .forEach((item) => item.parentNode.appendChild(item));
+      } else {
+        Array.from(document.querySelectorAll(".tutor"))
+          .sort(({ dataset: { studentCount: a } }, { dataset: { studentCount: b } }) => {
+            const aNumber= parseInt(a)
+            const bNumber= parseInt(b)
+            if( aNumber<=bNumber){
+              return 1
+            }else{
+              return -1
+            }
+          })
+          .forEach((item) => item.parentNode.appendChild(item));
+      }
+
+    }
+
+    function sortTutorsBA() {
+      hourDir = hourDir * -1;
+      if (hourDir === -1) {
+        Array.from(document.querySelectorAll(".tutor"))
+          .sort(({ dataset: { hours: a } }, { dataset: { hours: b } }) => {
+            const aNumber= parseFloat(a)
+            const bNumber= parseFloat(b)
+            if( aNumber>=bNumber){
+              return 1
+            }else{
+              return -1
+            }
+          })
+          .forEach((item) => item.parentNode.appendChild(item));
+      } else {
+        Array.from(document.querySelectorAll(".tutor"))
+        .sort(({ dataset: { hours: a } }, { dataset: { hours: b } }) => {
+            const aNumber= parseFloat(a)
+            const bNumber= parseFloat(b)
+            if( aNumber<=bNumber){
+              return 1
+            }else{
+              return -1
+            }
+          })
+          .forEach((item) => item.parentNode.appendChild(item));
+      }
+
+    }
+
+    //END SORT
+
+
+
+  </script>
+</body>
+
+</html>

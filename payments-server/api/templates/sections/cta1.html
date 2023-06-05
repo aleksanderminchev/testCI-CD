@@ -1,0 +1,39 @@
+{% block scripts %}
+
+{% endblock %}
+
+<!-- Call to action -->
+<div class="call-to-action">
+    <div class="container">
+        <div class="actions-content">
+            <h2 class="action-title fadeInUp">
+                Prøv selv - gratis og uden forpligtelser
+            </h2>
+
+            <p class="description fadeInUp" id="cta-desc">
+                Få gratis vejledning af en fagekspert indenfor 24 timer.</p>
+            <form action="/" method="post" class="banner__newsletter-form needs-validation" id="cta-phone-form"
+                style="max-width: 630px;">
+                <div class="newsletter-inner">
+                    <input type='hidden' id="zc_gad" name="zc_gad" value="" />
+                    <input id="tlf" type="tel" name="tlf" placeholder="12 34 56 78" />
+                    <input type="hidden" type="tel" id="fulltlf" name="fulltlf">
+                    <button type="submit" value="submit" id="newsletter-submit"
+                        class="tt__btn newsletter-submit g-recaptcha" data-sitekey="{{ sitekey }}"
+                        data-callback="ctaPhoneFormSubmit" data-action='submit'>
+                        <span>Ring mig op</span>
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </button>
+                </div>
+                <span class="validation_message hidden">Angiv venligst et gyldigt telefonnummer</span>
+
+
+                <div class="form-result alert">
+                    <div class="content"></div>
+                </div>
+            </form>
+        </div>
+        <!-- /.actions-content -->
+    </div>
+    <!-- /.container -->
+</div>
