@@ -24,7 +24,6 @@ class HigherEducationInstitution(Updateable, db.Model):  # type:ignore
 
     def to_tutormap(self):
         return self.name
-        
 
     @staticmethod
     def add_higher_edu_institution_to_teacher(higher_edu_institution_id, teacher):

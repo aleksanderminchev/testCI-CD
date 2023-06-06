@@ -10,7 +10,8 @@ class InterestModelTestCase(BaseTestCase):
         interest = Interest(name="Computer games")
         db.session.add(interest)
         db.session.commit()
-        interest_added = interest.add_interest_to_teacher(teacher, interest.uid)
+        interest_added = interest.add_interest_to_teacher(
+            teacher, interest.uid)
 
         assert interest in teacher.interests
         assert len(teacher.interests) != 0

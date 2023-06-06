@@ -42,7 +42,7 @@ def new_student(args):
 def new_student_with_user(args):
     """Creates a new student and adds it to the the customers account
     no user account"""
-    student= Student.add_new_student(typeOfStudent='no_user', **args)
+    student = Student.add_new_student(typeOfStudent='no_user', **args)
     return student.to_dict()
 
 

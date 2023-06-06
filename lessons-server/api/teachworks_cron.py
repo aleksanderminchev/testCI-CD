@@ -341,7 +341,7 @@ def work_lesson():
 
     for i in a:
         time.sleep(1)
-        i_request = i+1
+        i_request = i + 1
         url = f"https://api.teachworks.com/v1/lessons?per_page=50&page={i_request}&from_date>={lower_date}&from_date<={upper_date}"
         response = requests.request("GET", url, headers=headers, data=payload)
         json_response = response.json()
@@ -411,13 +411,13 @@ def work_lesson():
                         lesson_reminder_sent_at = j['student_reminder_sent_at']
                         if lesson_reminder_sent_at is None:
                             lesson_reminder_sent_at = datetime.datetime.now()
-                        space_id = lesson_url['room_id']
-                        secret = lesson_url['secret']
-                        session_id = lesson_url['session_id']
-                        space = lesson_url['space']
                 paid = False
                 wage_id = dict_lessons['wage_payment_id'][i]
                 lesson_url = create_lesson_space(teacher, j)
+                space_id = lesson_url['room_id']
+                secret = lesson_url['secret']
+                session_id = lesson_url['session_id']
+                space = lesson_url['space']
                 if isinstance(wage_id, (int, float, complex)):
                     paid = True
                 lesson = Lesson(id=id, teacher_id=teacher_id,
@@ -446,7 +446,7 @@ def work_lesson():
                     id=j['student_id']).first()
                 if student is not None:
                     student.lessons.append(lesson)
-                    duration = round(lesson.duration_in_minutes/60, 2)
+                    duration = round(lesson.duration_in_minutes / 60, 2)
                     if not lesson.trial_lesson:
                         if student.customer is not None:
                             if lesson.status.value == 'scheduled':
@@ -480,9 +480,9 @@ def work_lesson():
                     lesson_check.description = description
                     lesson_check.wage = dict_lessons['wage'][i]
                     duration_new = round(
-                        dict_lessons['duration_minutes'][i]/60, 2)
+                        dict_lessons['duration_minutes'][i] / 60, 2)
                     duration_old = round(
-                        lesson_check.duration_in_minutes/60, 2)
+                        lesson_check.duration_in_minutes / 60, 2)
                     student_data = ast.literal_eval(
                         dict_lessons['participants'][i])
                     students = []
@@ -625,7 +625,7 @@ def work_teachers():
         if type(dict_teachers["CPR-nr (DDMMÅÅ-XXXX)"][i]) == str:
             payroll_id = dict_teachers["CPR-nr (DDMMÅÅ-XXXX)"][i].replace(
                 "-", "")
-            local_store = payroll_id[0:6]+"-"+payroll_id[6:]
+            local_store = payroll_id[0:6] + "-" + payroll_id[6:]
             payroll_id = local_store
 
         # Setting default values
@@ -911,7 +911,7 @@ def work_payslips():
 
     if today.day >= 16:
         lower_date = today.replace(day=16).strftime('%Y-%m-%d')
-        upper_date = today+relativedelta(months=+1)
+        upper_date = today + relativedelta(months=+1)
         upper_date = upper_date.replace(day=15).strftime('%Y-%m-%d')
     else:
         upper_date = today.replace(day=15).strftime('%Y-%m-%d')
@@ -999,7 +999,7 @@ def work_payslips():
                 wagepayment = WagePayment(id=dict_wages['id'][i],
                                           teacher_id=teacher.id,
                                           amount=dict_wages['amount'][i],
-                                          hours=round(hours/60, 2),
+                                          hours=round(hours / 60, 2),
                                           payment_date=payment_date,
                                           from_date=from_date,
                                           to_date=to_date,
@@ -1020,7 +1020,7 @@ def work_payslips():
                     dict_referrals['employee_id'][i])).first()
                 if teacher is not None:
                     wagepayment.referrals_amount = dict_referrals['amount'][i]
-                    wagepayment.referrals_number = dict_referrals['amount'][i]/200
+                    wagepayment.referrals_number = dict_referrals['amount'][i] / 200
                     referral = Referral(id=dict_referrals['id'][i],
                                         referrer_id=teacher.id,
                                         referred_id=1,

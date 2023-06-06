@@ -107,10 +107,13 @@ class Transaction(Updateable, db.Model):  # type:ignore
     def update_transaction(id=int, **kwargs):
         """Updates a transaction by the User id from the DB"""
         transaction_query = Transaction.query.get(id)
-        transaction_query.customer.balance[0].invoice_balance = transaction_query.customer.balance[
+        transaction_query.customer.balance[0].invoice_balance = \
+            transaction_query.customer.balance[
             0].invoice_balance - transaction_query.amount
         Transaction.update(transaction_query, kwargs)
-        transaction_query.customer.balance[0].invoice_balance = transaction_query.customer.balance[0].invoice_balance + kwargs['amount']
+        transaction_query.customer.balance[0].invoice_balance = \
+            transaction_query.customer.balance[0].invoice_balance + \
+            kwargs['amount']
         db.session.commit()
         return transaction_query
 

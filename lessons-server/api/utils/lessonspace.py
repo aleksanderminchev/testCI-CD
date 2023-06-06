@@ -90,7 +90,7 @@ def create_user_jwt_url(user, url, secret, type):
         return url
 
 
-def get_playback_url(teacher, student, session_id,lesson):
+def get_playback_url(teacher, student, session_id, lesson):
     lesson_space_id = str(teacher.id) + "_" + str(student.id)
     api_key = current_app.config['LESSON_SPACE_API_KEY']
     org_id = current_app.config['LESSON_SPACE_ORGANIZATION']
@@ -100,7 +100,7 @@ def get_playback_url(teacher, student, session_id,lesson):
         headers={
             'Content-Type': 'application/json',
             'Authorization': 'Organisation ' + api_key
-        }
+                }
     )
 
     data = response.json()

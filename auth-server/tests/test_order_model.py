@@ -4,14 +4,13 @@ from models.order import Order, OrderStatus
 from models.customer import Customer
 from unittest.mock import Mock
 
-class OrderModelTestCase(BaseTestCase):
 
-    
+class OrderModelTestCase(BaseTestCase):
 
     def setUp(self):
         # user_teacher = User(email='teacher@test.com', password='foo')
-        self.student=Order()
-        mock_data=Mock()
+        self.student = Order()
+        mock_data = Mock()
         mock_data.crm_deal_id = ""
         mock_data.stripe_customer_id = ""
         mock_data.extra_student = 0
@@ -95,10 +94,6 @@ class OrderModelTestCase(BaseTestCase):
     #     updated_order = Order.get_order_by_id(order.uid)
 
     #     assert updated_order is None
-
-
-
-
 
     def test_add_new_valid_order(self):
         self.mock_data.unit_price = 309
@@ -291,7 +286,7 @@ class OrderModelTestCase(BaseTestCase):
 
     def test_add_new_invalid_package_wrong_format(self):
         self.mock_data.unit_price = 309
-        self.mock_data.total_hours =10
+        self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "invalid-package"
         self.mock_data.installments = 6
@@ -303,7 +298,7 @@ class OrderModelTestCase(BaseTestCase):
 
     def test_add_new_invalid_installments_negative(self):
         self.mock_data.unit_price = 309
-        self.mock_data.total_hours =10
+        self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
         self.mock_data.installments = -6
@@ -339,7 +334,7 @@ class OrderModelTestCase(BaseTestCase):
 
     def test_add_new_valid_installments(self):
         self.mock_data.unit_price = 309
-        self.mock_data.total_hours =10
+        self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
         self.mock_data.installments = 6
@@ -361,7 +356,7 @@ class OrderModelTestCase(BaseTestCase):
 
     def test_add_new_invalid_email_long_string(self):
         self.mock_data.unit_price = 309
-        self.mock_data.total_hours =10
+        self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
         self.mock_data.installments = 6
@@ -373,7 +368,7 @@ class OrderModelTestCase(BaseTestCase):
 
     def test_add_new_invalid_email_short_string(self):
         self.mock_data.unit_price = 309
-        self.mock_data.total_hours =10
+        self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
         self.mock_data.installments = 6
@@ -385,7 +380,7 @@ class OrderModelTestCase(BaseTestCase):
 
     def test_add_new_invalid_email_empty_string(self):
         self.mock_data.unit_price = 309
-        self.mock_data.total_hours =10
+        self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
         self.mock_data.installments = 6
@@ -407,15 +402,12 @@ class OrderModelTestCase(BaseTestCase):
             # Replace with your actual method call
             Order.add_new(self.mock_data)
 
-
-
-
     def test_email_valid_length(self):
         self.mock_data.unit_price = 309
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = "test@example.com"
         # Test implementation
         result = Order.add_new(self.mock_data)
@@ -440,7 +432,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         # Test implementation
 
         self.mock_data.email = "a" * 121 + "@example.com"
@@ -454,7 +446,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         result = Order.add_new(self.mock_data)
@@ -466,7 +458,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
 
         with self.assertRaises(ValueError):
@@ -478,7 +470,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         result = Order.add_new(self.mock_data)
@@ -490,7 +482,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
 
         with self.assertRaises(ValueError):
@@ -501,7 +493,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 1
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         result = Order.add_new(self.mock_data)
@@ -512,7 +504,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = -1
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         with self.assertRaises(ValueError):
@@ -524,7 +516,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 100000
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         result = Order.add_new(self.mock_data)
@@ -535,7 +527,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = -100000
         self.mock_data.total_price = 3090
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         with self.assertRaises(ValueError):
@@ -546,7 +538,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 1
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         result = Order.add_new(self.mock_data)
@@ -557,7 +549,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = -1
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         with self.assertRaises(ValueError):
@@ -569,7 +561,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 100000
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         result = Order.add_new(self.mock_data)
@@ -580,7 +572,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = -100000
         self.mock_data.total_price = 1
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         with self.assertRaises(ValueError):
             Order.add_new(self.mock_data)
@@ -590,8 +582,8 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 1
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
-        self.mock_data.email ='test@example.com'
+        self.mock_data.installments = 6
+        self.mock_data.email = 'test@example.com'
         # Test implementation
         result = Order.add_new(self.mock_data)
         self.assertIs(type(result), type(Order()))
@@ -601,8 +593,8 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 1
         self.mock_data.package = "12-months-30"
-        self.mock_data.installments = 6 
-        self.mock_data.email ='test@example.com'
+        self.mock_data.installments = 6
+        self.mock_data.email = 'test@example.com'
         with self.assertRaises(ValueError):
             # Replace with your actual method call
             Order.add_new(self.mock_data)
@@ -612,7 +604,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 1
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         # Test implementation
         result = Order.add_new(self.mock_data)
@@ -623,7 +615,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 1
         self.mock_data.package = "12-months-3091"
-        self.mock_data.installments = 6 
+        self.mock_data.installments = 6
         self.mock_data.email = 'test@example.com'
         with self.assertRaises(ValueError):
             Order.add_new(self.mock_data)
@@ -644,7 +636,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 1
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 2 
+        self.mock_data.installments = 2
         self.mock_data.email = 'test@example.com'
         with self.assertRaises(ValueError):
             # Replace with your actual method call
@@ -655,7 +647,7 @@ class OrderModelTestCase(BaseTestCase):
         self.mock_data.total_hours = 10
         self.mock_data.total_price = 1
         self.mock_data.package = "12-months-309"
-        self.mock_data.installments = 36 
+        self.mock_data.installments = 36
         self.mock_data.email = 'test@example.com'
         # Test implementation
         result = Order.add_new(self.mock_data)

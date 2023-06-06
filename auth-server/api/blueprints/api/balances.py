@@ -10,9 +10,9 @@ from api.auth import admin_auth, token_auth
 from models.customer import Customer
 from models.transaction import Transaction
 from api.schema.balances import RecalculateBalanceSchema, BalanceSchema, \
-        UseLessonSchema, AccountingBalanceSchema, \
-        AddOrderToBalanceSchema, AddTransactionToBalanceSchema,\
-        RevenueAccountingSchema
+    UseLessonSchema, AccountingBalanceSchema, \
+    AddOrderToBalanceSchema, AddTransactionToBalanceSchema,\
+    RevenueAccountingSchema
 
 balances = Blueprint('balances', __name__)
 
@@ -122,8 +122,9 @@ def unvoid_payment(args):
     balance = Balance.unvoid_payment_transaction(**args)
     return balance.to_dict()
 
+
 @balances.route('/accounting', methods=['GET'])
-@query_params(AccountingBalanceSchema(many=True),AccountingBalanceSchema)
+@query_params(AccountingBalanceSchema(many=True), AccountingBalanceSchema)
 def accounting(args):
     """Calculates the individual balances of the customers
     The date has to be in format YYYY-mm-dd
@@ -164,7 +165,9 @@ def download_excell_file():
         return send_excel_file_accounting(f'Accounting_{date}.xlsx')
     finally:
         print('finally')
-        #delete the file here
+        # delete the file here
+
+
 @balances.route('/recalculate_balance', methods=['POST'])
 @authenticate(admin_auth)
 @response(BalanceSchema(), 201)

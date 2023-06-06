@@ -15,7 +15,7 @@ def create_lesson_space(teacher, student):
         Save everything untill in the space_url in db user
         Add this into the schedule lesson
     """
-    lesson_space_id = str(teacher.id)+"_"+str(student.id)
+    lesson_space_id = str(teacher.id) + "_" + str(student.id)
     # Make sure that Lessonspace ID is never more than 64 characters as this will lead to an error
     if len(lesson_space_id) > 64:
         lesson_space_id = lesson_space_id[:64]
@@ -49,14 +49,14 @@ def lesson_space_url_call(lesson_space_id, user, type):
 
     for i in url:
         if i[0:5] != 'user=':
-            url_for_db = url_for_db+i+'&'
+            url_for_db = url_for_db + i + '&'
 
     return {"space": url_for_db, "secret": json_result["secret"], 'room_id': json_result['room_id'], 'session_id': json_result['session_id']}
 
 
 def create_user_jwt_url(user, url, secret, type):
     if type == 'teacher':
-        name = user.user.first_name+" "+user.user.last_name
+        name = user.user.first_name + " " + user.user.last_name
         user_data = {
             "nbf": 0,
             "exp": 2147483647,
@@ -86,17 +86,17 @@ def create_user_jwt_url(user, url, secret, type):
         }
 
         encoded = jwt.encode(user_data, secret, algorithm="HS256")
-        url = url+"user="+encoded
+        url = url + "user=" + encoded
         return url
 
 
-def get_playback_url(teacher, student, session_id,lesson):
+def get_playback_url(teacher, student, session_id, lesson):
     lesson_space_id = str(teacher.id) + "_" + str(student.id)
     api_key = current_app.config['LESSON_SPACE_API_KEY']
     org_id = current_app.config['LESSON_SPACE_ORGANIZATION']
     response = requests.get(
         url='https://api.thelessonspace.com/v2/organisations/' +
-            str(org_id)+'/sessions?search='+session_id,
+            str(org_id) + '/sessions?search=' + session_id,
         headers={
             'Content-Type': 'application/json',
             'Authorization': 'Organisation ' + api_key

@@ -53,7 +53,7 @@ def expire_orders():
                 teacher_id=1,
                 from_time=from_time,
                 to_time=to_time,
-                duration_in_minutes=round(diffrence*60),
+                duration_in_minutes=round(diffrence * 60),
                 description="EXPIRED LESSONS",
                 wage=0,
                 status='expired'
@@ -66,4 +66,3 @@ def expire_orders():
     end_time = time.time()
     time_elapsed = end_time - start_time
     print(f"Time complexity for input size n: {time_elapsed:.8f} seconds")
-

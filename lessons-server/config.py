@@ -22,7 +22,7 @@ class Config(object):
 
     # security options
     SECRET_KEY = os.environ.get('SECRET_KEY_CONFIG', 'top-secret!')
-    FLASK_RUN_PORT= 8080
+    FLASK_RUN_PORT = 8080
     DEBUG = False
     TESTING = False
     JSON_AS_ASCII = False
@@ -75,12 +75,13 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "SQLALCHEMY_DATABASE_URI_TEST_PORTAL")
     SQLALCHEMY_ECHO = as_bool(os.environ.get('SQLALCHEMY_ECHO') or "false")
-    #SQLALCHEMY_ENGINE_OPTIONS = {"pool_size": int(sqlalchemy_pool_size),
+    # SQLALCHEMY_ENGINE_OPTIONS = {"pool_size": int(sqlalchemy_pool_size),
     #                            "max_overflow": int(sqlalchemy_max_overflow)}
+
 
 class ProductionConfig(Config):
     ENV_NAME = "production"
-    #SQLALCHEMY_ENGINE_OPTIONS = {"pool_size": int(sqlalchemy_pool_size),
+    # SQLALCHEMY_ENGINE_OPTIONS = {"pool_size": int(sqlalchemy_pool_size),
     #                             "max_overflow": int(sqlalchemy_max_overflow)}
     # PRODUCTION DATABASE
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
@@ -91,8 +92,9 @@ class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "SQLALCHEMY_LOCAL_TEST") + os.path.join(basedir, 'database.db')
-    #SQLALCHEMY_ENGINE_OPTIONS = {"pool_size": None,
+    # SQLALCHEMY_ENGINE_OPTIONS = {"pool_size": None,
     #                             "max_overflow": None}
+
 
 config = {
     "development": DevelopmentConfig,

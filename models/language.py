@@ -23,9 +23,10 @@ class Language(Updateable, db.Model):  # type:ignore
             "name": self.name,
             "id": self.uid
         }
+
     def to_tutormap(self):
         return self.name
-        
+
     @staticmethod
     def get_language_by_id(id):
         return Language.query.get(id)

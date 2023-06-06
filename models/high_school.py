@@ -22,9 +22,10 @@ class HighSchool(Updateable, db.Model):  # type:ignore
             "id": self.id,
             "name": self.name,
         }
+
     def to_tutormap(self):
         return self.name
-        
+
     @staticmethod
     def add_high_school_to_teacher(high_school_id, teacher):
         high_school = HighSchool.query.get(high_school_id)

@@ -6,7 +6,8 @@ SENDER = config("AWS_SES_SENDER")
 CONFIG_NAME = config("CONFIG_NAME")
 CHARSET = "UTF-8"
 
-client = boto3.client("ses", region_name="us-east-2", aws_access_key_id=config('AWS_ACCESS_KEY'), aws_secret_access_key=config('AWS_SECRET_KEY'))
+client = boto3.client("ses", region_name="us-east-2", aws_access_key_id=config(
+    'AWS_ACCESS_KEY'), aws_secret_access_key=config('AWS_SECRET_KEY'))
 
 
 def send_email(to_list, subject, template):

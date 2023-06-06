@@ -25,7 +25,7 @@ def hash_data(data: str):
     return hash_hex
 
 
-def add_event(event_name: str,  user_data: dict, external_id: str, test: bool = False):
+def add_event(event_name: str, user_data: dict, external_id: str, test: bool = False):
     """ Adds a lead event to Meta Pixel through CAPI.
     """
 

@@ -46,24 +46,29 @@ def add_order(user):
         upsell = order.get("upsell")
 
         # Calculate the total price for the package.
-        total_price = StripeCustomer.get_total_package_price(order_package, order_total_hours)
+        total_price = StripeCustomer.get_total_package_price(
+            order_package, order_total_hours)
 
         # Get the price per hour
         unit_price = StripeCustomer.get_package_price(order_package)
 
         if order_discount:
             # If there is a discount, calculate the price after discount and update the total price.
-            price_after_discount = total_price * StripeCustomer.get_discount(order_discount)
+            price_after_discount = total_price * \
+                StripeCustomer.get_discount(order_discount)
             total_price = round(price_after_discount, 2)
-            unit_discount = unit_price * StripeCustomer.get_discount(order_discount)
+            unit_discount = unit_price * \
+                StripeCustomer.get_discount(order_discount)
             unit_discount = unit_price - unit_discount
 
         if order_extra_student:
             # Calculate extra student fees if there are extra students.
             extra_student_fee_per_installment = order_total_hours / order_installments
-            extra_student_fee_per_installment *= 50  # 50 kr. is the fee per extra student.
+            # 50 kr. is the fee per extra student.
+            extra_student_fee_per_installment *= 50
             extra_student_fee_per_installment *= order_extra_student
-            extra_student_fee_per_installment = round(extra_student_fee_per_installment, 2)
+            extra_student_fee_per_installment = round(
+                extra_student_fee_per_installment, 2)
             total_price += extra_student_fee_per_installment * order_installments
 
         # Create Stripe Customer.
@@ -90,7 +95,8 @@ def add_order(user):
         order.update_url(f"toptutors.dk/order/{order.hashed_id}")
 
         if order_send_email:
-            send_email([order_email], "Din TopTutors ordre", render_template("email/invoice.html", url=order.stripe_url))
+            send_email([order_email], "Din TopTutors ordre", render_template(
+                "email/invoice.html", url=order.stripe_url))
 
         return {"order_id": order.hashed_id}
 

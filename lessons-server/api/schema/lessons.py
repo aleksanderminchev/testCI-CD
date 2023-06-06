@@ -493,8 +493,10 @@ class RescheduledLesson(ma.SQLAlchemySchema):
         model = Lesson
         ordered = True
     id = ma.Integer(required=True)
-    from_time = ma.DateTime(description='Format in utc time,time shouldnt exist already for this teacher and student', validate=[lambda x:x.tzinfo == timezone.utc])
-    to_time = ma.DateTime(description='Format in utc time,time shouldnt exist already for this teacher and student', validate=[lambda x:x.tzinfo == timezone.utc])
+    from_time = ma.DateTime(description='Format in utc time,time shouldnt exist already for this teacher and student', validate=[
+                            lambda x:x.tzinfo == timezone.utc])
+    to_time = ma.DateTime(description='Format in utc time,time shouldnt exist already for this teacher and student', validate=[
+                          lambda x:x.tzinfo == timezone.utc])
 
     @validates_schema
     def validate_time_input(self, data, **kwargs):
@@ -514,26 +516,29 @@ class RescheduledLesson(ma.SQLAlchemySchema):
 
 class PlaybackUrlSchema(ma.SQLAlchemySchema):
     class Meta:
-        model=Lesson
-        ordered=True
-    name=ma.String(dump_only=True)
-    url=ma.String(dump_only=True)
-    teacher_name=ma.String(dump_only=True)
-    student_name=ma.String(dump_only=True)
-    start_time=ma.String(dump_only=True)
-    end_time=ma.String(dump_only=True)
+        model = Lesson
+        ordered = True
+    name = ma.String(dump_only=True)
+    url = ma.String(dump_only=True)
+    teacher_name = ma.String(dump_only=True)
+    student_name = ma.String(dump_only=True)
+    start_time = ma.String(dump_only=True)
+    end_time = ma.String(dump_only=True)
+
+
 class StudentTeacherIdCalendar(ma.Schema):
     class Meta:
         ordered = True
-    
-    code=ma.String(dump_only=True)
-    label=ma.String(dump_only=True)
+
+    code = ma.String(dump_only=True)
+    label = ma.String(dump_only=True)
+
 
 class CalendarLessons(ma.Schema):
     class Meta:
-        model=Lesson
-        ordered=True
-    
+        model = Lesson
+        ordered = True
+
     from_date = ma.Date(required=False, load_only=True)
     to_date = ma.Date(required=False, load_only=True)
     to_time = ma.DateTime(dump_only=True)

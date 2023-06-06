@@ -7,5 +7,3 @@ from api.schemas import TutorMatchSchema
 from flask import Blueprint, request
 
 tutors = Blueprint('Tutors', __name__)
-
-

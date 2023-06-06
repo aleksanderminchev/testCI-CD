@@ -20,10 +20,12 @@ def sitemap():
     """
     list_of_sitemap_pages = get_sitemap_pages()
     print(len(list_of_sitemap_pages))
-    sitemap_template = render_template("sitemap/sitemap_template.xml", pages=list_of_sitemap_pages)
+    sitemap_template = render_template(
+        "sitemap/sitemap_template.xml", pages=list_of_sitemap_pages)
     response = make_response(sitemap_template)
     response.headers["Content-Type"] = "application/xml"
     return response
+
 
 @misc.route('/sitemap')
 def htmlsitemap():
@@ -46,18 +48,16 @@ def htmlsitemap():
     subject_pages = [f'/lektiehjælp/{fag}' for fag in SEO_SUBJECTS]
     subject_pages = []
     for fag in SEO_SUBJECTS:
-    # Extract the grade name from the SEO_LEVELS
+        # Extract the grade name from the SEO_LEVELS
         subject = fag.split(",")[0].strip()
     # Construct the URL using the city name
         url = f"/lektiehjælp/{subject.lower()}"
     # Add the page to the SEO_LEVELS list
         subject_pages.append({"url": url, "name": subject})
 
-
-
     location_pages = []
     for location in SEO_LOCATIONS:
-    # Extract the city name from the location
+        # Extract the city name from the location
         city = location.split(",")[0].strip()
     # Construct the URL using the city name
         url = f"/lektiehjælp/{city.lower()}"
@@ -66,14 +66,13 @@ def htmlsitemap():
 
     level_pages = []
     for level in SEO_LEVELS:
-    # Extract the grade name from the SEO_LEVELS
+        # Extract the grade name from the SEO_LEVELS
         niveauer = level.split(",")[0].strip()
     # Construct the URL using the city name
         url = f"/lektiehjælp/{niveauer.lower()}"
     # Add the page to the SEO_LEVELS list
         niveauer = niveauer.replace("-", " ")
-    # Replace all - from "(niveau).-klasse" to a space.  
+    # Replace all - from "(niveau).-klasse" to a space.
         level_pages.append({"url": url, "name": niveauer})
-
 
     return render_template('sitemap.html', subject_pages=subject_pages, location_pages=location_pages, level_pages=level_pages)

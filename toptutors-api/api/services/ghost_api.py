@@ -20,7 +20,8 @@ def create_ghost_auth_token():
         'exp': iat + 5 * 60,
         'aud': '/admin/'
     }
-    token = jwt.encode(payload, bytes.fromhex(secret), algorithm='HS256', headers=header)
+    token = jwt.encode(payload, bytes.fromhex(secret),
+                       algorithm='HS256', headers=header)
     return token
 
 

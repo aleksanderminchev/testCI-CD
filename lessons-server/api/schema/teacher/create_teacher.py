@@ -33,15 +33,15 @@ class CreateTeacherSchema(ma.SQLAlchemySchema):
     address = ma.String()
     city = ma.String()
     zip_code = ma.String()
-    referred_by=ma.String(required=False)
-    referral_amount=ma.Float(required=False)
+    referred_by = ma.String(required=False)
+    referral_amount = ma.Float(required=False)
     high_school = fields.List(fields.Nested(
         HighSchoolSchema()), dump_only=True)
     students = fields.List(fields.String, dump_only=True, required=False)
     languages = fields.List(fields.Nested(
         LanguageSchema(),), dump_only=True, required=False)
-    referred=ma.String(dump_only=True, required=False)
-    referrals=fields.List(fields.Nested(
+    referred = ma.String(dump_only=True, required=False)
+    referrals = fields.List(fields.Nested(
         ReferralSchema()), dump_only=True)
     qualifications = fields.List(fields.Nested(
         QualificationsSchema()), dump_only=True, required=False)
@@ -79,8 +79,9 @@ class CreateTeacherSchema(ma.SQLAlchemySchema):
     birthday = ma.DateTime()
     updated_on_tw_at = ma.DateTime(dump_only=True)
     created_on_tw_at = ma.DateTime(dump_only=True)
-    created_at= ma.DateTime(dump_only=True)
-    last_updated= ma.DateTime(dump_only=True)
+    created_at = ma.DateTime(dump_only=True)
+    last_updated = ma.DateTime(dump_only=True)
+
     @validates('email')
     def validate_teacher_email(self, value):
         if User.find_by_email(value) is not None:

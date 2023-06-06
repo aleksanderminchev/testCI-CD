@@ -4,7 +4,8 @@ from flask_login import current_user
 from apifairy import arguments, response
 import sqlalchemy as sqla
 from api.app import db
-from api.schemas import StringPaginationSchema, PaginatedCollection, QueryCollection,StringQueryParams
+from api.schemas import StringPaginationSchema, PaginatedCollection, QueryCollection,\
+    StringQueryParams
 import time
 
 
@@ -65,7 +66,8 @@ def paginated_response(schema, max_limit=2500, order_by=None,
             data = db.session.scalars(query).all()
             end_time = time.time()
             time_elapsed = end_time - start_time
-            print(f"Time complexity for input size n: {time_elapsed:.8f} seconds")
+            print(
+                f"Time complexity for input size n: {time_elapsed:.8f} seconds")
             data = [i.to_dict() for i in data]
 
             return {'data': data, 'pagination': {
@@ -82,15 +84,15 @@ def paginated_response(schema, max_limit=2500, order_by=None,
     return inner
 
 
-def query_params(schema,query_schema=StringQueryParams):
+def query_params(schema, query_schema=StringQueryParams):
     """ Wrapper used to add query params to the route specified"""
     def inner(f):
         @wraps(f)
         def add_query_params(*args, **kwargs):
             print(*args)
-            data=f(*args,**kwargs)
+            data = f(*args, **kwargs)
             return data
         return arguments(query_schema)(response(QueryCollection(
-            schema,query_schema=query_schema))(add_query_params))
+            schema, query_schema=query_schema))(add_query_params))
     db.session.remove()
     return inner

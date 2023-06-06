@@ -8,7 +8,7 @@ teachers_programs = db.Table('teacher_programs',
                              db.Column('program_id', db.Integer, db.ForeignKey(
                                  'program.uid'), primary_key=True, index=True),
                              db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id'),
-                              primary_key=True, index=True))
+                                       primary_key=True, index=True))
 
 
 class Program(Updateable, db.Model):  # type:ignore

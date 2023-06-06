@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 from sqlalchemy.orm import joinedload
 
 from api.app import db
-from models.lesson import Lesson,LessonStatus
+from models.lesson import Lesson, LessonStatus
 from models.balance import Balance
 from api.schema.lessons import PlaybackUrlSchema, CalendarLessons, LessonSchema,\
     UpdateLessonSchema, RescheduledLesson, \
@@ -166,8 +166,9 @@ def get_all_lessons_for_teacher(args, teacher_id):
     db.session.remove()
     return {'data': data}
 
+
 @lessons.route('/lessons-admin', methods=['GET'])
-#@authenticate(admin_auth)
+# @authenticate(admin_auth)
 @query_params(CalendarLessons(many=True), CalendarLessons())
 @other_responses({404: 'lesson not found'})
 def get_all_lessons_for_admin(args):
@@ -177,14 +178,15 @@ def get_all_lessons_for_admin(args):
     start_time = time.time()
     if (from_date is None or to_date is None):
         end_date_time = get_date()
-        start_date_time = end_date_time + relativedelta(end_date_time, months=-1)
+        start_date_time = end_date_time + \
+            relativedelta(end_date_time, months=-1)
 
     start_date_time = datetime.strptime(from_date, '%Y-%m-%d')
     end_date_time = datetime.strptime(to_date, '%Y-%m-%d')
     lessons = Lesson.query.options(
-            joinedload(Lesson.lessons_students),
-            joinedload(Lesson.lessons_teacher)
-        ).filter(
+        joinedload(Lesson.lessons_students),
+        joinedload(Lesson.lessons_teacher)
+    ).filter(
         Lesson.from_time.between(start_date_time, end_date_time)).all()
     data = [i.to_calendar() for i in lessons]
     end_time = time.time()
@@ -192,8 +194,9 @@ def get_all_lessons_for_admin(args):
     print(f"Time complexity for input size n: {time_elapsed:.8f} seconds")
     return {'data': data}
 
+
 @lessons.route('/lessons-student/<int:student_id>', methods=['GET'])
-#@authenticate(token_auth)
+# @authenticate(token_auth)
 @query_params(CalendarLessons(many=True), CalendarLessons())
 @other_responses({404: 'lesson not found'})
 def get_all_lessons_for_student(args, student_id):

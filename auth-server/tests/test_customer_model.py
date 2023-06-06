@@ -7,7 +7,6 @@ from models.student import Student
 
 class CustomerModelTestCase(BaseTestCase):
 
-
     def setUp(self):
         pass
         # user_teacher = User(email='teacher@test.com', password='foo')
@@ -25,7 +24,6 @@ class CustomerModelTestCase(BaseTestCase):
         Student.query.delete()
         User.query.delete()
         db.session.commit()
-
 
     def test_get_customer_by_id(self):
         customer = Customer.query.first()
@@ -60,14 +58,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
 
         result = Customer.add_independent_customer_with_student(
-        email=args_for_customer['email'],
-        password="",
-        first_name=args_for_customer['first_name'],
-        last_name=args_for_customer['last_name'],
-        phone=args_for_customer['phone'],
-        customer_type='independent')
+            email=args_for_customer['email'],
+            password="",
+            first_name=args_for_customer['first_name'],
+            last_name=args_for_customer['last_name'],
+            phone=args_for_customer['phone'],
+            customer_type='independent')
         self.assertIs(type(result['customer']), type(self.customer))
-    
+
     def test_valid_email_returns_customer_object(self):
         data = {
             "first_name": "John",
@@ -79,31 +77,31 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
             self.assertIs(type(result['customer']), type(self.customer))
         except ValueError:
             self.fail("Expected no exception, but ValueError was raised.")
-        
+
     def test_invalid_email_length_above_boundary_returns_invalid_email(self):
         data = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "a" * 121 + "@mail.com",
-        "phone": "+1234567890"
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "a" * 121 + "@mail.com",
+            "phone": "+1234567890"
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -116,12 +114,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -134,12 +132,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -152,15 +150,15 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
-        
+
     def test_valid_phone_returns_customer_object(self):
         data = {
             "first_name": "John",
@@ -170,12 +168,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
             self.assertIs(type(result['customer']), type(self.customer))
         except ValueError as e:
             self.fail("Expected no ValueError, but got: {}".format(str(e)))
@@ -189,12 +187,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -207,12 +205,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
 
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
@@ -226,15 +224,15 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
-        
+
     def test_valid_first_name_returns_customer_object(self):
         data = {
             "first_name": "John",
@@ -244,12 +242,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
             self.assertIs(type(result['customer']), type(self.customer))
         except ValueError as e:
             self.fail("Expected no ValueError, but got: {}".format(str(e)))
@@ -263,12 +261,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
 
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
@@ -282,12 +280,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -300,15 +298,15 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
-    
+
     def test_valid_last_name_returns_customer_object(self):
         data = {
             "first_name": "John",
@@ -317,12 +315,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+            email=data['email'],
+            password="",
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            phone=data['phone'],
+            customer_type='independent')
         self.assertIs(type(result['customer']), type(self.customer))
 
     def test_invalid_last_name_nonstring_returns_invalid_last_name(self):
@@ -334,12 +332,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -352,12 +350,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -370,31 +368,29 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
-
-    
     def test_boundary_analysis_valid_email_length_between_12_and_120(self):
         data1 = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "a" * 12 + "@mail.com",
-        "phone": "+1234567890"
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "a" * 12 + "@mail.com",
+            "phone": "+1234567890"
         }
         result1 = Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='independent')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -404,12 +400,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='independent')
         self.assertIs(type(result2['customer']), type(self.customer))
 
     def test_boundary_analysis_invalid_email_length_below_12_and_above_120(self):
@@ -421,12 +417,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -438,12 +434,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -455,12 +451,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+123456789",
         }
         result1 = Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='independent')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -470,12 +466,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='independent')
         self.assertIs(type(result2['customer']), type(self.customer))
 
     def test_boundary_analysis_invalid_phone_length_below_9_and_above_12(self):
@@ -487,12 +483,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -504,12 +500,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -521,12 +517,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result1 = Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='independent')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -536,14 +532,14 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='independent')
         self.assertIs(type(result2['customer']), type(self.customer))
-    
+
     def test_boundary_analysis_invalid_first_name_length_below_1_and_above_50(self):
         data1 = {
             "first_name": "",
@@ -553,12 +549,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -570,12 +566,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -587,12 +583,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result1 = Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='independent')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -602,12 +598,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='independent')
         self.assertIs(type(result2['customer']), type(self.customer))
 
     def test_boundary_analysis_invalid_last_name_length_below_1_and_above_50(self):
@@ -619,12 +615,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -636,15 +632,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
-
 
     def test_valid_email_length_between_12_and_120(self):
         data = {
@@ -654,14 +649,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+            email=data['email'],
+            password="",
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            phone=data['phone'],
+            customer_type='independent')
         self.assertIs(type(result['customer']), type(self.customer))
-
 
     def test_invalid_email_length_below_12_and_above_120(self):
         data1 = {
@@ -672,12 +666,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -689,15 +683,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
-
 
     def test_valid_phone_length_between_9_and_12(self):
         data = {
@@ -707,14 +700,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result = Customer.add_independent_customer_with_student(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='independent')
+            email=data['email'],
+            password="",
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            phone=data['phone'],
+            customer_type='independent')
         self.assertIs(type(result['customer']), type(self.customer))
-
 
     def test_invalid_phone_length_below_9_and_above_12(self):
         data1 = {
@@ -725,12 +717,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -742,12 +734,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -759,12 +751,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result1 = Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='independent')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -774,14 +766,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='independent')
         self.assertIs(type(result2['customer']), type(self.customer))
-
 
     def test_invalid_first_name_length_below_1_and_above_50(self):
         data1 = {
@@ -792,12 +783,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -809,15 +800,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
-
 
     def test_valid_last_name_length_between_1_and_50(self):
         data1 = {
@@ -827,12 +817,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result1 = Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='independent')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -842,14 +832,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='independent')
         self.assertIs(type(result2['customer']), type(self.customer))
-
 
     def test_invalid_last_name_length_below_1_and_above_50(self):
         data1 = {
@@ -860,12 +849,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='independent')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -877,15 +866,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='independent')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
-
 
     def test_add_independent_customer_with_student_valid_with_user(self):
         data2 = {
@@ -895,16 +883,15 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
-        self.assertIs(type(result2['customer'].user),type(User()))
-        self.assertIs(type(result2['student']),type(Student()))
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='independent')
+        self.assertIs(type(result2['customer'].user), type(User()))
+        self.assertIs(type(result2['student']), type(Student()))
         self.assertIs(type(result2['customer']), type(self.customer))
-
 
     def test_add_independent_customer_with_student_invalid_non_string(self):
         data2 = {
@@ -912,18 +899,18 @@ class CustomerModelTestCase(BaseTestCase):
             "last_name": "D",
             "email": "example1@mail.com",
             "phone": "+1234567890"
-        }    
+        }
         # Test implementation
         try:
             result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type="independent1")
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type="independent1")
         except ValueError as e:
-            self.assertEqual(str(e),'invalid customer type')
+            self.assertEqual(str(e), 'invalid customer type')
 
     def test_add_independent_customer_with_student_invalid_empty_string(self):
         data2 = {
@@ -931,18 +918,19 @@ class CustomerModelTestCase(BaseTestCase):
             "last_name": "D",
             "email": "example1@mail.com",
             "phone": "+1234567890"
-        }    
+        }
         # Test implementation
         try:
             result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='')
         except ValueError as e:
-            self.assertEqual(str(e),'invalid customer type')
+            self.assertEqual(str(e), 'invalid customer type')
+
     def test_add_independent_customer_with_student_boundary_valid_with_user(self):
         data2 = {
             "first_name": "John",
@@ -951,13 +939,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='independent')
-        self.assertIs(type(result2['customer'].user),type(User()))
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='independent')
+        self.assertIs(type(result2['customer'].user), type(User()))
         self.assertIs(type(result2['customer']), type(self.customer))
 
     def test_add_independent_customer_with_student_boundary_invalid_with_user1(self):
@@ -966,28 +954,21 @@ class CustomerModelTestCase(BaseTestCase):
             "last_name": "D",
             "email": "example1@mail.com",
             "phone": "+1234567890"
-        }    
+        }
         # Test implementation
         try:
             result2 = Customer.add_independent_customer_with_student(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type=41255)
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type=41255)
         except ValueError as e:
-            self.assertEqual(str(e),'invalid customer type')
-
-
-
-
-
-
-
-
+            self.assertEqual(str(e), 'invalid customer type')
 
     """Tests for add_customer _user"""
+
     def test_valid_add_customer_user_partitions_return_customer_object(self):
         args_for_customer = {
             "email": "example@mail.com",
@@ -997,14 +978,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
 
         result = Customer.add_customer_user(
-        email=args_for_customer['email'],
-        password="",
-        first_name=args_for_customer['first_name'],
-        last_name=args_for_customer['last_name'],
-        phone=args_for_customer['phone'],
-        customer_type='family')
+            email=args_for_customer['email'],
+            password="",
+            first_name=args_for_customer['first_name'],
+            last_name=args_for_customer['last_name'],
+            phone=args_for_customer['phone'],
+            customer_type='family')
         self.assertIs(type(result['customer']), type(self.customer))
-    
+
     def test_valid_add_customer_user_email_returns_customer_object(self):
         data = {
             "first_name": "John",
@@ -1016,31 +997,31 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
             self.assertIs(type(result['customer']), type(self.customer))
         except ValueError:
             self.fail("Expected no exception, but ValueError was raised.")
-        
+
     def test_invalid_add_customer_user_email_length_above_boundary_returns_invalid_email(self):
         data = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "a" * 121 + "@mail.com",
-        "phone": "+1234567890"
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "a" * 121 + "@mail.com",
+            "phone": "+1234567890"
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -1053,12 +1034,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -1071,12 +1052,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -1089,15 +1070,15 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
-        
+
     def test_valid_add_customer_user_phone_returns_customer_object(self):
         data = {
             "first_name": "John",
@@ -1107,12 +1088,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
             self.assertIs(type(result['customer']), type(self.customer))
         except ValueError as e:
             self.fail("Expected no ValueError, but got: {}".format(str(e)))
@@ -1126,12 +1107,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -1144,12 +1125,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
 
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
@@ -1163,15 +1144,15 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
-        
+
     def test_valid_add_customer_user_first_name_returns_customer_object(self):
         data = {
             "first_name": "John",
@@ -1181,12 +1162,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
             self.assertIs(type(result['customer']), type(self.customer))
         except ValueError as e:
             self.fail("Expected no ValueError, but got: {}".format(str(e)))
@@ -1200,12 +1181,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
 
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
@@ -1219,12 +1200,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -1237,15 +1218,15 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
-    
+
     def test_valid_add_customer_user_last_name_returns_customer_object(self):
         data = {
             "first_name": "John",
@@ -1254,12 +1235,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+            email=data['email'],
+            password="",
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            phone=data['phone'],
+            customer_type='family')
         self.assertIs(type(result['customer']), type(self.customer))
 
     def test_invalid_add_customer_user_last_name_nonstring_returns_invalid_last_name(self):
@@ -1271,12 +1252,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -1289,12 +1270,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -1307,31 +1288,29 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+                email=data['email'],
+                password="",
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                phone=data['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
-
-    
     def test_boundary_add_customer_user_analysis_valid_email_length_between_12_and_120(self):
         data1 = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "a" * 12 + "@mail.com",
-        "phone": "+1234567890"
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "a" * 12 + "@mail.com",
+            "phone": "+1234567890"
         }
         result1 = Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='family')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -1341,12 +1320,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='family')
         self.assertIs(type(result2['customer']), type(self.customer))
 
     def test_boundary_add_customer_user_analysis_invalid_email_length_below_12_and_above_120(self):
@@ -1358,12 +1337,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -1375,12 +1354,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -1392,12 +1371,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+123456789",
         }
         result1 = Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='family')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -1407,12 +1386,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='family')
         self.assertIs(type(result2['customer']), type(self.customer))
 
     def test_boundary_add_customer_user_analysis_invalid_phone_length_below_9_and_above_12(self):
@@ -1424,12 +1403,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -1441,12 +1420,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -1458,12 +1437,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result1 = Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='family')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -1473,14 +1452,14 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='family')
         self.assertIs(type(result2['customer']), type(self.customer))
-    
+
     def test_boundary_add_customer_user_analysis_invalid_first_name_length_below_1_and_above_50(self):
         data1 = {
             "first_name": "",
@@ -1490,12 +1469,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -1507,12 +1486,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -1524,12 +1503,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result1 = Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='family')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -1539,12 +1518,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='family')
         self.assertIs(type(result2['customer']), type(self.customer))
 
     def test_boundary_add_customer_user_analysis_invalid_last_name_length_below_1_and_above_50(self):
@@ -1556,12 +1535,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -1573,15 +1552,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
-
 
     def test_valid_add_customer_user_email_length_between_12_and_120(self):
         data = {
@@ -1591,14 +1569,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+            email=data['email'],
+            password="",
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            phone=data['phone'],
+            customer_type='family')
         self.assertIs(type(result['customer']), type(self.customer))
-
 
     def test_invalid_add_customer_user_email_length_below_12_and_above_120(self):
         data1 = {
@@ -1609,12 +1586,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -1626,15 +1603,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
-
 
     def test_valid_add_customer_user_phone_length_between_9_and_12(self):
         data = {
@@ -1644,14 +1620,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result = Customer.add_customer_user(
-        email=data['email'],
-        password="",
-        first_name=data['first_name'],
-        last_name=data['last_name'],
-        phone=data['phone'],
-        customer_type='family')
+            email=data['email'],
+            password="",
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            phone=data['phone'],
+            customer_type='family')
         self.assertIs(type(result['customer']), type(self.customer))
-
 
     def test_invalid_add_customer_user_phone_length_below_9_and_above_12(self):
         data1 = {
@@ -1662,12 +1637,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -1679,12 +1654,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -1696,12 +1671,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result1 = Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='family')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -1711,14 +1686,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='family')
         self.assertIs(type(result2['customer']), type(self.customer))
-
 
     def test_invalid_add_customer_user_first_name_length_below_1_and_above_50(self):
         data1 = {
@@ -1729,12 +1703,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -1746,15 +1720,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
-
 
     def test_valid_add_customer_user_last_name_length_between_1_and_50(self):
         data1 = {
@@ -1764,12 +1737,12 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result1 = Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+            email=data1['email'],
+            password="",
+            first_name=data1['first_name'],
+            last_name=data1['last_name'],
+            phone=data1['phone'],
+            customer_type='family')
         self.assertIs(type(result1['customer']), type(self.customer))
 
         data2 = {
@@ -1779,14 +1752,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='family')
         self.assertIs(type(result2['customer']), type(self.customer))
-
 
     def test_invalid_add_customer_user_last_name_length_below_1_and_above_50(self):
         data1 = {
@@ -1797,12 +1769,12 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data1['email'],
-        password="",
-        first_name=data1['first_name'],
-        last_name=data1['last_name'],
-        phone=data1['phone'],
-        customer_type='family')
+                email=data1['email'],
+                password="",
+                first_name=data1['first_name'],
+                last_name=data1['last_name'],
+                phone=data1['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -1814,15 +1786,14 @@ class CustomerModelTestCase(BaseTestCase):
         }
         try:
             Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='family')
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
-
 
     def test_add_customer_user_valid_with_user(self):
         data2 = {
@@ -1832,15 +1803,14 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
-        self.assertIs(type(result2['customer'].user),type(User()))
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='family')
+        self.assertIs(type(result2['customer'].user), type(User()))
         self.assertIs(type(result2['customer']), type(self.customer))
-
 
     def test_add_customer_user_invalid_non_string(self):
         data2 = {
@@ -1848,18 +1818,18 @@ class CustomerModelTestCase(BaseTestCase):
             "last_name": "D",
             "email": "example1@mail.com",
             "phone": "+1234567890"
-        }    
+        }
         # Test implementation
         try:
             result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type="family1")
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type="family1")
         except ValueError as e:
-            self.assertEqual(str(e),'invalid customer type')
+            self.assertEqual(str(e), 'invalid customer type')
 
     def test_add_customer_user_invalid_empty_string(self):
         data2 = {
@@ -1867,18 +1837,19 @@ class CustomerModelTestCase(BaseTestCase):
             "last_name": "D",
             "email": "example1@mail.com",
             "phone": "+1234567890"
-        }    
+        }
         # Test implementation
         try:
             result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='')
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type='')
         except ValueError as e:
-            self.assertEqual(str(e),'invalid customer type')
+            self.assertEqual(str(e), 'invalid customer type')
+
     def test_add_customer_user_boundary_valid_with_user(self):
         data2 = {
             "first_name": "John",
@@ -1887,13 +1858,13 @@ class CustomerModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type='family')
-        self.assertIs(type(result2['customer'].user),type(User()))
+            email=data2['email'],
+            password="",
+            first_name=data2['first_name'],
+            last_name=data2['last_name'],
+            phone=data2['phone'],
+            customer_type='family')
+        self.assertIs(type(result2['customer'].user), type(User()))
         self.assertIs(type(result2['customer']), type(self.customer))
 
     def test_add_customer_user_boundary_invalid_with_user1(self):
@@ -1902,15 +1873,15 @@ class CustomerModelTestCase(BaseTestCase):
             "last_name": "D",
             "email": "example1@mail.com",
             "phone": "+1234567890"
-        }    
+        }
         # Test implementation
         try:
             result2 = Customer.add_customer_user(
-        email=data2['email'],
-        password="",
-        first_name=data2['first_name'],
-        last_name=data2['last_name'],
-        phone=data2['phone'],
-        customer_type=41255)
+                email=data2['email'],
+                password="",
+                first_name=data2['first_name'],
+                last_name=data2['last_name'],
+                phone=data2['phone'],
+                customer_type=41255)
         except ValueError as e:
-            self.assertEqual(str(e),'invalid customer type')
+            self.assertEqual(str(e), 'invalid customer type')

@@ -58,8 +58,8 @@ class TeacherSchema(ma.SQLAlchemySchema):
     programs = fields.List(fields.Nested(ProgramsSchema()), dump_only=True)
     grade_average = ma.Float(dump_only=True)
     payroll_id = ma.String(dump_only=True, required=False)
-    referred=ma.String(dump_only=True, required=False)
-    referrals=fields.List(fields.Nested(
+    referred = ma.String(dump_only=True, required=False)
+    referrals = fields.List(fields.Nested(
         ReferralSchema()), dump_only=True)
     higher_education_programmes = fields.List(fields.Nested(
         HigherEducationProgrammeSchema()), dump_only=True)
@@ -72,8 +72,9 @@ class TeacherSchema(ma.SQLAlchemySchema):
     birthday = ma.DateTime(dump_only=True)
     updated_on_tw_at = ma.DateTime(dump_only=True)
     created_on_tw_at = ma.DateTime(dump_only=True)
-    created_at= ma.DateTime(dump_only=True)
-    last_updated= ma.DateTime(dump_only=True)
+    created_at = ma.DateTime(dump_only=True)
+    last_updated = ma.DateTime(dump_only=True)
+
 
 class FilterTeacherShema(TeacherSchema):
     class Meta:
@@ -114,8 +115,9 @@ class FilterTeacherShema(TeacherSchema):
     program = ma.Integer(required=False, description='',)
     updated_on_tw_at = ma.DateTime(dump_only=True)
     created_on_tw_at = ma.DateTime(dump_only=True)
-    created_at= ma.DateTime(dump_only=True)
-    last_updated= ma.DateTime(dump_only=True)
+    created_at = ma.DateTime(dump_only=True)
+    last_updated = ma.DateTime(dump_only=True)
+
 
 class AddStudentToTeacher(ma.SQLAlchemySchema):
     class Meta:
@@ -123,7 +125,7 @@ class AddStudentToTeacher(ma.SQLAlchemySchema):
         ordered = True
 
     # Required:
-    student_id = fields.List(fields.Integer(required=True),required=True)
+    student_id = fields.List(fields.Integer(required=True), required=True)
     teacher_email = ma.String(required=True)
 
     # Dump only:
@@ -135,9 +137,10 @@ class AddStudentToTeacher(ma.SQLAlchemySchema):
     created_at = ma.DateTime(dump_only=True)
     last_updated = ma.DateTime(dump_only=True)
     last_login = ma.DateTime(dump_only=True)
-    customer_id=ma.String(dump_only=True)
-    created_at= ma.DateTime(dump_only=True)
-    last_updated= ma.DateTime(dump_only=True)
+    customer_id = ma.String(dump_only=True)
+    created_at = ma.DateTime(dump_only=True)
+    last_updated = ma.DateTime(dump_only=True)
+
     @validates('student_id')
     def validate_student_id(self, value):
         for i in value:
@@ -163,7 +166,8 @@ class UpdateTeacherSchema(ma.SQLAlchemySchema):
         required=False, description='Put the first_name here')
     last_name = ma.String(required=False, description='Put the last_name here')
     phone = ma.String()
-    email = ma.String(required=False, description='Email',validate=validate.Email())
+    email = ma.String(required=False, description='Email',
+                      validate=validate.Email())
     languages = fields.List(fields.Nested(
         LanguageSchema(),), dump_only=True, required=False)
     qualifications = fields.List(fields.Nested(
@@ -175,8 +179,8 @@ class UpdateTeacherSchema(ma.SQLAlchemySchema):
     programs = fields.List(fields.Nested(ProgramsSchema()), dump_only=True)
     higher_education_programmes = fields.List(fields.Nested(
         HigherEducationProgrammeSchema()), dump_only=True)
-    referred=ma.String(dump_only=True, required=False)
-    referrals=fields.List(fields.Nested(
+    referred = ma.String(dump_only=True, required=False)
+    referrals = fields.List(fields.Nested(
         ReferralSchema()), dump_only=True)
     higher_education_institutions = fields.List(fields.Nested(
         HigherEducationInstitutionSchema()), dump_only=True)
@@ -219,8 +223,8 @@ class UpdateTeacherSchema(ma.SQLAlchemySchema):
     finished_highschool = ma.Boolean()
     age = ma.Integer()
     birthday = ma.DateTime()
-    created_at= ma.DateTime(dump_only=True)
-    last_updated= ma.DateTime(dump_only=True)
+    created_at = ma.DateTime(dump_only=True)
+    last_updated = ma.DateTime(dump_only=True)
     updated_on_tw_at = ma.DateTime(dump_only=True)
     created_on_tw_at = ma.DateTime(dump_only=True)
 
@@ -267,4 +271,3 @@ class CalendarTeacher(ma.Schema):
     email = ma.String(dump_only=True)
     id = ma.Integer(dump_only=True)
     status = ma.String(dump_only=True)
-    

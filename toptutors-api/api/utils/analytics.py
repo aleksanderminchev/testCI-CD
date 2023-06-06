@@ -7,4 +7,4 @@ class analytics:
 
     @staticmethod
     def first_entry():
-        
+        pass

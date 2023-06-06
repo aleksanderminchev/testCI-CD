@@ -41,12 +41,11 @@ class StripeCustomer:
         # update the objects stripe_id
         self.stripe_customer_id = customer_id
         return customer_id
-    
+
     @staticmethod
     def get_email_by_id(customer_id):
         customer = stripe.Customer.retrieve(customer_id)
         return customer.email
-
 
     @staticmethod
     def get_total_package_price(package, total_hours):

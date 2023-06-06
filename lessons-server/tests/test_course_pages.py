@@ -1,7 +1,6 @@
 from tests.base_test_case import BaseTestCase
 
 
-
 class CourseModelTests(BaseTestCase):
     def test_create_course(self):
         # Create a user with required information:
@@ -45,6 +44,3 @@ class CourseModelTests(BaseTestCase):
             "course_type": "Generel undervisning (Privatundervisning og lektiehjælp)",
             "subjects": "Matematik B"
         })
-
-
-

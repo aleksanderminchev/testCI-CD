@@ -7,7 +7,7 @@ from marshmallow import validate, validates, validates_schema, \
 from api import ma
 from api.auth import token_auth
 from models.user import User
-from models.teacher import Teacher,Student
+from models.teacher import Teacher, Student
 from models.customer import Customer
 
 # Student Schemas
@@ -35,7 +35,8 @@ class CreateStudentSchema(ma.SQLAlchemySchema):
         required=True, description="The phone number of the student. Must include country code.",)
     teachers = fields.List(fields.String, dump_only=True, required=False)
     # subject_list=fields.List(fields.String(required=True))
-    customer_id=ma.String(dump_only=True)
+    customer_id = ma.String(dump_only=True)
+
     @validates('id')
     def validate_id(self, value):
         if Customer.query.get(value) is None:
@@ -75,7 +76,7 @@ class CreateStudentYoungSchema(ma.SQLAlchemySchema):
     last_name = ma.String(required=True)
     phone = ma.String(dump_only=True)
     teachers = fields.List(fields.String, dump_only=True, required=False)
-    customer_id=ma.String(dump_only=True)
+    customer_id = ma.String(dump_only=True)
     # subject_list=fields.List(fields.String(required=True))
 
     @validates('id')
@@ -116,7 +117,7 @@ class StudentSchema(ma.SQLAlchemySchema):
     created_at = ma.Date(dump_only=True)
     last_updated_at = ma.Date(dump_only=True)
     email_lesson_notes = ma.Boolean(dump_only=True)
-    customer_id=ma.String(dump_only=True)
+    customer_id = ma.String(dump_only=True)
     status = ma.String(dump_only=True, validate=validate.OneOf(
         ["active", "inactive"]))
     student_type = ma.String(dump_only=True, validate=validate.OneOf(
@@ -158,7 +159,7 @@ class UpdateStudentSchema(ma.SQLAlchemySchema):
         dump_only=True,
         validate=validate.OneOf(["active", "inactive"])
     )
-    customer_id=ma.String(dump_only=True)
+    customer_id = ma.String(dump_only=True)
     student_type = ma.String(dump_only=True, validate=validate.OneOf(
         ["independent", "child"]))
     created_at = ma.DateTime(dump_only=True)
@@ -204,7 +205,8 @@ class AddTeacherToStudent(ma.SQLAlchemySchema):
         ordered = True
 
     # Required:
-    teacher_id = fields.List(fields.Integer(load_only=True,required=True),required=True)
+    teacher_id = fields.List(fields.Integer(
+        load_only=True, required=True), required=True)
     student_email = ma.String(required=True)
 
     # Dump only:

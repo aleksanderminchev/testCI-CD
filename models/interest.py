@@ -7,7 +7,7 @@ teachers_interests = db.Table('teacher_interests',
                               db.Column('interest_id', db.Integer, db.ForeignKey(
                                   'interest.uid'), primary_key=True, index=True),
                               db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id'),
-                               primary_key=True, index=True))
+                                        primary_key=True, index=True))
 
 
 class Interest(Updateable, db.Model):  # type:ignore
@@ -23,10 +23,9 @@ class Interest(Updateable, db.Model):  # type:ignore
             "name": self.name,
             "id": self.uid
         }
-        
+
     def to_tutormap(self):
         return self.name
-        
 
     @staticmethod
     def get_interest_by_id(id):

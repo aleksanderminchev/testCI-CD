@@ -101,7 +101,7 @@ class Customer(Updateable, db.Model):  # type:ignore
     def get_customer_by_email(email):
         customer = User.query.filter_by(email=email).first()
         return customer
-            
+
     @staticmethod
     def update_customer(id, **kwargs):
         """Updates a Customer and their related User Account
@@ -183,8 +183,8 @@ class Customer(Updateable, db.Model):  # type:ignore
 
     @staticmethod
     def add_independent_customer_with_student(email: str, password: str,
-                                first_name: str, last_name: str, phone: str,
-                                student_data: dict = {}, **kwargs):
+                                              first_name: str, last_name: str, phone: str,
+                                              student_data: dict = {}, **kwargs):
         """
             Adds an independent customer with a user account and a student.
             Use Kwargs to add any customer specific data.

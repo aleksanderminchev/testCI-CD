@@ -41,16 +41,16 @@ class StripeCustomer:
         # update the objects stripe_id
         self.stripe_customer_id = customer_id
         return customer_id
-    
+
     @staticmethod
     def get_email_by_id(customer_id):
         customer = stripe.Customer.retrieve(customer_id)
         return customer.email
 
-
     @staticmethod
     def get_total_package_price(package, total_hours):
-        """ Calculates the total price for the package by taking the price per hour (from in the package string) times total hours."""
+        """ Calculates the total price for the package 
+        by taking the price per hour (from in the package string) times total hours."""
         price = int(package[-3:]) * total_hours
 
         return price
@@ -119,7 +119,7 @@ def get_order_info(order):
 
     if order.discount:
         stripe_discount = StripeCustomer.get_discount(order.discount)
-        discount_percentage = 100.0-(stripe_discount*100)
+        discount_percentage = 100.0 - (stripe_discount * 100)
         unit_discount = unit_price - (unit_price * stripe_discount)
         # Round the unit prices & format it.
         unit_discount = round(unit_discount, 2)

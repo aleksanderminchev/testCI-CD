@@ -112,7 +112,7 @@ class Student(Updateable, db.Model):  # type:ignore
             phone = self.user.phone
         else:
             phone = self.customer.user.phone
-        
+
         return {
             "status": self.status.value,
             "gender": self.gender.value,
@@ -129,13 +129,13 @@ class Student(Updateable, db.Model):  # type:ignore
             'customer_id': self.customer_id,
             'id': self.id
         }
-        
+
     def to_calendar(self):
         if self.user:
             phone = self.user.phone
         else:
             phone = self.customer.user.phone
-        
+
         return {
             "status": self.status.value,
             "student_type": self.student_type.value,
@@ -147,6 +147,7 @@ class Student(Updateable, db.Model):  # type:ignore
             'customer_id': self.customer_id,
             'id': self.id
         }
+
     @staticmethod
     def add_new_student(id=str, typeOfStudent=None, **kwargs):
         """ Adds a new student to the DB. """
@@ -181,6 +182,7 @@ class Student(Updateable, db.Model):  # type:ignore
             return student
         else:
             raise ValueError('invalid student type')
+
     @staticmethod
     def delete_student(id=str):
         """Deletes a student from the DB"""

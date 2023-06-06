@@ -20,6 +20,8 @@ from models.high_school import HighSchool
 from models.qualification import Qualification
 from models.interest import Interest
 from models.language import Language
+
+
 class UserModelView(ModelView):
     """How the User table is viewed on the admin page."""
 
@@ -264,7 +266,8 @@ class InterestModelView(ModelView):
     def inaccessible_callback(self, name, **kwargs):
         # redirect to index page if user doesn't have access
         return redirect(url_for("main.index", next=request.url))
-        
+
+
 class ReferralModelView(ModelView):
     page_size = 100
     column_display_pk = True
@@ -285,6 +288,7 @@ class ReferralModelView(ModelView):
     def inaccessible_callback(self, name, **kwargs):
         # redirect to index page if user doesn't have access
         return redirect(url_for("main.index", next=request.url))
+
 
 class CustomerModelView(ModelView):
     """How the User table is viewed on the admin page."""
@@ -461,7 +465,7 @@ class TutorMapView(BaseView):
 
         tutor_list = []
         subject_list = []
-        #lessons_list = []
+        # lessons_list = []
         interests_list = []
         uni_list = []
         gym_list = []
@@ -476,14 +480,15 @@ class TutorMapView(BaseView):
         subject_list = [i.to_tutormap() for i in Subjects.query.all()]
         # subject_list.sort()
 
-
-        uni_list = [i.to_tutormap() for i in HigherEducationProgramme.query.all()]
+        uni_list = [i.to_tutormap()
+                    for i in HigherEducationProgramme.query.all()]
         # uni_list.sort()
-        qualification_list = [i.to_tutormap() for i in Qualification.query.all()]
+        qualification_list = [i.to_tutormap()
+                              for i in Qualification.query.all()]
         # qualification_list.sort()
         # gym_list.sort()
 
-        languages_list = [i.to_tutormap() for i in Language.query.all()]      
+        languages_list = [i.to_tutormap() for i in Language.query.all()]
         interests_list = [i.to_tutormap() for i in Interest.query.all()]
 
         return self.render(
@@ -526,11 +531,12 @@ class AnalyticsView(BaseView):
 
         booking_data = Order.booking_sum()
         circle_diagrams = Order.circle_diagrams()
-        
+
         return self.render(
             "analytics.html",
             booking_data=booking_data, formatted_data=circle_diagrams
         )
+
     def is_accessible(self):
         if current_user.is_authenticated:
             return current_user.is_admin
@@ -547,7 +553,7 @@ class RegisterNewAdmin(BaseView):
 
     def is_accessible(self):
         if current_user.is_authenticated:
-            return current_user.is_admin 
+            return current_user.is_admin
 
     def inaccessible_callback(self, name, **kwargs):
         # redirect to index page if user doesn't have access

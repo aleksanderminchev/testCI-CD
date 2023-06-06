@@ -13,7 +13,8 @@ def show_order(uid):
     """Show order overview for order page"""
     try:
         order = Order.get_by_hashed_id(uid)
-        unit_fee_extra_student, unit_price, unit_discount, discount_percentage, per_rate_price, monthly_fee_extra_student, price_per_month = get_order_info(order)
+        unit_fee_extra_student, unit_price, unit_discount, discount_percentage, per_rate_price, monthly_fee_extra_student, price_per_month = get_order_info(
+            order)
 
         return render_template(
             "order/order.html",
@@ -42,7 +43,8 @@ def pay_order(uid):
             # Check if it's a one time payment or a reccuring subscription
             if "single-" in order.package:
                 mode = "payment"
-                line_items = [{"price": order.package, "quantity": order.total_hours}]
+                line_items = [{"price": order.package,
+                               "quantity": order.total_hours}]
             elif order.package[:-4] == "1-months":
                 mode = "payment"
                 line_items = [{"price": order.package, "quantity": 1}]
@@ -64,7 +66,8 @@ def pay_order(uid):
             # If there are extra students we add the charge.
             if order.extra_student is not None:
                 # we calculate the extra student fee and time it with 100, because that's how Stripe wants it.
-                extra_student_fee = round(order.total_hours * 50 * order.extra_student / order.installments, 2) * 100
+                extra_student_fee = round(
+                    order.total_hours * 50 * order.extra_student / order.installments, 2) * 100
                 # Based on the student fee we create a new stripe object.
                 new_extra_student_fee = stripe.Price.create(
                     unit_amount=int(extra_student_fee),
@@ -72,7 +75,8 @@ def pay_order(uid):
                     product="prod_MH2jgQTbIKPMUO",
                     recurring={"interval": "month"},
                 )
-                line_items.append({"price": new_extra_student_fee["id"], "quantity": 1})
+                line_items.append(
+                    {"price": new_extra_student_fee["id"], "quantity": 1})
 
             checkout_session = stripe.checkout.Session.create(
                 success_url=f"https://localhost:5000/order/confirmation/{uid}",
@@ -80,8 +84,8 @@ def pay_order(uid):
                 customer=order.stripe_customer_id,
                 line_items=line_items,
                 metadata={
-                        "uid": order.hashed_id,
-                    },
+                    "uid": order.hashed_id,
+                },
                 billing_address_collection="required",
                 mode=mode,
                 discounts=[{

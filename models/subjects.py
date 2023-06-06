@@ -9,7 +9,7 @@ class Subjects(Updateable, db.Model):  # type:ignore
     __tablename__ = "subjects"
     uid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    
+
     def to_dict(self):
         return {
             "name": self.name,
@@ -18,7 +18,7 @@ class Subjects(Updateable, db.Model):  # type:ignore
 
     def to_tutormap(self):
         return self.name
-        
+
     @staticmethod
     def add(item):
         subject = Subjects()

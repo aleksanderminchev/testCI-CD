@@ -13,9 +13,9 @@ from sqlalchemy.orm import joinedload
 student_lessons = db.Table('student_lessons',
                            db.Column('student_id', db.Integer, db.ForeignKey(
                                'student.id'), primary_key=True, index=True),
-                            db.Column('lesson_id', db.Integer,
-                            db.ForeignKey('lesson.id'), primary_key=True, index=True),
-                            extend_existing=True)
+                           db.Column('lesson_id', db.Integer,
+                                     db.ForeignKey('lesson.id'), primary_key=True, index=True),
+                           extend_existing=True)
 
 
 class LessonStatus(enum.Enum):
@@ -33,6 +33,7 @@ class LessonStatus(enum.Enum):
     BADCANCELLATIONTEACHER = "bad cancellation teacher"
     GOODCANCELLATION = 'good cancellation'
     EXPIRED = 'expired'
+
 
 class Lesson(Updateable, db.Model):
     """
@@ -97,7 +98,7 @@ class Lesson(Updateable, db.Model):
         teacher_data = self.lessons_teacher
         first_name_student = getattr(student_data, 'first_name', "")
         last_name_student = getattr(student_data, 'last_name', "")
-        teacher_user = getattr(teacher_data, 'user',"")
+        teacher_user = getattr(teacher_data, 'user', "")
         first_name_teacher = getattr(teacher_user, 'first_name', "")
         last_name_teacher = getattr(teacher_user, 'last_name', "")
         studentName = f'{first_name_student} {last_name_student}'
@@ -105,7 +106,7 @@ class Lesson(Updateable, db.Model):
         return {
             "id": self.id,
             "title": self.title,
-            "color": self.get_colors.get(self.status.value,""),
+            "color": self.get_colors.get(self.status.value, ""),
             "completionNotes": self.completion_notes,
             "studentName": studentName,
             "teacherName": teacherName,
@@ -122,7 +123,8 @@ class Lesson(Updateable, db.Model):
     def to_dict(self):
         """ Return a dictionary representation of the Lesson object, 
         including teacher and student information."""
-        student_data = self.lessons_students[0].to_calendar() if self.lessons_students else {}
+        student_data = self.lessons_students[0].to_calendar(
+        ) if self.lessons_students else {}
         return {
             "id": self.id,
             "title": self.title,
@@ -161,18 +163,18 @@ class Lesson(Updateable, db.Model):
                 end_date_time = datetime(
                     end_date.year, end_date.month, end_date.day, 1)
                 lessons = Lesson.query.options(joinedload(Lesson.lessons_students),
-                    joinedload(Lesson.lessons_teacher)).\
+                                               joinedload(Lesson.lessons_teacher)).\
                     join(Lesson.lessons_students).\
                     join(User).\
                     filter(User.uid == Student.user_id).\
                     filter_by(uid=student_id).\
-                    filter(Lesson.from_time.between(start_date_time, end_date_time),Lesson.status != LessonStatus.EXPIRED).\
+                    filter(Lesson.from_time.between(start_date_time, end_date_time), Lesson.status != LessonStatus.EXPIRED).\
                     order_by(Lesson.from_time.asc()).all()
                 return lessons or []
             else:
                 student_lessons = Lesson.query.join(Lesson.lessons_students).\
                     join(User).\
-                    filter(User.uid == Student.user_id,Lesson.status != LessonStatus.EXPIRED).\
+                    filter(User.uid == Student.user_id, Lesson.status != LessonStatus.EXPIRED).\
                     filter_by(uid=student_id).\
                     order_by(Lesson.from_time.asc()).all()
                 return student_lessons or []
@@ -190,10 +192,10 @@ class Lesson(Updateable, db.Model):
                 end_date.year, end_date.month, end_date.day, 1)
             lessons = Lesson.query.\
                 options(joinedload(Lesson.lessons_students),
-                joinedload(Lesson.lessons_teacher)).\
+                        joinedload(Lesson.lessons_teacher)).\
                 filter_by(teacher_id=user.teacher.id).\
                 filter(Lesson.from_time.between(start_date_time, end_date_time),
-                Lesson.status != LessonStatus.EXPIRED).\
+                       Lesson.status != LessonStatus.EXPIRED).\
                 order_by(Lesson.from_time.asc()).all()
             return lessons
         else:
@@ -216,14 +218,14 @@ class Lesson(Updateable, db.Model):
                 end_date.year, end_date.month, end_date.day, 1)
             lessons = Lesson.query.\
                 options(joinedload(Lesson.lessons_students),
-                joinedload(Lesson.lessons_teacher)).\
+                        joinedload(Lesson.lessons_teacher)).\
                 join(Lesson.lessons_students).\
                 join(Customer).\
                 join(User).\
                 filter(User.uid == Customer.user_id).\
                 filter_by(uid=customer_id).\
-                filter(Lesson.from_time.between(start_date_time, end_date_time), 
-                Lesson.status != LessonStatus.EXPIRED).\
+                filter(Lesson.from_time.between(start_date_time, end_date_time),
+                       Lesson.status != LessonStatus.EXPIRED).\
                 order_by(Lesson.from_time.asc()).all()
             return lessons
         else:
@@ -231,7 +233,7 @@ class Lesson(Updateable, db.Model):
                 join(Customer).\
                 join(User).\
                 filter(User.uid == Customer.user_id,
-                Lesson.status != LessonStatus.EXPIRED).\
+                       Lesson.status != LessonStatus.EXPIRED).\
                 filter_by(uid=customer_id).\
                 order_by(Lesson.from_time.asc()).all()
             return lessons

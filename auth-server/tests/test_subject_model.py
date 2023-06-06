@@ -11,7 +11,7 @@ class SubjectModelTestCase(BaseTestCase):
         subject = Subjects(name="Mathematics")
         db.session.add(subject)
         db.session.commit()
-        subject_added = subject.add_subject_to_teacher(subject.uid,teacher)
+        subject_added = subject.add_subject_to_teacher(subject.uid, teacher)
 
         assert subject in teacher.subjects
         assert len(teacher.subjects) != 0

@@ -8,7 +8,7 @@ teachers_qualifications = db.Table('teacher_qualifications',
                                    db.Column('qualification_id', db.Integer, db.ForeignKey(
                                        'qualification.uid'), primary_key=True, index=True),
                                    db.Column('teacher_id', db.Integer, db.ForeignKey('teacher.id'),
-                                    primary_key=True, index=True))
+                                             primary_key=True, index=True))
 
 
 class Qualification(Updateable, db.Model):  # type:ignore
@@ -24,9 +24,10 @@ class Qualification(Updateable, db.Model):  # type:ignore
             "name": self.name,
             "id": self.uid
         }
+
     def to_tutormap(self):
         return self.name
-        
+
     @staticmethod
     def get_qualification_by_id(id):
         return Qualification.query.get(id)

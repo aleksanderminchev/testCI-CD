@@ -15,7 +15,7 @@ class HigherEducationProgramme(Updateable, db.Model):  # type:ignore
     name = db.Column(db.String, nullable=False)
     teachers = db.relationship("Teacher", secondary=teachers_programmes, primaryjoin=(
         teachers_programmes.c.higher_education_programme_id == id), backref='higher_education_programmes')
-    
+
     def to_tutormap(self):
         return self.name
 

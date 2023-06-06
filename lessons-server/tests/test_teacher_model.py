@@ -13,7 +13,7 @@ class TeacherModelTestCase(BaseTestCase):
     def setUp(self):
         pass
         # user_teacher = User(email='teacher@test.com', password='foo')
-        self.teacher=Teacher()
+        self.teacher = Teacher()
         # self.user_teacher = user_teacher
         # db.session.add(self.user_teacher)
         # db.session.commit()
@@ -147,8 +147,8 @@ class TeacherModelTestCase(BaseTestCase):
             "last_name": "Teacher",
             "phone": "+1234567890",
             "wage_per_hour": 1000,
-            "payroll_id":"010121-1234",
-            "photo":"",
+            "payroll_id": "010121-1234",
+            "photo": "",
             "bio": "ever",
             "age": 21,
             "birthday": datetime.datetime.now(),
@@ -158,7 +158,7 @@ class TeacherModelTestCase(BaseTestCase):
 
         result = Teacher.add_new_teacher(**args_for_teacher)
         self.assertIs(type(result), type(self.teacher))
-    
+
     def test_invalid_wage_negative_number_returns_invalid_wage(self):
         args_for_teacher = {
             "email": "example@mail.com",
@@ -166,8 +166,8 @@ class TeacherModelTestCase(BaseTestCase):
             "last_name": "Teacher",
             "phone": "+1234567890",
             "wage_per_hour": -500,
-            "payroll_id":"010121-1234",
-            "photo":"",
+            "payroll_id": "010121-1234",
+            "photo": "",
             "bio": "ever",
             "age": 21,
             "birthday": datetime.datetime.now(),
@@ -179,7 +179,7 @@ class TeacherModelTestCase(BaseTestCase):
         except ValueError as e:
             print(e)
             self.assertEqual(str(e), "invalid wage")
-    
+
     def test_invalid_wage_string_returns_invalid_wage(self):
         args_for_teacher = {
             "email": "example@mail.com",
@@ -199,7 +199,7 @@ class TeacherModelTestCase(BaseTestCase):
             result = Teacher.add_new_teacher(**args_for_teacher)
         except ValueError as e:
             self.assertEqual(str(e), "invalid wage")
-        
+
     def test_valid_wage_zero_returns_teacher_object(self):
         data = {
             "first_name": "John",
@@ -244,15 +244,15 @@ class TeacherModelTestCase(BaseTestCase):
             self.assertIs(type(result), type(self.teacher))
         except ValueError:
             self.fail("Expected no exception, but ValueError was raised.")
-        
+
     def test_invalid_email_length_above_boundary_returns_invalid_email(self):
         data = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "a" * 121 + "@mail.com",
-        "phone": "+1234567890",
-        "payroll_id": "010121-1234",
-        "wage_per_hour": 1000
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "a" * 121 + "@mail.com",
+            "phone": "+1234567890",
+            "payroll_id": "010121-1234",
+            "wage_per_hour": 1000
         }
         try:
             result = Teacher.add_new_teacher(**data)
@@ -300,7 +300,7 @@ class TeacherModelTestCase(BaseTestCase):
             result = Teacher.add_new_teacher(**data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
-        
+
     def test_valid_phone_returns_teacher_object(self):
         data = {
             "first_name": "John",
@@ -358,7 +358,7 @@ class TeacherModelTestCase(BaseTestCase):
             result = Teacher.add_new_teacher(**data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
-        
+
     def test_valid_first_name_returns_teacher_object(self):
         data = {
             "first_name": "John",
@@ -416,7 +416,7 @@ class TeacherModelTestCase(BaseTestCase):
             result = Teacher.add_new_teacher(**data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
-    
+
     def test_valid_last_name_returns_teacher_object(self):
         data = {
             "first_name": "John",
@@ -538,15 +538,15 @@ class TeacherModelTestCase(BaseTestCase):
             Teacher.add_new_teacher(**data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid cpr")
-    
+
     def test_boundary_analysis_valid_email_length_between_12_and_120(self):
         data1 = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "a" * 12 + "@mail.com",
-        "phone": "+1234567890",
-        "payroll_id": "010121-1234",
-        "wage_per_hour": 1000
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "a" * 12 + "@mail.com",
+            "phone": "+1234567890",
+            "payroll_id": "010121-1234",
+            "wage_per_hour": 1000
         }
         result1 = Teacher.add_new_teacher(**data1)
         self.assertIs(type(result1), type(self.teacher))
@@ -661,7 +661,7 @@ class TeacherModelTestCase(BaseTestCase):
         }
         result2 = Teacher.add_new_teacher(**data2)
         self.assertIs(type(result2), type(self.teacher))
-    
+
     def test_boundary_analysis_invalid_first_name_length_below_1_and_above_50(self):
         data1 = {
             "first_name": "",
@@ -778,7 +778,6 @@ class TeacherModelTestCase(BaseTestCase):
         except ValueError as e:
             self.assertEqual(str(e), "invalid cpr")
 
-
     def test_valid_email_length_between_12_and_120(self):
         data = {
             "first_name": "John",
@@ -790,7 +789,6 @@ class TeacherModelTestCase(BaseTestCase):
         }
         result = Teacher.add_new_teacher(**data)
         self.assertIs(type(result), type(self.teacher))
-
 
     def test_invalid_email_length_below_12_and_above_120(self):
         data1 = {
@@ -819,7 +817,6 @@ class TeacherModelTestCase(BaseTestCase):
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
-
     def test_valid_phone_length_between_9_and_12(self):
         data = {
             "first_name": "John",
@@ -831,7 +828,6 @@ class TeacherModelTestCase(BaseTestCase):
         }
         result = Teacher.add_new_teacher(**data)
         self.assertIs(type(result), type(self.teacher))
-
 
     def test_invalid_phone_length_below_9_and_above_12(self):
         data1 = {
@@ -883,7 +879,6 @@ class TeacherModelTestCase(BaseTestCase):
         result2 = Teacher.add_new_teacher(**data2)
         self.assertIs(type(result2), type(self.teacher))
 
-
     def test_invalid_first_name_length_below_1_and_above_50(self):
         data1 = {
             "first_name": "",
@@ -911,7 +906,6 @@ class TeacherModelTestCase(BaseTestCase):
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
-
     def test_valid_last_name_length_between_1_and_50(self):
         data1 = {
             "first_name": "John",
@@ -934,7 +928,6 @@ class TeacherModelTestCase(BaseTestCase):
         }
         result2 = Teacher.add_new_teacher(**data2)
         self.assertIs(type(result2), type(self.teacher))
-
 
     def test_invalid_last_name_length_below_1_and_above_50(self):
         data1 = {
@@ -963,7 +956,6 @@ class TeacherModelTestCase(BaseTestCase):
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
-
     def test_valid_payroll_id_length_11(self):
         data = {
             "first_name": "John",
@@ -975,7 +967,6 @@ class TeacherModelTestCase(BaseTestCase):
         }
         result = Teacher.add_new_teacher(**data)
         self.assertIs(type(result), type(self.teacher))
-
 
     def test_invalid_payroll_id_length_below_11_and_above_11(self):
         data1 = {

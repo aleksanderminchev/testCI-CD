@@ -20,7 +20,8 @@ def calculate_tutor_lesson_hours():
     tutor_hours = {}  # key being employee ID and value being the aggregated amount of minutes
     lesson_list = []
 
-    for lesson in lessons_data:  # each item in list of lesson_data contains a dictionary with data of that specific lesson.
+    # each item in list of lesson_data contains a dictionary with data of that specific lesson.
+    for lesson in lessons_data:
         # make sure that item is a dictionary.
         if isinstance(lesson, dict):
             lesson_status = lesson["status"]
@@ -29,7 +30,8 @@ def calculate_tutor_lesson_hours():
                 lesson_duration = int(lesson["duration_minutes"])
                 if tutor_id in tutor_hours:  # if tutor already exists add the duration of this lesson too
                     # print(tutor_hours[tutor_id], "Tutor findes allerede")
-                    tutor_hours[tutor_id] = tutor_hours[tutor_id] + lesson_duration
+                    tutor_hours[tutor_id] = tutor_hours[tutor_id] + \
+                        lesson_duration
                 else:  # else if tutor does not exist add this tutor to the dictionary.
                     tutor_hours[tutor_id] = lesson_duration
                     # print(tutor_hours[tutor_id], "Tutor findes ikke")
@@ -38,7 +40,8 @@ def calculate_tutor_lesson_hours():
 
 def sort_and_dump(tutor_hours, lesson_list):
     """Sort the dictionary, and dump it in a pickle"""
-    sorted(tutor_hours, key=tutor_hours.get, reverse=True)  # Sort the list, by amount of hours
+    sorted(tutor_hours, key=tutor_hours.get,
+           reverse=True)  # Sort the list, by amount of hours
     for tutor_id, hours in tutor_hours.items():  # Loop through every element in dict
         data = {
             "id": tutor_id,

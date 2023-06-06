@@ -463,6 +463,7 @@ def handle_stripe_webhook():
         return jsonify(error=500, text=str("ERROR")), 500
     return jsonify(success=True)
 
+
 def handle_payment_failed(event):
     # Handle the logic for an expired card charge failure event
 
@@ -473,9 +474,9 @@ def handle_payment_failed(event):
     # Perform the necessary actions
     send_notification_to_customer(charge_id, customer_id)
 
+
 def send_notification_to_customer(charge_id, customer_id):
     # Replace with your notification logic
     customer_email = StripeCustomer.get_email_by_id(customer_id)
     print(customer_email)
-    #send_email([email], "Din TopTutors Ordre er godkendt!", html) # TODO 
-
+    # send_email([email], "Din TopTutors Ordre er godkendt!", html) # TODO

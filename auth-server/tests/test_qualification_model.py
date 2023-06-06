@@ -12,7 +12,8 @@ class QualificationModelTestCase(BaseTestCase):
             name="Teaching to students with ADHD")
         db.session.add(qualification)
         db.session.commit()
-        qualification_added = qualification.add_qualification_to_teacher( teacher, qualification.uid)
+        qualification_added = qualification.add_qualification_to_teacher(
+            teacher, qualification.uid)
 
         assert qualification in teacher.qualifications
         assert len(teacher.qualifications) != 0

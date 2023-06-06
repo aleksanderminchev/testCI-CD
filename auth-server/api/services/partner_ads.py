@@ -14,7 +14,8 @@ def add_lead(paid, pacid, variable_id):
 
     program_id = "9554"
 
-    result = requests.get(f"https://www.partner-ads.com/dk/leadtracks2s.php?programid={program_id}&type=lead&partnerid={paid}&pacid={pacid}&uiv={variable_id}")
+    result = requests.get(
+        f"https://www.partner-ads.com/dk/leadtracks2s.php?programid={program_id}&type=lead&partnerid={paid}&pacid={pacid}&uiv={variable_id}")
     return result
 
 
@@ -22,5 +23,6 @@ def add_lead_adservice(asclid):
     """
     Adds lead to adservice.com
     """
-    result = requests.get(f"https://www.aservice.cloud/trc/mastertag/conv?asclid={asclid}")
+    result = requests.get(
+        f"https://www.aservice.cloud/trc/mastertag/conv?asclid={asclid}")
     return result

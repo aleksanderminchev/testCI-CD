@@ -9,11 +9,10 @@ from models.customer import Customer
 
 class StudentModelTestCase(BaseTestCase):
 
-
     def setUp(self):
         pass
         # user_teacher = User(email='teacher@test.com', password='foo')
-        self.student=Student()
+        self.student = Student()
         # self.user_teacher = user_teacher
         # db.session.add(self.user_teacher)
         # db.session.commit()
@@ -63,9 +62,10 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
 
-        result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**args_for_student)
+        result = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **args_for_student)
         self.assertIs(type(result), type(self.student))
-    
+
     def test_valid_email_returns_student_object(self):
         data = {
             "first_name": "John",
@@ -76,20 +76,22 @@ class StudentModelTestCase(BaseTestCase):
             "wage_per_hour": 1000
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
             self.assertIs(type(result), type(self.student))
         except ValueError:
             self.fail("Expected no exception, but ValueError was raised.")
-        
+
     def test_invalid_email_length_above_boundary_returns_invalid_email(self):
         data = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "a" * 121 + "@mail.com",
-        "phone": "+1234567890"
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "a" * 121 + "@mail.com",
+            "phone": "+1234567890"
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -101,7 +103,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -113,7 +116,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -125,10 +129,11 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
-        
+
     def test_valid_phone_returns_student_object(self):
         data = {
             "first_name": "John",
@@ -137,7 +142,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
             self.assertIs(type(result), type(self.student))
         except ValueError as e:
             self.fail("Expected no ValueError, but got: {}".format(str(e)))
@@ -150,7 +156,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": 12345,
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -162,7 +169,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": ""
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
 
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
@@ -175,10 +183,11 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+12345678901",
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
-        
+
     def test_valid_first_name_returns_student_object(self):
         data = {
             "first_name": "John",
@@ -187,7 +196,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
             self.assertIs(type(result), type(self.student))
         except ValueError as e:
             self.fail("Expected no ValueError, but got: {}".format(str(e)))
@@ -200,7 +210,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
 
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
@@ -213,7 +224,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -225,10 +237,11 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            result = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
-    
+
     def test_valid_last_name_returns_student_object(self):
         data = {
             "first_name": "John",
@@ -236,7 +249,8 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example@mail.com",
             "phone": "+1234567890",
         }
-        result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+        result = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data)
         self.assertIs(type(result), type(self.student))
 
     def test_invalid_last_name_nonstring_returns_invalid_last_name(self):
@@ -247,7 +261,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -259,7 +274,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -271,20 +287,20 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data)
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
-
-    
     def test_boundary_analysis_valid_email_length_between_12_and_120(self):
         data1 = {
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "a" * 12 + "@mail.com",
-        "phone": "+1234567890"
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "a" * 12 + "@mail.com",
+            "phone": "+1234567890"
         }
-        result1 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+        result1 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data1)
         self.assertIs(type(result1), type(self.student))
 
         data2 = {
@@ -293,7 +309,8 @@ class StudentModelTestCase(BaseTestCase):
             "email": "a" * 120 + "@mail.com",
             "phone": "+1234567890"
         }
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data2)
         self.assertIs(type(result2), type(self.student))
 
     def test_boundary_analysis_invalid_email_length_below_12_and_above_120(self):
@@ -304,7 +321,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data1)
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -315,7 +333,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data2)
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -326,7 +345,8 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example@mail.com",
             "phone": "+123456789",
         }
-        result1 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+        result1 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data1)
         self.assertIs(type(result1), type(self.student))
 
         data2 = {
@@ -335,7 +355,8 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example1@mail.com",
             "phone": "+1234567890",
         }
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data2)
         self.assertIs(type(result2), type(self.student))
 
     def test_boundary_analysis_invalid_phone_length_below_9_and_above_12(self):
@@ -346,7 +367,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+12345678905",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data1)
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -357,7 +379,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+123456",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data2)
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -368,7 +391,8 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example@mail.com",
             "phone": "+1234567890"
         }
-        result1 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+        result1 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data1)
         self.assertIs(type(result1), type(self.student))
 
         data2 = {
@@ -377,9 +401,10 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example1@mail.com",
             "phone": "+1234567890"
         }
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data2)
         self.assertIs(type(result2), type(self.student))
-    
+
     def test_boundary_analysis_invalid_first_name_length_below_1_and_above_50(self):
         data1 = {
             "first_name": "",
@@ -388,7 +413,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data1)
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -399,7 +425,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data2)
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -410,7 +437,8 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example@mail.com",
             "phone": "+1234567890",
         }
-        result1 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+        result1 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data1)
         self.assertIs(type(result1), type(self.student))
 
         data2 = {
@@ -419,7 +447,8 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example1@mail.com",
             "phone": "+1234567890",
         }
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data2)
         self.assertIs(type(result2), type(self.student))
 
     def test_boundary_analysis_invalid_last_name_length_below_1_and_above_50(self):
@@ -430,7 +459,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data1)
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -441,10 +471,10 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data2)
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
-
 
     def test_valid_email_length_between_12_and_120(self):
         data = {
@@ -453,9 +483,9 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example@mail.com",
             "phone": "+1234567890"
         }
-        result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+        result = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data)
         self.assertIs(type(result), type(self.student))
-
 
     def test_invalid_email_length_below_12_and_above_120(self):
         data1 = {
@@ -465,7 +495,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data1)
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
 
@@ -476,10 +507,10 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data2)
         except ValueError as e:
             self.assertEqual(str(e), "invalid email")
-
 
     def test_valid_phone_length_between_9_and_12(self):
         data = {
@@ -488,9 +519,9 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example@mail.com",
             "phone": "+1234567890"
         }
-        result = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data)
+        result = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data)
         self.assertIs(type(result), type(self.student))
-
 
     def test_invalid_phone_length_below_9_and_above_12(self):
         data1 = {
@@ -500,7 +531,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data1)
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -511,7 +543,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data2)
         except ValueError as e:
             self.assertEqual(str(e), "invalid phone")
 
@@ -522,7 +555,8 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example@mail.com",
             "phone": "+1234567890"
         }
-        result1 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+        result1 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data1)
         self.assertIs(type(result1), type(self.student))
 
         data2 = {
@@ -531,9 +565,9 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example1@mail.com",
             "phone": "+1234567890",
         }
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data2)
         self.assertIs(type(result2), type(self.student))
-
 
     def test_invalid_first_name_length_below_1_and_above_50(self):
         data1 = {
@@ -543,7 +577,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data1)
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
 
@@ -554,10 +589,10 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890",
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data2)
         except ValueError as e:
             self.assertEqual(str(e), "invalid first name")
-
 
     def test_valid_last_name_length_between_1_and_50(self):
         data1 = {
@@ -566,7 +601,8 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example@mail.com",
             "phone": "+1234567890"
         }
-        result1 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+        result1 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data1)
         self.assertIs(type(result1), type(self.student))
 
         data2 = {
@@ -575,9 +611,9 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example1@mail.com",
             "phone": "+1234567890",
         }
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data2)
         self.assertIs(type(result2), type(self.student))
-
 
     def test_invalid_last_name_length_below_1_and_above_50(self):
         data1 = {
@@ -587,7 +623,8 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data1)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data1)
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
 
@@ -598,10 +635,10 @@ class StudentModelTestCase(BaseTestCase):
             "phone": "+1234567890"
         }
         try:
-            Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
+            Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user", **data2)
         except ValueError as e:
             self.assertEqual(str(e), "invalid last name")
-
 
     def test_add_new_student_valid_with_user(self):
         data2 = {
@@ -610,8 +647,9 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example1@mail.com",
             "phone": "+1234567890"
         }
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
-        self.assertIs(type(result2.user),type(User()))
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data2)
+        self.assertIs(type(result2.user), type(User()))
         self.assertIs(type(result2), type(self.student))
 
     def test_add_new_student_valid_no_user(self):
@@ -619,10 +657,11 @@ class StudentModelTestCase(BaseTestCase):
             "first_name": "John",
             "last_name": "D",
             "email": "example1@mail.com",
-        }    
+        }
         # Test implementation
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="no_user",**data2)
-        self.assertIsNot(type(result2.user),type(User()))
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="no_user", **data2)
+        self.assertIsNot(type(result2.user), type(User()))
         self.assertIs(type(result2), type(self.student))
 
     def test_add_new_student_invalid_non_string(self):
@@ -631,12 +670,13 @@ class StudentModelTestCase(BaseTestCase):
             "last_name": "D",
             "email": "example1@mail.com",
             "phone": "+1234567890"
-        }    
+        }
         # Test implementation
         try:
-            result2 = Student.add_new_student(id=self.customer.id,typeOfStudent=1234,**data2)
+            result2 = Student.add_new_student(
+                id=self.customer.id, typeOfStudent=1234, **data2)
         except ValueError as e:
-            self.assertEqual(str(e),'invalid student type')
+            self.assertEqual(str(e), 'invalid student type')
 
     def test_add_new_student_invalid_empty_string(self):
         data2 = {
@@ -644,12 +684,14 @@ class StudentModelTestCase(BaseTestCase):
             "last_name": "D",
             "email": "example1@mail.com",
             "phone": "+1234567890"
-        }    
+        }
         # Test implementation
         try:
-            result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="",**data2)
+            result2 = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="", **data2)
         except ValueError as e:
-            self.assertEqual(str(e),'invalid student type')
+            self.assertEqual(str(e), 'invalid student type')
+
     def test_add_new_student_boundary_valid_with_user(self):
         data2 = {
             "first_name": "John",
@@ -657,8 +699,9 @@ class StudentModelTestCase(BaseTestCase):
             "email": "example1@mail.com",
             "phone": "+1234567890"
         }
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user",**data2)
-        self.assertIs(type(result2.user),type(User()))
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="with_user", **data2)
+        self.assertIs(type(result2.user), type(User()))
         self.assertIs(type(result2), type(self.student))
 
     def test_add_new_student_boundary_valid_no_user(self):
@@ -666,10 +709,11 @@ class StudentModelTestCase(BaseTestCase):
             "first_name": "John",
             "last_name": "D",
             "email": "example1@mail.com",
-        }    
+        }
         # Test implementation
-        result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="no_user",**data2)
-        self.assertIsNot(type(result2.user),type(User()))
+        result2 = Student.add_new_student(
+            id=self.customer.id, typeOfStudent="no_user", **data2)
+        self.assertIsNot(type(result2.user), type(User()))
         self.assertIs(type(result2), type(self.student))
 
     def test_add_new_student_boundary_invalid_with_user1(self):
@@ -678,9 +722,10 @@ class StudentModelTestCase(BaseTestCase):
             "last_name": "D",
             "email": "example1@mail.com",
             "phone": "+1234567890"
-        }    
+        }
         # Test implementation
         try:
-            result2 = Student.add_new_student(id=self.customer.id,typeOfStudent="with_user1",**data2)
+            result2 = Student.add_new_student(
+                id=self.customer.id, typeOfStudent="with_user1", **data2)
         except ValueError as e:
-            self.assertEqual(str(e),'invalid student type')
+            self.assertEqual(str(e), 'invalid student type')

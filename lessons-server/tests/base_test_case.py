@@ -24,9 +24,11 @@ class TestConfig(Config):
     SQLALCHEMY_POOL_SIZE = None
     SQLALCHEMY_MAX_OVERFLOW = None
 
+
 class TestConfigWithAuth(TestConfig):
     DISABLE_AUTH = False
     REFRESH_TOKEN_IN_BODY = True
+
 
 class BaseTestCase(unittest.TestCase):
     config = TestConfig
@@ -50,7 +52,7 @@ class BaseTestCase(unittest.TestCase):
         db.session.add(customer)
         db.session.add(customer2)
         db.session.commit()
-        self.customer=customer
+        self.customer = customer
 
         teacher = Teacher(user_id=user_teacher.uid, wage_per_hour=120.00, bio="ewfewvwv",
                           photo="wdq", open_for_new_students=True, payroll_id="122222-2311", status='active',)

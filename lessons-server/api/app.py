@@ -1,3 +1,15 @@
+from config import config
+from flask_admin import Admin
+from flask_login import LoginManager, current_user
+from flask_compress import Compress
+from flask_minify import minify
+from flask_mail import Mail
+from flask_cors import CORS
+from flask_marshmallow import Marshmallow
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, g, render_template
+from apifairy import APIFairy
 import sentry_sdk
 import rq_dashboard
 import rq
@@ -7,22 +19,12 @@ from redis import Redis
 from sentry_sdk.integrations.flask import FlaskIntegration
 from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
 from sentry_sdk.integrations.rq import RqIntegration
+from sentry_sdk.crons import monitor
 # Get the directory path of the external module
-external_module_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),"../../"))
+external_module_dir = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "../../"))
 # Add the directory path to the Python path
 sys.path.append(external_module_dir)
-from apifairy import APIFairy
-from flask import Flask, request, g, render_template
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_marshmallow import Marshmallow
-from flask_cors import CORS
-from flask_mail import Mail
-from flask_minify import minify
-from flask_compress import Compress
-from flask_login import LoginManager, current_user
-from flask_admin import Admin
-from config import config
 
 db = SQLAlchemy()
 migrate = Migrate()

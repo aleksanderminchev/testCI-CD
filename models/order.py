@@ -129,7 +129,7 @@ class Order(Updateable, db.Model):  # type:ignore
         return package
 
     @staticmethod
-    def add_new(data, email_sent = True, session=None):
+    def add_new(data, email_sent=True, session=None):
         order = Order()
         order.total_hours = data.total_hours
         order.total_price = data.total_price
@@ -149,7 +149,8 @@ class Order(Updateable, db.Model):  # type:ignore
         internal_customer = Customer.get_customer_by_email(order.email)
 
         if internal_customer is None:
-            raise ValueError('Error creating order: Customer not found på email.')
+            raise ValueError(
+                'Error creating order: Customer not found på email.')
         order.customer_id = internal_customer.customer.id
         if session is None:
             db.session.add(order)
@@ -183,7 +184,8 @@ class Order(Updateable, db.Model):  # type:ignore
             229: today + relativedelta(months=+36)
         }
 
-        self.expiration_date = expiration_mapping.get(unit_price, today + relativedelta(months=+3))
+        self.expiration_date = expiration_mapping.get(
+            unit_price, today + relativedelta(months=+3))
 
     def to_dict(self):
         return {
@@ -346,8 +348,8 @@ class Order(Updateable, db.Model):  # type:ignore
 
         combined_result = []
         for a, b, c in itertools.zip_longest(formatted_result,
-        formatted_result_upsell,
-        formatted_result_new, fillvalue={}):
+                                             formatted_result_upsell,
+                                             formatted_result_new, fillvalue={}):
             combined_dict = {**a, **b, **c}
             combined_result.append(combined_dict)
 

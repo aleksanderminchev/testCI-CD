@@ -55,7 +55,7 @@ class Course(Updateable, db.Model):  # type:ignore
 
     taken_by = db.Column(
         db.Integer, db.ForeignKey("teacher.id"), index=True)
-        
+
     @staticmethod
     def add(data):
         if "taken_by" in data:

@@ -65,7 +65,8 @@ def get_sitemap_pages(include_seo_pages=True):
             # add SEO pages for mainword/keyword if enabled
             if include_seo_pages is True:
                 for keyword in SEO_KEYWORDS:
-                    pages.append([f"https://www.toptutors.dk/lektiehjælp/{keyword.lower()}", lastmod])
+                    pages.append(
+                        [f"https://www.toptutors.dk/lektiehjælp/{keyword.lower()}", lastmod])
 
     # add SEO pages for mainword/keyword
     for keyword in SEO_KEYWORDS:
@@ -237,14 +238,16 @@ def course_teacher_search(email, courses):
     """
 
     # Case insensitive query:
-    tutor = Teacher.get_teacher_by_email(email, False) or flash('Indsæt en gyldig email')
+    tutor = Teacher.get_teacher_by_email(
+        email, False) or flash('Indsæt en gyldig email')
     # tutor = Tutor.query.filter_by(email=email).first() or flash('Please enter correct tutor email')
 
     if not tutor:
         return None
 
     # Create Session
-    session['tutor'] = {"tutor_email": tutor.user.email, "tutor_id": tutor.user_id}
+    session['tutor'] = {"tutor_email": tutor.user.email,
+                        "tutor_id": tutor.user_id}
 
     # Set default to False
     has_prio_subject = False
@@ -264,23 +267,28 @@ def course_teacher_search(email, courses):
 
     for i in courses:
         subject_list = {subj for subj in i.subjects.split(',')}
-        courses_can_teach = courses_can_teach + [i for j in tutor.subjects if j.name in subject_list]
-        priority_courses = priority_courses + [i for j in subject_list if j in priority_subjects]
+        courses_can_teach = courses_can_teach + \
+            [i for j in tutor.subjects if j.name in subject_list]
+        priority_courses = priority_courses + \
+            [i for j in subject_list if j in priority_subjects]
 
     # Combine all courses
     all_courses = set(priority_courses).union(courses_can_teach)
 
     # Filter courses 3 days old or older
     three_days_ago = datetime.now() - timedelta(days=3)
-    filtered_courses = [course for course in all_courses if course.created_at <= three_days_ago]
+    filtered_courses = [
+        course for course in all_courses if course.created_at <= three_days_ago]
 
     if has_prio_subject:
         # Prioritized teacher to show prioritized subjects he can teach in the front,
         # then the rest of the prioritized subjects,
         # non-prio teacher courses he can teach in,
         # and then all others
-        courses_can_teach = set(filtered_courses).intersection(priority_courses)
-        courses = set(priority_courses).difference(courses_can_teach).union(filtered_courses)
+        courses_can_teach = set(
+            filtered_courses).intersection(priority_courses)
+        courses = set(priority_courses).difference(
+            courses_can_teach).union(filtered_courses)
     else:
         courses = filtered_courses
 

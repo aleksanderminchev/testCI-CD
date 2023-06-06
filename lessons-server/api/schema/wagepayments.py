@@ -32,8 +32,9 @@ class WagePaymentSchema(ma.SQLAlchemySchema):
     hours = ma.Float(dump_only=True)
     created_at = ma.DateTime(dump_only=True)
     last_updated = ma.DateTime(dump_only=True)
-    referrals_number=ma.Float(dump_only=True)
-    referrals_amount= ma.Float(dump_only=True)
+    referrals_number = ma.Float(dump_only=True)
+    referrals_amount = ma.Float(dump_only=True)
+
     @validates('teacher_id')
     def validate_teacher_id(self, value):
         if Teacher.get_teacher_by_id(value) is None:
@@ -58,15 +59,16 @@ class CalculateWagePayments(ma.SQLAlchemySchema):
     start_date = ma.Date(required=True, description='Format in utc time')
     end_date = ma.Date(required=True, description='Format in utc time',)
     paid_hours = ma.Float(dump_only=True)
-    referrals_number_unpaid=ma.Float(dump_only=True)
-    referrals_amount_unpaid= ma.Float(dump_only=True)
-    referrals_number_paid=ma.Float(dump_only=True)
-    referrals_amount_paid= ma.Float(dump_only=True)
+    referrals_number_unpaid = ma.Float(dump_only=True)
+    referrals_amount_unpaid = ma.Float(dump_only=True)
+    referrals_number_paid = ma.Float(dump_only=True)
+    referrals_amount_paid = ma.Float(dump_only=True)
     paid_wage = ma.Float(dump_only=True)
     unpaid_hours = ma.Float(dump_only=True)
     unpaid_wage = ma.Float(dump_only=True)
-    referrals_number=ma.Float(dump_only=True)
-    referrals_amount= ma.Float(dump_only=True)
+    referrals_number = ma.Float(dump_only=True)
+    referrals_amount = ma.Float(dump_only=True)
+
     @validates_schema
     def validate_dates_are_valid(self, data, **kwargs):
         start_date = data.get('start_date')
@@ -91,11 +93,10 @@ class AddBulkWagePayments(ma.SQLAlchemySchema):
     end_date = ma.Date(required=True, description='Format in utc time',)
     amount = ma.Float(dump_only=True)
     hours = ma.Float(dump_only=True)
-    referrals_number=ma.Float(dump_only=True)
-    referrals_amount= ma.Float(dump_only=True)
+    referrals_number = ma.Float(dump_only=True)
+    referrals_amount = ma.Float(dump_only=True)
     created_at = ma.DateTime(dump_only=True)
     last_updated = ma.DateTime(dump_only=True)
-
 
     @validates_schema
     def validate_dates_are_valid(self, data, **kwargs):

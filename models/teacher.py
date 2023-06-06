@@ -1,7 +1,7 @@
 import enum
 from numbers import Number
 from decouple import config
-from flask import abort,current_app,render_template
+from flask import abort, current_app, render_template
 import requests
 from sqlalchemy.orm import validates
 import re
@@ -164,15 +164,13 @@ class Teacher(Updateable, db.Model):  # type:ignore
 
     def to_calendar(self):
         return {
-            "students":[i.id for i in (self.students or [])],
+            "students": [i.id for i in (self.students or [])],
             "first_name": self.user.first_name,
             "last_name": self.user.last_name,
             "email": self.user.email,
             'id': self.id,
             'status': self.status.value,
         }
-
-
 
     def to_dict(self):
 
@@ -181,9 +179,9 @@ class Teacher(Updateable, db.Model):  # type:ignore
         else:
             referred = ''
         return {
-            "first_name": getattr(self, 'user.first_name',""),
-            "last_name": getattr(self, 'user.last_name',""),
-            "phone":  getattr(self, 'user.phone',""),
+            "first_name": getattr(self, 'user.first_name', ""),
+            "last_name": getattr(self, 'user.last_name', ""),
+            "phone":  getattr(self, 'user.phone', ""),
             "hire_date": self.hire_date,
             "wage_per_hour": self.wage_per_hour,
             "bio": self.bio,
@@ -205,14 +203,20 @@ class Teacher(Updateable, db.Model):  # type:ignore
             "finished_highschool": self.finished_highschool,
             "languages": [i.to_dict() for i in (self.languages or [])],
             "programs": [i.to_dict() for i in (self.programs or [])],
-            "qualifications": [i.to_dict() for i in (self.qualifications or [])],
+            "qualifications": [i.to_dict() for i in (self.qualifications
+                                                     or [])],
             "interests": [i.to_dict() for i in (self.interests or [])],
             "subjects": [i.to_dict() for i in (self.subjects or [])],
-            "higher_education_institutions": [i.to_dict() for i in (self.higher_education_institutions or [])],
-            "higher_education_programmes": [i.to_dict() for i in (self.higher_education_programmes or [])],
-            "last_login":getattr(self, 'user.last_login',""),
-            "is_verified": getattr(self, 'user.is_verified',""),
-            "email": getattr(self, 'user.email',""),
+            "higher_education_institutions": [i.to_dict() for i in
+                                              (self.
+                                                  higher_education_institutions
+                                               or [])],
+            "higher_education_programmes": [i.to_dict() for i in
+                                            (self.higher_education_programmes
+                                             or [])],
+            "last_login": getattr(self, 'user.last_login', ""),
+            "is_verified": getattr(self, 'user.is_verified', ""),
+            "email": getattr(self, 'user.email', ""),
             'id': self.id,
             'age': self.age,
             'status': self.status.value,
@@ -290,8 +294,14 @@ class Teacher(Updateable, db.Model):  # type:ignore
             "qualifications": [i.name for i in (self.qualifications or [])],
             "interests": [i.name for i in (self.interests or [])],
             "subjects": [i.name for i in (self.subjects or [])],
-            "higher_education_institutions": [i.name for i in (self.higher_education_institutions or [])],
-            "higher_education_programmes": [i.name for i in (self.higher_education_programmes or [])],
+            "higher_education_institutions": [i.name for i
+                                              in (self.
+                                                  higher_education_institutions
+                                                  or [])],
+            "higher_education_programmes": [i.name for i
+                                            in (self.
+                                                higher_education_programmes
+                                                or [])],
             "last_login": self.user.last_login,
             "is_verified": self.user.is_verified,
             "email": self.user.email,
@@ -367,15 +377,6 @@ class Teacher(Updateable, db.Model):  # type:ignore
             ).all()
 
         return [tutor.to_tutormap() for tutor in result]
-
-    @staticmethod
-    def add_new_tutor(data):  # DEPRECATED? Remove this and all uses of this? TODO
-        """Adds a new lesson to the DB.
-        Data argument is a dictionary containing lesson data from TW.
-        """
-        teacher = Teacher(**data)
-        db.session.add(teacher)
-        db.session.commit()
 
     def validate_tutor_address(self):
         lat = 0
@@ -466,7 +467,8 @@ class Teacher(Updateable, db.Model):  # type:ignore
         if 'programs_create' in kwargs.keys():
             for i in kwargs['programs_create']:
                 Program.add_program_to_teacher(teacher, i)
-        if 'referred_by' in kwargs.keys() and 'referral_amount' in kwargs.keys():
+        if 'referred_by' in kwargs.keys() and 'referral_amount' \
+                in kwargs.keys():
             Referral.add_new_referral(referrer_id=kwargs['referred_by'],
                                       referred_id=teacher.id,
                                       referral_amount=kwargs['referral_amount'])
@@ -529,7 +531,12 @@ class Teacher(Updateable, db.Model):  # type:ignore
         for key, value in kwargs.items():
             if key in ('first_name', 'last_name', 'email', 'phone'):
                 arguments_for_user[key] = value
-            elif key in ('higher_education_institution', 'higher_education_programme', 'qualification', 'subject', 'language', 'lesson', 'interest', 'program'):
+            elif key in ('higher_education_institution',
+                         'higher_education_programme',
+                         'qualification', 'subject',
+                         'language',
+                         'lesson',
+                         'interest', 'program'):
                 arguments_for_relantionships[key+"_id"] = value
             else:
                 arguments_for_teacher[key] = value

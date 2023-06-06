@@ -4,14 +4,17 @@ from marshmallow import validate, validates, validates_schema, \
     ValidationError, fields
 
 from api import ma
+
+
 class VoidOrderSchema(ma.SQLAlchemySchema):
     class Meta:
-        model=Order
-        ordered=True
-    id=ma.Integer(required=True)
+        model = Order
+        ordered = True
+    id = ma.Integer(required=True)
+
     @validates('id')
     def validate_user(self, value):
-        order=Order.get_order_by_id(id=value) 
+        order = Order.get_order_by_id(id=value)
         if order is None:
             raise ValidationError('Invalid Order')
         elif order.balance is None:
